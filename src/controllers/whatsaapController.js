@@ -36,7 +36,7 @@ const receivedMessage = (req,res)=>{
         let entry= (req.body["entry"])[0];
         let changes= (entry["changes"])[0];
       
-        let value = changes["value"];
+        let value = changes["value"]
         
         let messageObject= value["messages"];
         myConsole.log(messageObject);
