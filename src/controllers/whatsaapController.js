@@ -31,14 +31,14 @@ const verifyToken =(req,res)=>{
 
 const receivedMessage = (req,res)=>{
     
-    
     try {
-        let entry= (req.body["entry"])[0];
+        let entry=  (req.body["entry"])[0];
         let changes= (entry["changes"])[0];
       
         let value = changes["value"]
         
         let messageObject= value["messages"];
+        console.log(messageObject)
         myConsole.log(messageObject);
         res.send("EVENT_RECEIVED")
     
