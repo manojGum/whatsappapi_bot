@@ -10,8 +10,8 @@ function sendMessageWhatsApp(textResponse,number){
         }
     });
     const options = {
-        host:"",
-        path:"",
+        host:"https://graph.facebook.com",
+        path:"/v16.0/122432790850913/messages",
         method:"POST",
         body:data,
         headers:{
