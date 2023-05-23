@@ -9,18 +9,17 @@ const verifyToken =(req,res)=>{
         // }else{
         //     res.status(400).send()
         // }
-        // let mode = req.query["hub.mode"];
-        // let challange = req.query["hub.challenge"];
-        // let token= req.query["hub.verify_token"];
-        // const mytoken = "manojtoken";
-        // if(mode && token){
-        //     if(mode === 'subscribe' && token=== mytoken){
-        //         res.status(200).send(challange);
-        //     }else{
-        //         res.status(403)
-        //     }
-        // }
-        res.send("i am ready")
+        let mode = req.query["hub.mode"];
+        let challange = req.query["hub.challenge"];
+        let token= req.query["hub.verify_token"];
+        const mytoken = "manojtoken";
+        if(mode && token){
+            if(mode === 'subscribe' && token=== mytoken){
+                res.status(200).send(challange);
+            }else{
+                res.status(403)
+            }
+        }
 
     } catch (error) {
         res.status(400).send(error)
