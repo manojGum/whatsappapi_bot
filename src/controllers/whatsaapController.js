@@ -41,7 +41,7 @@ const receivedMessage = async(req,res)=>{
         if(typeof messageObject !="undefined"){
 
             let messages = messageObject[0]
-            let number = messages["from"]
+            let number = await messages["from"]
             // console.log(messageObject)
             let text = await GetTextUser(messages)
             console.log("recived text",text)
@@ -64,7 +64,7 @@ function GetTextUser(messages){
 
     }else if(typeMessage=="interactive"){
         let interactiveObject = messages["interactive"];
-        var typeInteractive= interactiveObject["type"];
+        let typeInteractive= interactiveObject["type"];
         if(typeInteractive=="button_reply"){
             text=(interactiveObject["button_reply"])["title"];
         }else if(typeInteractive=="list_reply"){
