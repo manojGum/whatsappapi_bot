@@ -29,7 +29,7 @@ const verifyToken =(req,res)=>{
     }
 }
 
-const receivedMessage = (req,res)=>{
+const receivedMessage = async(req,res)=>{
     
     try {
         let entry=  (req.body["entry"])[0];
@@ -40,7 +40,7 @@ const receivedMessage = (req,res)=>{
         let messageObject= value["messages"];
         let messages = messageObject[0]
         console.log(messageObject)
-        let text = GetTextUser(messages)
+        let text = await GetTextUser(messages)
         console.log("recived text",text)
         // myConsole.log(messageObject);
         res.send("EVENT_RECEIVED")
