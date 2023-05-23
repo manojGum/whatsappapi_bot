@@ -1,6 +1,6 @@
 const fs = require('fs');
 // const myConsole = new console.Console(fs.createWriteStream('./logs.text'));
-
+const whatsappService = require('../services/whatsappService');
 const verifyToken =(req,res)=>{
     try {
         // var accessToken = "RTQWWTVHBDSD78S78DSNDS9090DS";
@@ -38,11 +38,16 @@ const receivedMessage = async(req,res)=>{
         let value = changes["value"]
         
         let messageObject= value["messages"];
-        let messages = messageObject[0]
-        // console.log(messageObject)
-        let text = await GetTextUser(messages)
-        console.log("recived text",text)
-        // myConsole.log(messageObject);
+        if(typeof messageObject !="undefined"){
+
+            let messages = messageObject[0]
+            let number = messages["from"]
+            // console.log(messageObject)
+            let text = await GetTextUser(messages)
+            console.log("recived text",text)
+            whatsappService.sendMessageWhatsApp("user send and reviced same message:"+ text,number)
+            // myConsole.log(messageObject);
+        }
         res.send("EVENT_RECEIVED")
     
     } catch (error) {
