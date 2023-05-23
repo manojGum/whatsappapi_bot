@@ -39,7 +39,7 @@ const receivedMessage = async(req,res)=>{
         
         let messageObject= value["messages"];
         let messages = messageObject[0]
-        console.log(messageObject)
+        // console.log(messageObject)
         let text = await GetTextUser(messages)
         console.log("recived text",text)
         // myConsole.log(messageObject);
