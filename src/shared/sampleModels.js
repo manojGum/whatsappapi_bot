@@ -1,6 +1,6 @@
-function messageText(textResponse,number){
+function messageText(textResponse, number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "text",
         "text": {
@@ -10,45 +10,45 @@ function messageText(textResponse,number){
     return data;
 }
 
-function messageImage(number){
+function messageImage(number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "image",
         "image": {
-            "link":"https://th.bing.com/th/id/OIP.1YM53mG10H_U25iPjop83QHaEo?pid=ImgDet&rs=1"
+            "link": "https://th.bing.com/th/id/OIP.1YM53mG10H_U25iPjop83QHaEo?pid=ImgDet&rs=1"
         }
     });
     return data;
 }
 
-function messageAudio(number){
+function messageAudio(number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "audio",
         "audio": {
-            "link":"https://file-examples.com/index.php/sample-audio-files/sample-mp3-download/"
+            "link": "https://file-examples.com/storage/fee0ed988b646cbee9f2340/2017/11/file_example_MP3_700KB.mp3"
         }
     });
     return data;
 }
 
-function messageVideo(number){
+function messageVideo(number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "video",
         "video": {
-            "link":"https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+            "link": "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
         }
     });
     return data;
 }
 
-function messageDocument(number){
+function messageDocument(number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "document",
         "document": {
@@ -59,9 +59,9 @@ function messageDocument(number){
     return data;
 }
 
-function messageButtons(number){
+function messageButtons(number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "interactive",
         "interactive": {
@@ -92,18 +92,15 @@ function messageButtons(number){
     return data;
 }
 
-function messageList(number){
+function messageList(number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "interactive",
         "interactive": {
             "type": "list",
             "body": {
                 "text": "list options"
-            },
-            "footer": {
-                "text": "Select form list"
             },
             "action": {
                 "button": "slect option",
@@ -130,9 +127,9 @@ function messageList(number){
     return data;
 }
 
-function messageLocation(number){
+function messageLocation(number) {
     const data = JSON.stringify({
-        "messaging_product": "whatsapp",    
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "location",
         "location": {

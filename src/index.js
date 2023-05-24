@@ -1,20 +1,37 @@
 const express = require("express");
 const apiRoute = require('./routers/routes');
+const addInfoRoute = require('./routers/addInfoRoutes');
+const infotypeRoutes = require('./routers/infoTypeRoutes')
+const morgan=require('morgan');
+const mongoose=require('mongoose');
 const cors = require('cors')
 const app = express();
+
+// middleware
 app.use(cors())
-// https://d043-125-20-111-58.in.ngrok.io/whatsapp
+app.use(morgan('tiny'));
 const PORT = process.env.PORT || 5656 ;
 app.use(express.json());
+// route
 app.use("/whatsapp", apiRoute);
-app.get("/lo", (req, res) => {
+app.use(`/infotype`,infotypeRoutes)
+app.use('/addinfo',addInfoRoute)
+app.get("/lost", (req, res) => {
     res.send({
       message: "Hi Welcome to HR Assistance bot",
     });
   });
 
+
+  //Databse connection
+
+mongoose.connect("mongodb+srv://ManojKumar:ManojKumar@cluster0.jir7wgl.mongodb.net/whatsappqueryInfo?retryWrites=true&w=majority").then(()=>{
+  console.log('Database connection is ready .....')
+}).catch((err)=>{
+  console.log(err)
+})
+
+
 app.listen(PORT, ()=>{
     console.log("application is running at port",PORT)
 })
-
-//lJzglnyu-KLTDZbJifJ71qZxfur4ikLqlN4EfMtA
