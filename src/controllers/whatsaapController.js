@@ -53,38 +53,38 @@ const receivedMessage = async(req,res)=>{
            
             // myConsole.log(messageObject);
             if(text=="text"){
-                let data = samples.sampleText("hello users",number)
+                let data = samples.messageText("hello users",number)
                 whatsappService.sendMessageWhatsApp(data)
             }
             else if(text == "image"){
-                let data =samples.sampleImage(number)
+                let data =samples.messageImage(number)
                 whatsappService.sendMessageWhatsApp(data)
             }
             else if(text == "video"){
-                let data =samples.sampleVideo(number)
+                let data =samples.messageVideo(number)
                 whatsappService.sendMessageWhatsApp(data)
             }
             else if(text == "audio"){
-                let data =samples.sampleAudio(number)
+                let data =samples.messageAudio(number)
                 whatsappService.sendMessageWhatsApp(data)
             }else if(text == "document"){
-                let data =samples.sampleDocument(number)
+                let data =samples.messageDocument(number)
                 whatsappService.sendMessageWhatsApp(data)
             }
             else if(text == "button"){
-                let data =samples.sampleButtons(number)
+                let data =samples.messageButtons(number)
                 whatsappService.sendMessageWhatsApp(data)
             }
             else if(text == "list"){
-                let data =samples.sampleList(number)
+                let data =samples.messageList(number)
                 whatsappService.sendMessageWhatsApp(data)
             }
             else if(text == "location"){
-                let data =samples.sampleLocation(number)
+                let data =samples.messageLocation(number)
                 whatsappService.sendMessageWhatsApp(data)
             }
             else{
-                let data = samples.sampleText("I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",number)
+                let data = samples.messageText("I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",number)
                 whatsappService.sendMessageWhatsApp(data)
             }
         }
