@@ -1,6 +1,7 @@
 const fs = require('fs');
 // const myConsole = new console.Console(fs.createWriteStream('./logs.text'));
 const whatsappService = require('../services/whatsappService');
+const samples = require("../shared/sampleModels")
 const verifyToken =(req,res)=>{
     try {
         // var accessToken = "RTQWWTVHBDSD78S78DSNDS9090DS";
@@ -43,10 +44,46 @@ const receivedMessage = async(req,res)=>{
             let messages = messageObject[0]
             let number = await messages["from"]
             // console.log(messageObject)
-            let text = await GetTextUser(messages)
-            console.log("recived text",text)
-            whatsappService.sendMessageWhatsApp("user send and reviced same message:"+ text,number)
+            let text =  GetTextUser(messages)
+            // console.log("recived text",text)
+            // whatsappService.sendMessageWhatsApp("user send and reviced same message:"+ text,number)
+           
             // myConsole.log(messageObject);
+            if(text=="text"){
+                let data = samples.sampleText("hello users",number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
+            else if(text == "image"){
+                let data =samples.sampleImage(number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
+            else if(text == "video"){
+                let data =samples.sampleVideo(number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
+            else if(text == "audio"){
+                let data =samples.sampleAudio(number)
+                whatsappService.sendMessageWhatsApp(data)
+            }else if(text == "document"){
+                let data =samples.sampleDocument(number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
+            else if(text == "button"){
+                let data =samples.sampleButtons(number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
+            else if(text == "list"){
+                let data =samples.sampleList(number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
+            else if(text == "location"){
+                let data =samples.sampleLocation(number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
+            else{
+                let data = samples.sampleText("I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",number)
+                whatsappService.sendMessageWhatsApp(data)
+            }
         }
         res.send("EVENT_RECEIVED")
     
