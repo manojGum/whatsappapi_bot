@@ -1,4 +1,4 @@
-function sampleText(textResponse,number){
+function messageText(textResponse,number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -10,7 +10,7 @@ function sampleText(textResponse,number){
     return data;
 }
 
-function sampleImage(number){
+function messageImage(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -22,7 +22,7 @@ function sampleImage(number){
     return data;
 }
 
-function sampleAudio(number){
+function messageAudio(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -34,7 +34,7 @@ function sampleAudio(number){
     return data;
 }
 
-function sampleVideo(number){
+function messageVideo(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -46,7 +46,7 @@ function sampleVideo(number){
     return data;
 }
 
-function sampleDocument(number){
+function messageDocument(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -59,7 +59,7 @@ function sampleDocument(number){
     return data;
 }
 
-function sampleButtons(number){
+function messageButtons(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -92,7 +92,7 @@ function sampleButtons(number){
     return data;
 }
 
-function sampleList(number){
+function messageList(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -145,7 +145,7 @@ function sampleList(number){
     return data;
 }
 
-function sampleLocation(number){
+function messageLocation(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",    
         "to": number,
@@ -161,12 +161,12 @@ function sampleLocation(number){
 }
 
 module.exports = {
-    sampleText,
-    sampleImage,
-    sampleAudio,
-    sampleVideo,
-    sampleDocument,
-    sampleButtons,
-    sampleList,
-    sampleLocation
+    messageText,
+    messageImage,
+    messageAudio,
+    messageVideo,
+    messageDocument,
+    messageButtons,
+    messageList,
+    messageLocation
 }

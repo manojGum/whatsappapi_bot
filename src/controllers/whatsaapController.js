@@ -39,9 +39,12 @@ const receivedMessage = async(req,res)=>{
         let value = changes["value"]
         
         let messageObject= value["messages"];
+        console.log("messageObject= ",messageObject)
+
         if(typeof messageObject !="undefined"){
 
             let messages = messageObject[0]
+            console.log("messages= ",messages)
             let number = await messages["from"]
             // console.log(messageObject)
             let text =  GetTextUser(messages)
