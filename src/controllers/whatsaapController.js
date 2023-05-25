@@ -92,7 +92,6 @@ const receivedMessage = async (req, res) => {
             let data = samples.messageLocation(number);
             whatsappService.sendMessageWhatsApp(data);
           }
-          return res.send("EVENT_RECEIVED");
         }
       }
 
