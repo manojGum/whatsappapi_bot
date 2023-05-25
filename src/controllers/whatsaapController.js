@@ -94,13 +94,6 @@ const receivedMessage = async (req, res) => {
           }
         }
       }
-
- 
-        let data = await samples.messageText(
-            "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-            number
-          );
-          whatsappService.sendMessageWhatsApp(data);
  
 
       // end new for me
