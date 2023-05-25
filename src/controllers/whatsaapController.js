@@ -70,36 +70,43 @@ const receivedMessage = async (req, res) => {
           if (faq.infoType.infoType.toLowerCase() == "text") {
             let data = samples.messageText(faq.answer.text, number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           }else if (faq.infoType.infoType.toLowerCase() == "image") {
             let data = samples.messageImage(number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           } else if (faq.infoType.infoType.toLowerCase() == "video") {
             let data = samples.messageVideo(number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           } else if (faq.infoType.infoType.toLowerCase() == "audio") {
             let data = samples.messageAudio(number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           } else if (faq.infoType.infoType.toLowerCase() == "document") {
             let data = samples.messageDocument(number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           } else if (faq.infoType.infoType.toLowerCase() == "button") {
             let data = samples.messageButtons(number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           } else if (faq.infoType.infoType.toLowerCase() == "list") {
             let data = samples.messageList(number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           } else if (faq.infoType.infoType.toLowerCase() == "location") {
             let data = samples.messageLocation(number);
             whatsappService.sendMessageWhatsApp(data);
+            return
           }
-        }else{
-            let data = samples.messageText(
-                "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-                 number
-               );
-               whatsappService.sendMessageWhatsApp(data);
         }
       }
+        let data = samples.messageText(
+            "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+             number
+           );
+           whatsappService.sendMessageWhatsApp(data);
 
       // end new for me
     //   if (text == "text") {
