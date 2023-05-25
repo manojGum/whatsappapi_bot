@@ -1,7 +1,8 @@
 const fs = require('fs');
 // const myConsole = new console.Console(fs.createWriteStream('./logs.text'));
 const whatsappService = require('../services/whatsappService');
-const samples = require("../shared/sampleModels")
+const samples = require("../shared/sampleModels");
+const QueryInfo = require('../models/queryInfo/addQueryInfomodels');
 const verifyToken = (req, res) => {
     try {
         // var accessToken = "RTQWWTVHBDSD78S78DSNDS9090DS";
@@ -31,7 +32,8 @@ const verifyToken = (req, res) => {
 }
 
 const receivedMessage = async (req, res) => {
-
+    const data =  await QueryInfo.find().populate('infoType')
+    console.log("through my data base" ,data)
     try {
         let entry = (req.body["entry"])[0];
         let changes = (entry["changes"])[0];

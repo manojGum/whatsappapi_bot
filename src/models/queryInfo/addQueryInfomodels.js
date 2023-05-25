@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const queryInfoSchema = mongoose.Schema({
     infoType: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'infotypes',
+        ref: 'infotype',
         required: true
     },
     question: {
