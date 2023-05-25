@@ -67,9 +67,8 @@ const receivedMessage = async (req, res) => {
           faq.question.toLowerCase()
         );
         if (similarity >=0.6 && similarity > maxSimilarity) {
-
         if (infoType === "text") {
-            let data = samples.messageText("hello users", number);
+            let data = samples.messageText(faq.answer.text, number);
             whatsappService.sendMessageWhatsApp(data);
           } else if (infoType === "image") {
             let data = samples.messageImage(number);
@@ -93,16 +92,17 @@ const receivedMessage = async (req, res) => {
             let data = samples.messageLocation(number);
             whatsappService.sendMessageWhatsApp(data);
           }
+          return res.send("EVENT_RECEIVED");
         }
       }
 
-    //   // else {
-    //     let data = samples.messageText(
-    //         "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-    //         number
-    //       );
-    //       whatsappService.sendMessageWhatsApp(data);
-    //     }
+ 
+        let data = await samples.messageText(
+            "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+            number
+          );
+          whatsappService.sendMessageWhatsApp(data);
+ 
 
       // end new for me
     //   if (text == "text") {
