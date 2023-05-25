@@ -68,7 +68,7 @@ const receivedMessage = async (req, res) => {
         if (similarity >= 0.4 && similarity > maxSimilarity) {
           maxSimilarity = similarity;
           if (faq.infoType.infoType.toLowerCase() == "text") {
-            let data = samples.messageText("hello users", number);
+            let data = samples.messageText(faq.answer.text, number);
             whatsappService.sendMessageWhatsApp(data);
           }else if (faq.infoType.infoType.toLowerCase() == "image") {
             let data = samples.messageImage(number);
