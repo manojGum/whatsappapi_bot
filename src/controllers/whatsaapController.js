@@ -130,7 +130,7 @@ const receivedMessage = async (req, res) => {
     //     whatsappService.sendMessageWhatsApp(data);
     //   }
     }
-    res.send("EVENT_RECEIVED");
+    return res.send("EVENT_RECEIVED");
   } catch (error) {
     // myConsole.log(error);
     res.send("event_RECIVED");
