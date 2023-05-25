@@ -92,6 +92,12 @@ const receivedMessage = async (req, res) => {
             let data = samples.messageLocation(number);
             whatsappService.sendMessageWhatsApp(data);
           }
+        }else{
+            let data = samples.messageText(
+                "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+                 number
+               );
+               whatsappService.sendMessageWhatsApp(data);
         }
       }
 
