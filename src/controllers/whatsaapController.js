@@ -60,42 +60,49 @@ const receivedMessage = async (req, res) => {
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
         console.log(`data i ${i}`, faq.question);
-        console.log("type Info", faq.infoType.infoType.toLowerCase());
+        const infoType=faq.infoType.infoType.toLowerCase()
+        console.log("type Info", infoType);
         const similarity = await getJaccardSimilarity(
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
-        if (similarity >= 0.6 && similarity > maxSimilarity) {
-          maxSimilarity = similarity;
-          console.log("similarity",similarity)
-          if (faq.infoType.infoType.toLowerCase() == "text") {
-            let data = samples.messageText(faq.answer.text, number);
-             whatsappService.sendMessageWhatsApp(data);
-          }else if (faq.infoType.infoType.toLowerCase() == "image") {
+        if (similarity >=0.6 && similarity > maxSimilarity) {
+
+        if (infoType === "text") {
+            let data = samples.messageText("hello users", number);
+            whatsappService.sendMessageWhatsApp(data);
+          } else if (infoType === "image") {
             let data = samples.messageImage(number);
             whatsappService.sendMessageWhatsApp(data);
-          } else if (faq.infoType.infoType.toLowerCase() == "video") {
+          } else if (infoType ==="video") {
             let data = samples.messageVideo(number);
             whatsappService.sendMessageWhatsApp(data);
-          } else if (faq.infoType.infoType.toLowerCase() == "audio") {
+          } else if (infoType === "audio") {
             let data = samples.messageAudio(number);
             whatsappService.sendMessageWhatsApp(data);
-          } else if (faq.infoType.infoType.toLowerCase() == "document") {
+          } else if (infoType ==="document") {
             let data = samples.messageDocument(number);
             whatsappService.sendMessageWhatsApp(data);
-          } else if (faq.infoType.infoType.toLowerCase() == "button") {
+          } else if (infoType ==="button") {
             let data = samples.messageButtons(number);
             whatsappService.sendMessageWhatsApp(data);
-          } else if (faq.infoType.infoType.toLowerCase() == "list") {
+          } else if (infoType === "list") {
             let data = samples.messageList(number);
             whatsappService.sendMessageWhatsApp(data);
-          } else if (faq.infoType.infoType.toLowerCase() == "location") {
+          } else if (infoType === "location") {
             let data = samples.messageLocation(number);
             whatsappService.sendMessageWhatsApp(data);
-          } 
-        return
+          }
         }
       }
+
+    //   // else {
+    //     let data = samples.messageText(
+    //         "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+    //         number
+    //       );
+    //       whatsappService.sendMessageWhatsApp(data);
+    //     }
 
       // end new for me
     //   if (text == "text") {
