@@ -70,7 +70,7 @@ const receivedMessage = async (req, res) => {
           console.log("similarity",similarity)
           if (faq.infoType.infoType.toLowerCase() == "text") {
             let data = samples.messageText(faq.answer.text, number);
-            whatsappService.sendMessageWhatsApp(data);
+             whatsappService.sendMessageWhatsApp(data);
           }else if (faq.infoType.infoType.toLowerCase() == "image") {
             let data = samples.messageImage(number);
             whatsappService.sendMessageWhatsApp(data);
@@ -92,13 +92,7 @@ const receivedMessage = async (req, res) => {
           } else if (faq.infoType.infoType.toLowerCase() == "location") {
             let data = samples.messageLocation(number);
             whatsappService.sendMessageWhatsApp(data);
-          } else{
-            let data = samples.messageText(
-                "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-                 number
-               );
-               whatsappService.sendMessageWhatsApp(data);
-        }
+          } 
         return
         }
       }
