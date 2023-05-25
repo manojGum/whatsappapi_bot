@@ -6,6 +6,10 @@ const queryInfoSchema = mongoose.Schema({
         ref: 'infotype',
         required: true
     },
+    user_id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+     },
     question: {
         type: String,
         required: true
