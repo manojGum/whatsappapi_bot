@@ -24,3 +24,4 @@ yarn-error.log*
 hr-bot-xula-f676c818e0c0.json
 .env
 .wwebjs_auth
+/bot_client

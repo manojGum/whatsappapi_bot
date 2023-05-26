@@ -13,6 +13,7 @@ app.use(cors());
 app.use(morgan("tiny"));
 const PORT = process.env.PORT || 5656;
 app.use(express.json());
+app.use(express.urlencoded())
 // route
 app.use("/whatsapp", apiRoute);
 app.use(`/infotype`, infotypeRoutes);

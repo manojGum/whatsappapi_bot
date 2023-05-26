@@ -6,6 +6,7 @@ const secret = process.env.JWTSECRETE;
 
 const registerUser = async (req, res) => {
   let email = req.body.email;
+  console.log(email)
   const usr = await User.findOne({ email: email });
   if (!usr) {
     let user = new User({
@@ -18,7 +19,7 @@ const registerUser = async (req, res) => {
     });
     user = await user.save();
     if (!user) {
-      return res.status(400).send("the user cannot be created");
+      return res.status(400).send({msg:"the user cannot be created"});
     } else {
       console.log(user.id);
       const token = jwt.sign(
@@ -31,10 +32,10 @@ const registerUser = async (req, res) => {
           expiresIn: "1d",
         }
       );
-      res.status(201).send({ user: user.email, token });
+      res.status(201).send({msg:"Register sucessfully.... ", user: user.name, token });
     }
   } else {
-    return res.status(400).send({ msg: "Email already exists ..." });
+    return res.status(201).send({ msg: "Email already exists ..." });
   }
 };
 
@@ -46,14 +47,14 @@ const userLogin = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   console.log(req.body.passwordHash);
   if (!user) {
-    return res.status(400).send("the user not found");
+    return res.status(400).send({msg:"the user not found"});
   }
 console.log(user.passwordHash)
   if (
     user &&
     bcrypt.compareSync(req.body.passwordHash + "mysecrit", user.passwordHash)
   ) {
-    console.log(user.id);
+    // console.log(user.id);
     const token = jwt.sign(
       {
         userId: user.id,
@@ -64,9 +65,9 @@ console.log(user.passwordHash)
         expiresIn: "1d",
       }
     );
-    res.status(200).send({ user: user.email, token });
+    res.status(200).send({ msg:"Login success...!",user: user.email, token });
   } else {
-    return res.status(400).send("Email and password is wrong");
+    return res.status(400).send({msg:"Email and password is wrong"});
   }
 }
 module.exports = { registerUser, userLogin };
