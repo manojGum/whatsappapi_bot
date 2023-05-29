@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const secret = process.env.JWTSECRETE;
+const haspass = process.env.HASPASS
 
 const registerUser = async (req, res) => {
   let email = req.body.email;
@@ -12,7 +13,7 @@ const registerUser = async (req, res) => {
     let user = new User({
       name: req.body.name,
       email: req.body.email,
-      passwordHash: bcrypt.hashSync(req.body.passwordHash + "mysecrit"),
+      passwordHash: bcrypt.hashSync(req.body.passwordHash + haspass),
       phone: req.body.phone,
       isAdmin: req.body.isAdmin,
       country: req.body.country,
@@ -52,7 +53,7 @@ const userLogin = async (req, res) => {
 console.log(user.passwordHash)
   if (
     user &&
-    bcrypt.compareSync(req.body.passwordHash + "mysecrit", user.passwordHash)
+    bcrypt.compareSync(req.body.passwordHash + haspass, user.passwordHash)
   ) {
     // console.log(user.id);
     const token = jwt.sign(
