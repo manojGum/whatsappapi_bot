@@ -16,7 +16,7 @@ function sendMessageWhatsApp(data){
         body:data,
         headers:{
             "Content-Type":"application/json",
-            Authorization:"Bearer EAAIrbZCzlWy8BAN9L0fYEfecjelO5YaDU7g2f5RrQKRZAOPtuMGx742FYaP3EZA9ZAh7wvyNeztJIuYNjVE0AFx7QpFP0OoK8g3yLEvo5M3ryv8MI9CozSwA8x9lEa1HVnOFb9r0cjPjUGJvj4987ZCfckR6pmpKNZCgMq4LOIMeRg0Ah87rMWnCZB2ETnGljHxvxiZBZBkB6gQZDZD"
+            Authorization:`Bearer ${process.env.WHATSAPP_CLOUD_API_VERIFICATION_TOKEN}`
         }
     };
     const req = https.request(options,res=>{
