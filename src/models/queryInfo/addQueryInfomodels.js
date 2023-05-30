@@ -8,7 +8,8 @@ const queryInfoSchema = mongoose.Schema({
     },
     user_id:{
         type:mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'user',
+        required:true
      },
     question: {
         type: String,
@@ -19,24 +20,24 @@ const queryInfoSchema = mongoose.Schema({
             link: String,
             filename:String
     },
-    buttons:{
-        responsetext:String ,
+    buttons: {
+        responsetext: String,
         buttonslist: [
-            {
-                title:String
-            }
-        ]
-    },
-    list:{
-        responsetext:String ,
+          {
+            title: String,
+          },
+        ],
+      },
+      list: {
+        responsetext: String,
         buttonslist: [
-            {
-                title:String,
-                description:String,
-            }
-        ]
-    }
-})
+          {
+            title: String,
+            description: String,
+          },
+        ],
+      },
+    });
 const QueryInfo = mongoose.model('queryinfo', queryInfoSchema);
 
 module.exports = QueryInfo

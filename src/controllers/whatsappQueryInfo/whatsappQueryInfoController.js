@@ -4,58 +4,65 @@ const User = require('../../models/usermodels/usersModel')
 const mongoose = require('mongoose')
 
 const addQueryInfo = async (req, res) => {
-    try {
-        req.body.user_id=req.user_id;
-        console.log("myrequirement",req.user_id)
-        if (!req.body.infoType || req.body.infoType.length < 24) {
-            return res.status(400).send('Invalid infoType')
-        }
-        const informationType = await Infotype.findById(req.body.infoType);
-        // console.log(informationType.infoType)
-        if (!informationType) return res.status(400).send('Invalid infoType')
-
-        if (!req.body.user_id|| req.body.user_id.length < 24) {
-            return res.status(400).send('Invalid user_ID')
-        }
-        const user = await User.findById(req.body.user_id);
-        // console.log(informationType.infoType)
-        if (!user) return res.status(400).send('User not valid or register')
-        /*
-        // if(informationType.infoType==="text"){
-        //     console.log("hello")
-        //     if(!req.body.answer){
-        //        return res.send("error")
-        //     }else{
-        //         console.log(req.body.answer);
-        //         return res.send(req.body)
-        //     }
-        // }
-        */
-    
-        let datainfo = new QueryInfo(req.body)
-        datainfo = await datainfo.save();
-        if (!datainfo)
-            return res.status(500).send('The data cannot be created')
-        return res.send({datainfo})
-    } catch (error) {
-        return res.send({error})        
+  req.body.user_id = req.user_id;
+  const reqbody = await req.body
+  req.body.infoType = reqbody.infoTypeId._id
+  // console.log(reqbody)
+  try {
+    // req.body.user_id=req.user_id;
+    // console.log("myrequirement user id",req.user_id)
+    if (!req.body.infoType || req.body.infoType.length < 24) {
+      return res.status(400).send('Invalid infoType')
     }
-    
+    const informationType = await Infotype.findById(req.body.infoType);
+    // console.log(informationType.infoType)
+    if (!informationType) return res.status(400).send('Invalid infoType')
+
+    if (!req.body.user_id || req.body.user_id.length < 24) {
+      return res.status(400).send('Invalid user_ID')
+    }
+    const user = await User.findById(req.body.user_id);
+    // console.log(informationType.infoType)
+    if (!user) return res.status(400).send('User not valid or register')
+    // console.log(user)
+    /*
+    // if(informationType.infoType==="text"){
+    //     console.log("hello")
+    //     if(!req.body.answer){
+    //        return res.send("error")
+    //     }else{
+    //         console.log(req.body.answer);
+    //         return res.send(req.body)
+    //     }
+    // }
+    */
+
+    // console.log(reqbody.buttons.buttonslist)
+    let datainfo = new QueryInfo(req.body)
+    datainfo = await datainfo.save();
+    if (!datainfo)
+      return res.status(500).send('The data cannot be created')
+    // console.log(datainfo.buttons)
+    return res.send("DATA created successfully ...!")
+  } catch (error) {
+    return res.send(error.message)
+  }
+
 }
 
 
 
 
-const getQueryInfo = async(req,res)=>{
-    try {
-        const dataList = await QueryInfo.find().populate('infoType');
-        return res.send(dataList);
-      } catch (err) {
-        res.status(500).json({
-          error: err,
-          success: false
-        });
-      }
-    }
+const getQueryInfo = async (req, res) => {
+  try {
+    const dataList = await QueryInfo.find().populate('infoType');
+    return res.send(dataList);
+  } catch (err) {
+    res.status(500).json({
+      error: err,
+      success: false
+    });
+  }
+}
 
-module.exports = {addQueryInfo,getQueryInfo}
+module.exports = { addQueryInfo, getQueryInfo }
