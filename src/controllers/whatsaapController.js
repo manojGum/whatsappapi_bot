@@ -32,7 +32,7 @@ const verifyToken = (req, res) => {
 };
 
 const receivedMessage = async (req, res) => {
-  console.log("frontedn data", req.body)
+  // console.log("frontedn data", req.body)
   try {
     const data = await QueryInfo.find().populate("infoType");
     // console.log("through my data base", data);
