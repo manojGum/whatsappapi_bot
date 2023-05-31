@@ -60,8 +60,8 @@ const receivedMessage = async (req, res) => {
       const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
-        console.log(faq)
-        console.log(`data i ${i}`, faq.question);
+        console.log("..................",faq)
+        // console.log(`data i ${i}`, faq.question);
         const infoType=faq.infoType.infoType.toLowerCase()
         console.log("type Info", infoType);
         const similarity = await getJaccardSimilarity(
