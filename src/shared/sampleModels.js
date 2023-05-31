@@ -160,10 +160,10 @@ function messageLocation(faq,number) {
         "to": number,
         "type": "location",
         "location": {
-            "latitude": "22.568784083078427",
-            "longitude": "88.43187531135716",
-            "name": "Indus Net Technologies",
-            "address": "4th Floor, SDF Building Saltlake Electronic Complex, Kolkata, West Bengal 700091"
+            "latitude": faq.location.latitude,
+            "longitude":faq.location.longitude,
+            "name": faq.location.name,
+            "address":faq.location.address
         }
     });
     return data;
