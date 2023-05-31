@@ -53,8 +53,8 @@ function messageDocument(faq,number) {
         "type": "document",
         "document": {
             "link": faq.answer.link,
-            "caption": faq.answer.caption,
-            "filename": faq.answer.filename
+            "caption": faq.answer.caption || "",
+            "filename": faq.answer.filename || " "
         }
     });
     return data;
@@ -68,25 +68,35 @@ function messageButtons(faq,number) {
         "interactive": {
             "type": "button",
             "body": {
-                "text": faq.buttons.responsetext
+                "text": faq.buttons.responsetext || ""
             },
             "action": {
-                "buttons": [
-                    {
-                        "type": "reply",
-                        "reply": {
-                            "id": "001",
-                            "title": "Yes"
-                        }
-                    },
-                    {
-                        "type": "reply",
-                        "reply": {
-                            "id": "002",
-                            "title": "No"
-                        }
+                "buttons": faq.buttons.buttonslist.map(button => {
+                    return ( {                
+                    type:"reply",
+                    reply: {
+                        id: button._id,
+                        title: button.title
                     }
-                ]
+                })
+                })
+                
+                // [
+                //     {
+                    //     "type": "reply",
+                    //     "reply": {
+                    //         "id": "001",
+                    //         "title": "Yes"
+                    //     }
+                    // },
+                //     {
+                //         "type": "reply",
+                //         "reply": {
+                //             "id": "002",
+                //             "title": "No"
+                //         }
+                //     }
+                // ]
             }
         }
     });
