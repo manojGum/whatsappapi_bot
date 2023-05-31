@@ -104,7 +104,7 @@ function messageList(faq,number) {
                 "text": "list options"
             },
             "action": {
-                "button": "slect option",
+                "button": "Select Option",
                 "sections": [
                     {
                         "title": "LIST_SECTION_1_TITLE",
