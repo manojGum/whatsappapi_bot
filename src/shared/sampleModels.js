@@ -72,13 +72,13 @@ function messageButtons(faq,number) {
             },
             "action": {
                 "buttons": faq.buttons.buttonslist.map(button => {
-                    return ( [{                
+                    return ( {                
                     type:"reply",
                     reply: {
                         id: button._id,
                         title: button.title
                     }
-                }])
+                })
                 })
                 
                 // [
