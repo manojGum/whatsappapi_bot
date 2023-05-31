@@ -32,29 +32,19 @@ const verifyToken = (req, res) => {
 };
 
 const receivedMessage = async (req, res) => {
-  // console.log("frontedn data", req.body)
   try {
     const data = await QueryInfo.find().populate("infoType");
-    // console.log("through my data base", data);
     let entry = req.body["entry"][0];
     let changes = entry["changes"][0];
 
     let value = changes["value"];
 
     let messageObject = value["messages"];
-    // console.log("messageObject= ", messageObject)
-
     if (typeof messageObject != "undefined") {
       let messages = messageObject[0];
-      // console.log("messages= ", messages)
       let number = await messages["from"];
-      // console.log(messageObject)
-      let text = GetTextUser(messages);
-      // console.log("recived text",text)
-      // whatsappService.sendMessageWhatsApp("user send and reviced same message:"+ text,number)
 
-      // myConsole.log(messageObject);
-      /// new for me
+      let text = GetTextUser(messages);
 
       let maxSimilarity = 0;
       const similarityThreshold = 0.5;
@@ -146,10 +136,6 @@ const receivedMessage = async (req, res) => {
           }
         }
       }
-      
-
-
-
       // end new for me
       //   if (text == "text") {
       //     let data = samples.messageText("hello users", number);
@@ -176,20 +162,20 @@ const receivedMessage = async (req, res) => {
       //     let data = samples.messageLocation(number);
       //     whatsappService.sendMessageWhatsApp(data);
       //   } else {
-          // let data = samples.messageText(
-          //   "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-          //   number
-          // );
-          // whatsappService.sendMessageWhatsApp(data);
+      // let data = samples.messageText(
+      //   "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+      //   number
+      // );
+      // whatsappService.sendMessageWhatsApp(data);
       //   }
+      let dataa = samples.messageText(
+        "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+        number
+      );
+      whatsappService.sendMessageWhatsApp(dataa).then(response => {
+        console.log("Request successful:", response);
+      });
     }
-    let dataa = samples.messageText(
-      "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-      number
-    );
-    whatsappService.sendMessageWhatsApp(dataa).then(response => {
-      console.log("Request successful:", response);
-    });
     return res.send("EVENT_RECEIVED");
   } catch (error) {
     // myConsole.log(error);
