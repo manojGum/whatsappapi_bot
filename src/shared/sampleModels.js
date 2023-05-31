@@ -71,7 +71,7 @@ function messageButtons(faq,number) {
                 "text": faq.buttons.responsetext || ""
             },
             "action": {
-                "buttons": faq.buttons.buttonslist.map(button => {
+                "buttons": [faq.buttons.buttonslist.map(button => {
                     return ( {                
                     type:"reply",
                     reply: {
@@ -79,7 +79,7 @@ function messageButtons(faq,number) {
                         title: button.title
                     }
                 })
-                })
+                })]
                 
                 // [
                 //     {
