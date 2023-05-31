@@ -71,15 +71,15 @@ function messageButtons(faq,number) {
                 "text": faq.buttons.responsetext || ""
             },
             "action": {
-                "buttons": [faq.buttons.buttonslist.map(button => {
-                    return ( {                
+                "buttons": faq.buttons.buttonslist.map(button => {
+                    return ( [{                
                     type:"reply",
                     reply: {
                         id: button._id,
                         title: button.title
                     }
+                }])
                 })
-                })]
                 
                 // [
                 //     {
