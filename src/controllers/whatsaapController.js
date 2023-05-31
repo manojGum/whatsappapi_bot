@@ -73,12 +73,9 @@ const receivedMessage = async (req, res) => {
             let data = samples.messageText(faq.answer.text, number);
             whatsappService.sendMessageWhatsApp(data)
               .then(response => {
-                console.log("Request successful:", response);
+                console.log("Request successful:", response)
                 return
               })
-              .catch(error => {
-                console.error("An error occurred:", error);
-              });
           } else if (infoType === "image") {
             let data = samples.messageImage(faq, number);
             whatsappService.sendMessageWhatsApp(data).then(response => {
@@ -139,9 +136,6 @@ const receivedMessage = async (req, res) => {
               console.log("Request successful:", response);
               return
             })
-              .catch(error => {
-                console.error("An error occurred:", error);
-              });
           }
           else if (infoType === "link") {
             let data = samples.messageLink(faq, number);
@@ -149,19 +143,10 @@ const receivedMessage = async (req, res) => {
               console.log("Request successful:", response);
               return
             })
-              .catch(error => {
-                console.error("An error occurred:", error);
-              });
           }
         }
       }
-      let data = samples.messageText(
-        "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-        number
-      );
-      whatsappService.sendMessageWhatsApp(data).then(response => {
-        console.log("Request successful:", response);
-      });
+      
 
 
 
@@ -198,6 +183,13 @@ const receivedMessage = async (req, res) => {
           // whatsappService.sendMessageWhatsApp(data);
       //   }
     }
+    let dataa = samples.messageText(
+      "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+      number
+    );
+    whatsappService.sendMessageWhatsApp(dataa).then(response => {
+      console.log("Request successful:", response);
+    });
     return res.send("EVENT_RECEIVED");
   } catch (error) {
     // myConsole.log(error);
