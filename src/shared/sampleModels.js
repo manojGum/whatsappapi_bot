@@ -16,7 +16,7 @@ function messageImage(faq,number) {
         "to": number,
         "type": "image",
         "image": {
-            "link": "https://th.bing.com/th/id/OIP.1YM53mG10H_U25iPjop83QHaEo?pid=ImgDet&rs=1"
+            "link": faq.answer.link
         }
     });
     return data;
@@ -52,8 +52,9 @@ function messageDocument(faq,number) {
         "to": number,
         "type": "document",
         "document": {
-            "link": "https://dagrs.berkeley.edu/sites/default/files/2020-01/sample.pdf",
-            "filename": "Pdf file"
+            "link": faq.answer.link,
+            "caption": faq.answer.caption,
+            "filename": faq.answer.filename
         }
     });
     return data;
@@ -67,7 +68,7 @@ function messageButtons(faq,number) {
         "interactive": {
             "type": "button",
             "body": {
-                "text": "Confirm registration"
+                "text": faq.buttons.responsetext
             },
             "action": {
                 "buttons": [
@@ -142,14 +143,14 @@ function messageLocation(faq,number) {
     return data;
 }
 
-function messageLink(textResponse, number) {
+function messageLink(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
         "type": "text",
         "text": {
             "preview_url": false,
-            "body": `"Please visit ${textResponse}`
+            "body": `"Please visit ${faq.answer.link}`
         }
     });
     return data;
