@@ -17,6 +17,7 @@ const queryInfoSchema = mongoose.Schema(
     question: {
       type: String,
       required: true,
+      unique:true,
       lowercase: true,
     },
     answer: {

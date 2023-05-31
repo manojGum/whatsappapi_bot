@@ -46,10 +46,7 @@ const getQueryInfo = async (req, res) => {
     const dataList = await QueryInfo.find().populate('infoType');
     return res.send(dataList);
   } catch (err) {
-    res.status(500).json({
-      error: err,
-      success: false
-    });
+    res.status(500).send(err.message)
   }
 }
 
