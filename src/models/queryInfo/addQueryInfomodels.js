@@ -4,39 +4,70 @@ const queryInfoSchema = mongoose.Schema({
     infoType: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'infotype',
-        required: true
+        required: true,
+        lowercase: true
     },
     user_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'user',
-        required:true
+        required:true,
+        lowercase: true
      },
     question: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     answer: {
-            text: String,
-            link: String,
-            filename:String
+            text: {
+              type:String,
+              lowercase: true
+            },
+            link: {
+              type:String,
+              lowercase: true
+            },
+            filename:{
+              type:String,
+              lowercase: true
+            },
+            caption:{
+              type:String,
+              lowercase: true
+            },
     },
     buttons: {
-        responsetext: String,
+        responsetext: {
+          type:String,
+          lowercase: true
+        },
         buttonslist: [
           {
-            title: String,
+            title: {
+              type:String,
+              lowercase: true
+            },
           },
         ],
       },
       list: {
-        responsetext: String,
+        responsetext:{
+          type:String,
+          lowercase: true
+        },
         buttonslist: [
           {
-            title: String,
-            description: String,
+            title:{
+              type:String,
+              lowercase: true
+            },
+            description: {
+              type:String,
+              lowercase: true
+            }
           },
         ],
-      },
+      }
     });
 const QueryInfo = mongoose.model('queryinfo', queryInfoSchema);
 

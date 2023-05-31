@@ -142,6 +142,19 @@ function messageLocation(number) {
     return data;
 }
 
+function messageLink(textResponse, number) {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "text",
+        "text": {
+            "preview_url": false,
+            "body": `"Please visit ${textResponse}`
+        }
+    });
+    return data;
+}
+
 module.exports = {
     messageText,
     messageImage,
@@ -150,5 +163,6 @@ module.exports = {
     messageDocument,
     messageButtons,
     messageList,
-    messageLocation
+    messageLocation,
+    messageLink
 }

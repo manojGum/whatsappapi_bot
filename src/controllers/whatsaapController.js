@@ -60,6 +60,7 @@ const receivedMessage = async (req, res) => {
       const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
+        console.log(faq)
         console.log(`data i ${i}`, faq.question);
         const infoType=faq.infoType.infoType.toLowerCase()
         console.log("type Info", infoType);
@@ -72,7 +73,7 @@ const receivedMessage = async (req, res) => {
             let data = samples.messageText(faq.answer.text, number);
             whatsappService.sendMessageWhatsApp(data);
           } else if (infoType === "image") {
-            let data = samples.messageImage(number);
+            let data = samples.messageImage(faq.answer.link,number);
             whatsappService.sendMessageWhatsApp(data);
           } else if (infoType ==="video") {
             let data = samples.messageVideo(number);
@@ -91,6 +92,10 @@ const receivedMessage = async (req, res) => {
             whatsappService.sendMessageWhatsApp(data);
           } else if (infoType === "location") {
             let data = samples.messageLocation(number);
+            whatsappService.sendMessageWhatsApp(data);
+          }
+          else if (infoType === "link") {
+            let data = samples.messageLink(number);
             whatsappService.sendMessageWhatsApp(data);
           }
         }

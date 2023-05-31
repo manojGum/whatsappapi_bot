@@ -24,20 +24,10 @@ const addQueryInfo = async (req, res) => {
     const user = await User.findById(req.body.user_id);
     // console.log(informationType.infoType)
     if (!user) return res.status(400).send('User not valid or register')
-    // console.log(user)
-    /*
-    // if(informationType.infoType==="text"){
-    //     console.log("hello")
-    //     if(!req.body.answer){
-    //        return res.send("error")
-    //     }else{
-    //         console.log(req.body.answer);
-    //         return res.send(req.body)
-    //     }
-    // }
-    */
+   
 
     // console.log(reqbody.buttons.buttonslist)
+    
     let datainfo = new QueryInfo(req.body)
     datainfo = await datainfo.save();
     if (!datainfo)
