@@ -111,7 +111,7 @@ function messageList(faq,number) {
         "interactive": {
             "type": "list",
             "body": {
-                "text": "list options"
+                "text": faq.list.responsetext
             },
             "action": {
                 "button": "Select Option",
@@ -122,7 +122,7 @@ function messageList(faq,number) {
                             return ({
                                 id: button._id,
                                 title: button.title,
-                                description: button.description
+                                description: button.description || " "
                             })
                         })
                     }
