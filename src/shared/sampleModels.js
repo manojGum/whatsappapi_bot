@@ -28,7 +28,7 @@ function messageAudio(faq,number) {
         "to": number,
         "type": "audio",
         "audio": {
-            "link": "https://file-examples.com/storage/fee0ed988b646cbee9f2340/2017/11/file_example_MP3_700KB.mp3"
+            "link": raq.answer.link //"https://file-examples.com/storage/fee0ed988b646cbee9f2340/2017/11/file_example_MP3_700KB.mp3"
         }
     });
     return data;
@@ -40,7 +40,7 @@ function messageVideo(faq,number) {
         "to": number,
         "type": "video",
         "video": {
-            "link": "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+            "link": faq.answer.link //"https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
         }
     });
     return data;
@@ -80,7 +80,7 @@ function messageButtons(faq,number) {
                     }
                 })
                 })
-                
+                /*
                 // [
                 //     {
                     //     "type": "reply",
@@ -97,6 +97,7 @@ function messageButtons(faq,number) {
                 //         }
                 //     }
                 // ]
+                */
             }
         }
     });
@@ -128,7 +129,7 @@ function messageList(faq,number) {
                     }
                 ]
                 
-                
+                /*
                 // [
                 //     {
                 //         "title": "LIST_SECTION_1_TITLE",
@@ -146,6 +147,7 @@ function messageList(faq,number) {
                 //         ]
                 //     }
                 // ]
+                */
             }
         }
     });

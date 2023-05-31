@@ -1,11 +1,12 @@
 const fs = require("fs");
-// const myConsole = new console.Console(fs.createWriteStream('./logs.text'));
+/* // const myConsole = new console.Console(fs.createWriteStream('./logs.text')); */
 const whatsappService = require("../services/whatsappService");
 const samples = require("../shared/sampleModels");
 const QueryInfo = require("../models/queryInfo/addQueryInfomodels");
 const getJaccardSimilarity = require("../helper/botBehavior");
 const verifyToken = (req, res) => {
   try {
+    /*
     // var accessToken = "RTQWWTVHBDSD78S78DSNDS9090DS";
     // var token = req.query["hub.verify_token"];
     // var challenge = req.body["hub.challenge"];
@@ -15,6 +16,7 @@ const verifyToken = (req, res) => {
     // }else{
     //     res.status(400).send()
     // }
+    */
     let mode = req.query["hub.mode"];
     let challange = req.query["hub.challenge"];
     let token = req.query["hub.verify_token"];
@@ -47,11 +49,9 @@ const receivedMessage = async (req, res) => {
       let text = GetTextUser(messages);
 
       let maxSimilarity = 0;
-      const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
-        console.log("..................", faq)
-        // console.log(`data i ${i}`, faq.question);
+       /* // console.log("..................", faq) */
         const infoType = faq.infoType.infoType.toLowerCase()
         console.log("type Info", infoType);
         const similarity = await getJaccardSimilarity(
@@ -178,7 +178,6 @@ const receivedMessage = async (req, res) => {
     }
     return res.send("EVENT_RECEIVED");
   } catch (error) {
-    // myConsole.log(error);
     res.send("event_RECIVED");
   }
 };

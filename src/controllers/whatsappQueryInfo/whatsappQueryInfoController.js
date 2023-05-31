@@ -9,8 +9,6 @@ const addQueryInfo = async (req, res) => {
   req.body.infoType = reqbody.infoTypeId._id
   // console.log(reqbody)
   try {
-    // req.body.user_id=req.user_id;
-    // console.log("myrequirement user id",req.user_id)
     if (!req.body.infoType || req.body.infoType.length < 24) {
       return res.status(400).send('Invalid infoType')
     }

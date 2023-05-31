@@ -55,7 +55,6 @@ console.log(user.passwordHash)
     user &&
     bcrypt.compareSync(req.body.passwordHash + haspass, user.passwordHash)
   ) {
-    // console.log(user.id);
     const token = jwt.sign(
       {
         userId: user.id,
