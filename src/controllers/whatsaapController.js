@@ -32,7 +32,7 @@ const verifyToken = (req, res) => {
 };
 
 const receivedMessage = async (req, res) => {
-  console.log("frontedn data",req.body)
+  console.log("frontedn data", req.body)
   try {
     const data = await QueryInfo.find().populate("infoType");
     // console.log("through my data base", data);
@@ -60,80 +60,143 @@ const receivedMessage = async (req, res) => {
       const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
-        console.log("..................",faq)
+        console.log("..................", faq)
         // console.log(`data i ${i}`, faq.question);
-        const infoType=faq.infoType.infoType.toLowerCase()
+        const infoType = faq.infoType.infoType.toLowerCase()
         console.log("type Info", infoType);
         const similarity = await getJaccardSimilarity(
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
-        if (similarity >=0.6 && similarity > maxSimilarity) {
-        if (infoType === "text") {
+        if (similarity >= 0.6 && similarity > maxSimilarity) {
+          if (infoType === "text") {
             let data = samples.messageText(faq.answer.text, number);
-            whatsappService.sendMessageWhatsApp(data);
+            whatsappService.sendMessageWhatsApp(data)
+              .then(response => {
+                console.log("Request successful:", response);
+                return
+              })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
           } else if (infoType === "image") {
-            let data = samples.messageImage(faq.answer.link,number);
-            whatsappService.sendMessageWhatsApp(data);
-          } else if (infoType ==="video") {
-            let data = samples.messageVideo(number);
-            whatsappService.sendMessageWhatsApp(data);
+            let data = samples.messageImage(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
+          } else if (infoType === "video") {
+            let data = samples.messageVideo(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
           } else if (infoType === "audio") {
-            let data = samples.messageAudio(number);
-            whatsappService.sendMessageWhatsApp(data);
-          } else if (infoType ==="document") {
-            let data = samples.messageDocument(number);
-            whatsappService.sendMessageWhatsApp(data);
-          } else if (infoType ==="button") {
-            let data = samples.messageButtons(number);
-            whatsappService.sendMessageWhatsApp(data);
+            let data = samples.messageAudio(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
+          } else if (infoType === "document") {
+            let data = samples.messageDocument(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
+          } else if (infoType === "button") {
+            let data = samples.messageButtons(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
           } else if (infoType === "list") {
-            let data = samples.messageList(number);
-            whatsappService.sendMessageWhatsApp(data);
+            let data = samples.messageList(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
           } else if (infoType === "location") {
-            let data = samples.messageLocation(number);
-            whatsappService.sendMessageWhatsApp(data);
+            let data = samples.messageLocation(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
           }
           else if (infoType === "link") {
-            let data = samples.messageLink(number);
-            whatsappService.sendMessageWhatsApp(data);
+            let data = samples.messageLink(faq, number);
+            whatsappService.sendMessageWhatsApp(data).then(response => {
+              console.log("Request successful:", response);
+              return
+            })
+              .catch(error => {
+                console.error("An error occurred:", error);
+              });
           }
         }
       }
- 
+      let data = samples.messageText(
+        "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+        number
+      );
+      whatsappService.sendMessageWhatsApp(data).then(response => {
+        console.log("Request successful:", response);
+      });
+
+
 
       // end new for me
-    //   if (text == "text") {
-    //     let data = samples.messageText("hello users", number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else if (text == "image") {
-    //     let data = samples.messageImage(number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else if (text == "video") {
-    //     let data = samples.messageVideo(number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else if (text == "audio") {
-    //     let data = samples.messageAudio(number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else if (text == "document") {
-    //     let data = samples.messageDocument(number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else if (text == "button") {
-    //     let data = samples.messageButtons(number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else if (text == "list") {
-    //     let data = samples.messageList(number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else if (text == "location") {
-    //     let data = samples.messageLocation(number);
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   } else {
-    //     let data = samples.messageText(
-    //       "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
-    //       number
-    //     );
-    //     whatsappService.sendMessageWhatsApp(data);
-    //   }
+      //   if (text == "text") {
+      //     let data = samples.messageText("hello users", number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else if (text == "image") {
+      //     let data = samples.messageImage(number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else if (text == "video") {
+      //     let data = samples.messageVideo(number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else if (text == "audio") {
+      //     let data = samples.messageAudio(number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else if (text == "document") {
+      //     let data = samples.messageDocument(number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else if (text == "button") {
+      //     let data = samples.messageButtons(number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else if (text == "list") {
+      //     let data = samples.messageList(number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else if (text == "location") {
+      //     let data = samples.messageLocation(number);
+      //     whatsappService.sendMessageWhatsApp(data);
+      //   } else {
+          // let data = samples.messageText(
+          //   "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
+          //   number
+          // );
+          // whatsappService.sendMessageWhatsApp(data);
+      //   }
     }
     return res.send("EVENT_RECEIVED");
   } catch (error) {

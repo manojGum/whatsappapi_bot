@@ -10,7 +10,7 @@ function messageText(textResponse, number) {
     return data;
 }
 
-function messageImage(number) {
+function messageImage(faq,number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -22,7 +22,7 @@ function messageImage(number) {
     return data;
 }
 
-function messageAudio(number) {
+function messageAudio(faq,number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -34,7 +34,7 @@ function messageAudio(number) {
     return data;
 }
 
-function messageVideo(number) {
+function messageVideo(faq,number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -46,7 +46,7 @@ function messageVideo(number) {
     return data;
 }
 
-function messageDocument(number) {
+function messageDocument(faq,number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -59,7 +59,7 @@ function messageDocument(number) {
     return data;
 }
 
-function messageButtons(number) {
+function messageButtons(faq,number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -92,7 +92,7 @@ function messageButtons(number) {
     return data;
 }
 
-function messageList(number) {
+function messageList(faq,number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -127,7 +127,7 @@ function messageList(number) {
     return data;
 }
 
-function messageLocation(number) {
+function messageLocation(faq,number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,

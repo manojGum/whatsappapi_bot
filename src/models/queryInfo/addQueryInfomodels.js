@@ -68,7 +68,10 @@ const queryInfoSchema = mongoose.Schema({
           },
         ],
       }
-    });
+    },{
+      versionKey:false,
+      timestamps:true
+  });
 const QueryInfo = mongoose.model('queryinfo', queryInfoSchema);
 
 module.exports = QueryInfo

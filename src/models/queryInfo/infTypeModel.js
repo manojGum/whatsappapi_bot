@@ -6,6 +6,9 @@ const infoTypeSchema=mongoose.Schema({
         required:true,
         unique:true
     }
+},{
+    versionKey:false,
+    timestamps:true
 })
 const Infotype=mongoose.model('infotype',infoTypeSchema);
 
