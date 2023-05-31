@@ -121,7 +121,7 @@ function messageList(faq,number) {
                         "rows":  faq.list.buttonslist.map(button => {
                             return ({
                                 id: button._id,
-                                title: button.list,
+                                title: button.title,
                                 description: button.description
                             })
                         })
