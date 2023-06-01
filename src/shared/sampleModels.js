@@ -118,15 +118,15 @@ const messageList= (faq, number)=> {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
-        "to": "917909012986",
+        "to": number,
         "type": "interactive",
         "interactive": {
             "type": "list",
             "body": {
-                "text": "Confirm registration"
+                "text": "response body text"
             },
             "action": {
-                "button": "buttons options",
+                "button": "Select given list",
                   "sections": [
                     {
                         "title": "LIST_SECTION_1_TITLE",
