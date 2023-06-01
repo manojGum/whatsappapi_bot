@@ -105,23 +105,21 @@ function messageButtons(faq, number) {
 }
 
 async function generateListTemplateRow(data) {
-const rows = data.map((row,index)=>{
-    return ({
-        "id": index+1,
-        "title": row.title,
-        "description": row.description
-    }
-    )
-   });
-  
-   return rows
+    console.log("data......",data)
+    const rows = data.map(row => ({
+        title: row.title,
+        description: row.description,
+        id: row._id
+      }));
+    
+      return rows;
   }
   
 async function messageList(faq, number){
-    /*
-//     const rows = await generateListTemplateRow(faq.list.buttonslist);
-    // console.log("row.......................",rows)
-    */
+
+    const rows = await generateListTemplateRow(faq.list.buttonslist);
+    console.log({"rows":rows})
+
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -133,16 +131,10 @@ async function messageList(faq, number){
             },
             "action": {
                 "button": "Select Option",
-                "sections": [
+                "sections":     [
                     {
-                        "title": "LIST_SECTION",
-                        "rows":faq.list.buttonslist.map((row,index)=>({
-                                "id": index+1,
-                                "title": row.title,
-                                "description": row.description
-                            })
-                           )
-                    
+                        "title": "LIST_SECTION_1_TITLE",
+                        "rows": rows
                     }
                 ]
 
