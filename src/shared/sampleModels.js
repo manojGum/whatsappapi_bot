@@ -111,34 +111,59 @@ function messageButtons(faq, number) {
 //         description: row.description
 //       }))
 //     };
-  
+
 //     return template;
 //   }
-const messageList=async (faq, number)=> {
+const messageList = async (faq,number) => {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
         "type": "interactive",
+        "context": {
+            "message_id": "MSGID_OF_PREV_MSG"
+        },
         "interactive": {
             "type": "list",
+            "header": {
+                "type": "text",
+                "text": "HEADER_TEXT"
+            },
             "body": {
-                "text": faq.list.responsetext 
+                "text": "BODY_TEXT"
+            },
+            "footer": {
+                "text": "FOOTER_TEXT"
             },
             "action": {
-                "button": "text 1",
+                "button": "BUTTON_TEXT",
                 "sections": [
                     {
-                        "title": "<LIST_SECTION_1_TITLE>",
+                        "title": "LIST_SECTION_1_TITLE",
                         "rows": [
                             {
-                                "id": "<LIST_SECTION_1_ROW_1_ID>",
-                                "title": "<SECTION_1_ROW_1_TITLE>",
-                                "description": "<SECTION_1_ROW_1_DESC>"
+                                "id": "LIST_SECTION_1_ROW_1_ID",
+                                "title": "SECTION_1_ROW_1_TITLE",
+                                "description": "SECTION_1_ROW_1_DESC"
                             },
                             {
-                                "id": "<LIST_SECTION_1_ROW_2_ID>",
-                                "title": "<SECTION_1_ROW_2_TITLE>",
-                                "description": "<SECTION_1_ROW_2_DESC>"
+                                "id": "LIST_SECTION_1_ROW_2_ID",
+                                "title": "SECTION_1_ROW_2_TITLE",
+                                "description": "SECTION_1_ROW_2_DESC"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "LIST_SECTION_2_TITLE",
+                        "rows": [
+                            {
+                                "id": "LIST_SECTION_2_ROW_1_ID",
+                                "title": "SECTION_2_ROW_1_TITLE",
+                                "description": "SECTION_2_ROW_1_DESC"
+                            },
+                            {
+                                "id": "LIST_SECTION_2_ROW_2_ID",
+                                "title": "SECTION_2_ROW_2_TITLE",
+                                "description": "SECTION_2_ROW_2_DESC"
                             }
                         ]
                     }
@@ -150,33 +175,33 @@ const messageList=async (faq, number)=> {
 }
 
 
-   /*
-                // [
-                //     {
-                //         "title": "LIST_SECTION_1_TITLE",
-                        // "rows": [
-                        //     {
-                        //         "id": "LIST_SECTION_1_ROW_1_ID",
-                        //         "title": "SECTION_1_ROW_1_TITLE",
-                        //         "description": "SECTION_1_ROW_1_DESC"
-                        //     },
-                        //     {
-                        //         "id": "LIST_SECTION_1_ROW_2_ID",
-                        //         "title": "SECTION_1_ROW_2_TITLE",
-                        //         "description": "SECTION_1_ROW_2_DESC"
-                        //     }
-                        // ]
-                //     }
-                // ]
-          
+/*
+             // [
+             //     {
+             //         "title": "LIST_SECTION_1_TITLE",
+                     // "rows": [
+                     //     {
+                     //         "id": "LIST_SECTION_1_ROW_1_ID",
+                     //         "title": "SECTION_1_ROW_1_TITLE",
+                     //         "description": "SECTION_1_ROW_1_DESC"
+                     //     },
+                     //     {
+                     //         "id": "LIST_SECTION_1_ROW_2_ID",
+                     //         "title": "SECTION_1_ROW_2_TITLE",
+                     //         "description": "SECTION_1_ROW_2_DESC"
+                     //     }
+                     // ]
+             //     }
+             // ]
+       
 
-                // faq.list.buttonslist.map(button => {
-                //     return ({
-                //         id: button._id,
-                //         title: button.title,
-                //         description: button.description || " "
-                //     })
-                // })
+             // faq.list.buttonslist.map(button => {
+             //     return ({
+             //         id: button._id,
+             //         title: button.title,
+             //         description: button.description || " "
+             //     })
+             // })
 */
 
 function messageLocation(faq, number) {
