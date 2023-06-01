@@ -168,6 +168,8 @@ async function messageList(faq, number){
             }
         }
     });
+    console.log("data--------",data);
+    console.log("data- section-------",data.action.sections);
     return data;
 }
 
@@ -183,6 +185,7 @@ function messageLocation(faq, number) {
             "address": faq.location.address
         }
     });
+
     return data;
 }
 
@@ -196,6 +199,7 @@ function messageLink(faq, number) {
             "body": `"Please visit ${faq.answer.link}`
         }
     });
+    
     return data;
 }
 
