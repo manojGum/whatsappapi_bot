@@ -130,7 +130,18 @@ const messageList= (faq, number)=> {
                   "sections": [
                     {
                         "title": "LIST_SECTION_1_TITLE",
-                        "rows": generateListTemplateRow(faq.list.buttonslist)
+                        "rows": [
+                            {
+                                "id": "LIST_SECTION_1_ROW_1_ID",
+                                "title": "SECTION_1_ROW_1_TITLE",
+                                "description": "SECTION_1_ROW_1_DESC"
+                            },
+                            {
+                                "id": "LIST_SECTION_1_ROW_2_ID",
+                                "title": "SECTION_1_ROW_2_TITLE",
+                                "description": "SECTION_1_ROW_2_DESC"
+                            }
+                        ]
                     }
                 ]
             }
