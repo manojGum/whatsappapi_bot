@@ -115,6 +115,7 @@ function messageButtons(faq, number) {
 //     return template;
 //   }
 const messageList= (faq, number)=> {
+    console.log("faq.........", faq)
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "recipient_type": "individual",
