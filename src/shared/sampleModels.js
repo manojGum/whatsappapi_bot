@@ -116,45 +116,50 @@ function messageButtons(faq, number) {
 //   }
 const messageList= (faq, number)=> {
     const data = JSON.stringify({
-        "messaging_product":"whatsaap",
-        "to":number,
-        "type":"interactive",
-        "interactive":{
-            "type":"list",
-            "body":"select body"
-        },
-        "footer":{
-            "text":"selection footer"
-        },
-        "action":{
-            "button":"button options",
-            "sections":[
-                {
-                    "title":"compare y title",
-                    "rows":[
-                        {
-                            "id":"main comprare id",
-                            "title":"select 1",
-                            "description":"select 1 des"
-                        },
-                        {
-                            "id":"main comprare d",
-                            "title":"select 2",
-                            "description":"select 2 des"
-                        },
-                    ]
-                },
-                {
-                    "title":"compare 2 dtitle",
-                    "rows":[
-                        {
-                            "id":"main cdomprare d",
-                            "title":"sedlect 3",
-                            "description":"select 3 des"
-                        },
-                    ]
-                }
-            ]
+        "messaging_product": "whatsapp",
+        "recipient_type": "individual",
+        "to": "917909012986",
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "Confirm registration"
+            },
+            "action": {
+                "button": "buttons options",
+                  "sections": [
+                    {
+                        "title": "LIST_SECTION_1_TITLE",
+                        "rows": [
+                            {
+                                "id": "LIST_SECTION_1_ROW_1_ID",
+                                "title": "SECTION_1_ROW_1_TITLE",
+                                "description": "SECTION_1_ROW_1_DESC"
+                            },
+                            {
+                                "id": "LIST_SECTION_1_ROW_2_ID",
+                                "title": "SECTION_1_ROW_2_TITLE",
+                                "description": "SECTION_1_ROW_2_DESC"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "LIST_SECTION_2_TITLE",
+                        "rows": [
+                            {
+                                "id": "LIST_SECTION_2_ROW_1_ID",
+                                "title": "SECTION_2_ROW_1_TITLE",
+                                "description": "SECTION_2_ROW_1_DESC"
+                            },
+                            {
+                                "id": "LIST_SECTION_2_ROW_2_ID",
+                                "title": "SECTION_2_ROW_2_TITLE",
+                                "description": "SECTION_2_ROW_2_DESC"
+                            }
+                        ]
+                    }
+                ]
+            }
         }
     });
     return data;
