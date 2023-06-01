@@ -105,14 +105,13 @@ function messageButtons(faq, number) {
 }
 
 async function generateListTemplateRow(data) {
-    console.log("data......",data)
-    const rows = data.map(row =>{
-        "title"= row.title,
-        "description"= row.description,
-       " id"= row._id
-    });
-    
-      return rows;
+    const rows = data.map(row => ({
+      title: row.title,
+      description: row.description,
+      _id: row._id
+    }));
+  
+    return rows;
   }
   
 async function messageList(faq, number){
@@ -120,21 +119,21 @@ async function messageList(faq, number){
     const rows = await generateListTemplateRow(faq.list.buttonslist);
     console.log({"rows":rows})
 
-    const data = JSON.stringify({
-        "messaging_product": "whatsapp",
-        "to": number,
-        "type": "interactive",
-        "interactive": {
-            "type": "list",
-            "body": {
-                "text": faq.list.responsetext
+    const data = {
+        messaging_product: "whatsapp",
+        to: number,
+        type: "interactive",
+        interactive: {
+            type: "list",
+            body: {
+                text: faq.list.responsetext
             },
-            "action": {
-                "button": "Select Option",
-                "sections":     [
+            action: {
+                button: "Select Option",
+                sections:     [
                     {
-                        "title": "LIST_SECTION_1_TITLE",
-                        "rows": rows
+                        title: "LIST_SECTION_1_TITLE",
+                        rows: rows
                     }
                 ]
 
@@ -167,7 +166,8 @@ async function messageList(faq, number){
                 // })
             }
         }
-    });
+    };
+    console.log("data---------data",data)
     return data;
 }
 
