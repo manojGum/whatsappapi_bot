@@ -132,7 +132,7 @@ const messageList=async (faq, number)=> {
                         "rows":faq.list.buttonslist.map(button => {
                             return ({
                                 id: button._id,
-                                title: button.title,
+                                title: button.title ||"",
                                 description: button.description || " "
                             })
                         })
