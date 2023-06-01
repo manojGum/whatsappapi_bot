@@ -105,17 +105,17 @@ function messageButtons(faq, number) {
 }
 
 async function generateListTemplateRow(data) {
-    const rows = data.map((row,index)=>{
-        return ({
-         
-                "id": index+1,
-              "title": row.title,
-              "description": row.description
-    });
+const rows = data.map((row,index)=>{
+    return ({
+        "id": index+1,
+        "title": row.title,
+        "description": row.description
+    }
+    )
+   });
   
-   
+   return rows
   }
-}
   
 async function messageList(faq, number){
     const rows = await generateListTemplateRow(faq.list.buttonslist);
