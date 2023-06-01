@@ -47,6 +47,7 @@ const receivedMessage = async (req, res) => {
       let number = await messages["from"];
 
       let text = GetTextUser(messages);
+      console.log("user text.......",text)
 
       let maxSimilarity = 0;
       for (let i = 0; i < data.length; i++) {
