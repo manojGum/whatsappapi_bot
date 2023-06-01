@@ -194,7 +194,7 @@ function GetTextUser(messages) {
     if (typeInteractive == "button_reply") {
       text = interactiveObject["button_reply"]["title"];
     } else if (typeInteractive == "list_reply") {
-      text = interactiveObject["button_reply"]["title"];
+      text = interactiveObject["list_reply"]["title"];
     } else {
       console.log("sen message");
     }
