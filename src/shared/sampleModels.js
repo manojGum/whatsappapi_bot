@@ -105,12 +105,12 @@ function messageButtons(faq, number) {
 }
 
 async function generateListTemplateRow(data) {
-    const rows = data.map((row,index) => ({
-        "id": index+1,
-      "title": row.title,
-      "description": row.description
+    const rows = data.map((row,index) => {
+        "id"= index+1,
+      "title"= row.title,
+      "description"= row.description
     
-    }));
+    });
   
     return rows;
   }
