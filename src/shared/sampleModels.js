@@ -114,7 +114,7 @@ function generateListTemplateRow(rows) {
   
     return template;
   }
-function messageList(faq, number) {
+const messageList=async (faq, number)=> {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -129,7 +129,7 @@ function messageList(faq, number) {
                 "sections": [
                     {
                         "title": "LIST_SECTION",
-                        "rows":generateListTemplateRow(faq.list.buttonslist)
+                        "rows":await generateListTemplateRow(faq.list.buttonslist)
                     
                     }
                 ]
