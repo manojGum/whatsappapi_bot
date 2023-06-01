@@ -103,17 +103,17 @@ function messageButtons(faq, number) {
     });
     return data;
 }
-async function generateListTemplateRow(rows) {
-    const template = {
-      rows: rows.map(row => ({
-        id: row._id,
-        title: row.title,
-        description: row.description
-      }))
-    };
+// function generateListTemplateRow(rows) {
+//     const template = {
+//       rows: rows.map(row => ({
+//         id: row._id,
+//         title: row.title,
+//         description: row.description
+//       }))
+//     };
   
-    return template;
-  }
+//     return template;
+//   }
 const messageList= (faq, number)=> {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
@@ -140,6 +140,21 @@ const messageList= (faq, number)=> {
                                 "id": "LIST_SECTION_1_ROW_2_ID",
                                 "title": "SECTION_1_ROW_2_TITLE",
                                 "description": "SECTION_1_ROW_2_DESC"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "LIST_SECTION_2_TITLE",
+                        "rows": [
+                            {
+                                "id": "LIST_SECTION_2_ROW_1_ID",
+                                "title": "SECTION_2_ROW_1_TITLE",
+                                "description": "SECTION_2_ROW_1_DESC"
+                            },
+                            {
+                                "id": "LIST_SECTION_2_ROW_2_ID",
+                                "title": "SECTION_2_ROW_2_TITLE",
+                                "description": "SECTION_2_ROW_2_DESC"
                             }
                         ]
                     }
