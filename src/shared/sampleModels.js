@@ -130,7 +130,7 @@ const messageList= (faq, number)=> {
                 "button": "SELECT-OPTIONS",
                   "sections": [
                     {
-                        "title": faq.list.listtitle || "LIST_SECTION_1_TITLE",
+                        "title": faq.list.listheading || "LIST_SECTION_1_TITLE",
                         "rows": [
                             {
                                 "id": "LIST_SECTION_1_ROW_1_ID",
