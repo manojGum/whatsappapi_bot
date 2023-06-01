@@ -111,10 +111,10 @@ function messageButtons(faq, number) {
 //         description: row.description
 //       }))
 //     };
-
+  
 //     return template;
 //   }
-const messageList = async (faq,number) => {
+const messageList= (faq, number)=> {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -175,33 +175,33 @@ const messageList = async (faq,number) => {
 }
 
 
-/*
-             // [
-             //     {
-             //         "title": "LIST_SECTION_1_TITLE",
-                     // "rows": [
-                     //     {
-                     //         "id": "LIST_SECTION_1_ROW_1_ID",
-                     //         "title": "SECTION_1_ROW_1_TITLE",
-                     //         "description": "SECTION_1_ROW_1_DESC"
-                     //     },
-                     //     {
-                     //         "id": "LIST_SECTION_1_ROW_2_ID",
-                     //         "title": "SECTION_1_ROW_2_TITLE",
-                     //         "description": "SECTION_1_ROW_2_DESC"
-                     //     }
-                     // ]
-             //     }
-             // ]
-       
+   /*
+                // [
+                //     {
+                //         "title": "LIST_SECTION_1_TITLE",
+                        // "rows": [
+                        //     {
+                        //         "id": "LIST_SECTION_1_ROW_1_ID",
+                        //         "title": "SECTION_1_ROW_1_TITLE",
+                        //         "description": "SECTION_1_ROW_1_DESC"
+                        //     },
+                        //     {
+                        //         "id": "LIST_SECTION_1_ROW_2_ID",
+                        //         "title": "SECTION_1_ROW_2_TITLE",
+                        //         "description": "SECTION_1_ROW_2_DESC"
+                        //     }
+                        // ]
+                //     }
+                // ]
+          
 
-             // faq.list.buttonslist.map(button => {
-             //     return ({
-             //         id: button._id,
-             //         title: button.title,
-             //         description: button.description || " "
-             //     })
-             // })
+                // faq.list.buttonslist.map(button => {
+                //     return ({
+                //         id: button._id,
+                //         title: button.title,
+                //         description: button.description || " "
+                //     })
+                // })
 */
 
 function messageLocation(faq, number) {
