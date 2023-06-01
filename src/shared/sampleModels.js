@@ -139,6 +139,11 @@ const messageList=async (faq, number)=> {
                                 "id": "<LIST_SECTION_1_ROW_2_ID>",
                                 "title": "<SECTION_1_ROW_2_TITLE>",
                                 "description": "<SECTION_1_ROW_2_DESC>"
+                            },
+                            {
+                                "id": "<LIST_SECTION_1_ROW_2_IDd>",
+                                "title": "<SECTION_1_ROW_2_TITLE>",
+                                "description": "<SECTION_1_ROW_2_DESC>"
                             }
                         ]
                     }
