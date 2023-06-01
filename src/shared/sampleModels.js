@@ -106,11 +106,11 @@ function messageButtons(faq, number) {
 
 async function generateListTemplateRow(data) {
     console.log("data......",data)
-    const rows = data.map(row =>{
-        "title"= row.title,
-        "description"= row.description,
-       " id"= row._id
-    });
+    const rows = data.map(row =>({
+        title:row.title,
+        description: row.description,
+       id:row._id
+    }));
     
       return rows;
   }
