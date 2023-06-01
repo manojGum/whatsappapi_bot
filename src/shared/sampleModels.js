@@ -122,7 +122,7 @@ const messageList=async (faq, number)=> {
         "interactive": {
             "type": "list",
             "body": {
-                "text": faq.list.responsetext || "text"
+                "text": faq.list.responsetext 
             },
             "action": {
                 "button": "text 1",
