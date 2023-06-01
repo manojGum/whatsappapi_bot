@@ -139,8 +139,14 @@ const messageList=async (faq, number)=> {
                     
                     }
                 ]
+            }
+        }
+    });
+    return data;
+}
 
-                /*
+
+   /*
                 // [
                 //     {
                 //         "title": "LIST_SECTION_1_TITLE",
@@ -158,7 +164,7 @@ const messageList=async (faq, number)=> {
                         // ]
                 //     }
                 // ]
-                */
+          
 
                 // faq.list.buttonslist.map(button => {
                 //     return ({
@@ -167,11 +173,7 @@ const messageList=async (faq, number)=> {
                 //         description: button.description || " "
                 //     })
                 // })
-            }
-        }
-    });
-    return data;
-}
+*/
 
 function messageLocation(faq, number) {
     const data = JSON.stringify({
