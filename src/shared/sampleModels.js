@@ -103,22 +103,18 @@ function messageButtons(faq, number) {
     });
     return data;
 }
-
-async function generateListTemplateRow(data) {
-    console.log("data......",data)
-    const rows = data.map(row =>({
-        title:row.title,
-        description: row.description,
-       id:row._id
-    }));
-    
-      return rows;
-  }
+// function generateListTemplateRow(rows) {
+//     const template = {
+//       rows: rows.map(row => ({
+//         id: row._id,
+//         title: row.title,
+//         description: row.description
+//       }))
+//     };
   
-async function messageList(faq, number){
-
-    const rows = await generateListTemplateRow(faq.list.buttonslist);
-
+//     return template;
+//   }
+const messageList=async (faq, number)=> {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -130,16 +126,17 @@ async function messageList(faq, number){
             },
             "action": {
                 "button": "Select Option",
-                "sections":     [
+                "sections": [
                     {
-                        "title": "LIST_SECTION_1_TITLE",
-                        "rows": faq.list.buttonslist.map(button => {
+                        "title": "LIST_SECTION",
+                        "rows":faq.list.buttonslist.map(button => {
                             return ({
                                 id: button._id,
                                 title: button.title,
                                 description: button.description || " "
                             })
                         })
+                    
                     }
                 ]
 
@@ -173,7 +170,6 @@ async function messageList(faq, number){
             }
         }
     });
-    console.log("data--------",data);
     return data;
 }
 
@@ -189,7 +185,6 @@ function messageLocation(faq, number) {
             "address": faq.location.address
         }
     });
-
     return data;
 }
 
@@ -203,7 +198,6 @@ function messageLink(faq, number) {
             "body": `"Please visit ${faq.answer.link}`
         }
     });
-    
     return data;
 }
 
