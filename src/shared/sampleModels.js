@@ -10,7 +10,7 @@ function messageText(textResponse, number) {
     return data;
 }
 
-function messageImage(faq,number) {
+function messageImage(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -22,7 +22,7 @@ function messageImage(faq,number) {
     return data;
 }
 
-function messageAudio(faq,number) {
+function messageAudio(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -34,7 +34,7 @@ function messageAudio(faq,number) {
     return data;
 }
 
-function messageVideo(faq,number) {
+function messageVideo(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -46,7 +46,7 @@ function messageVideo(faq,number) {
     return data;
 }
 
-function messageDocument(faq,number) {
+function messageDocument(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -60,7 +60,7 @@ function messageDocument(faq,number) {
     return data;
 }
 
-function messageButtons(faq,number) {
+function messageButtons(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -72,13 +72,13 @@ function messageButtons(faq,number) {
             },
             "action": {
                 "buttons": faq.buttons.buttonslist.map(button => {
-                    return ( {                
-                    type:"reply",
-                    reply: {
-                        id: button._id,
-                        title: button.title
-                    }
-                })
+                    return ({
+                        type: "reply",
+                        reply: {
+                            id: button._id,
+                            title: button.title
+                        }
+                    })
                 })
                 /*
                 // [
@@ -103,8 +103,18 @@ function messageButtons(faq,number) {
     });
     return data;
 }
-
-function messageList(faq,number) {
+function generateListTemplateRow(rows) {
+    const template = {
+      rows: rows.map(row => ({
+        id: row._id,
+        title: row.title,
+        description: row.description
+      }))
+    };
+  
+    return template;
+  }
+function messageList(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -116,55 +126,57 @@ function messageList(faq,number) {
             },
             "action": {
                 "button": "Select Option",
-                "sections":  [
+                "sections": [
                     {
                         "title": "LIST_SECTION",
-                        "rows": [ faq.list.buttonslist.map(button => {
-                            return ({
-                                id: button._id,
-                                title: button.title,
-                                description: button.description || " "
-                            })
-                        })
-                    ]
+                        "rows":generateListTemplateRow(faq.list.buttonslist)
+                    
                     }
                 ]
-                
+
                 /*
                 // [
                 //     {
                 //         "title": "LIST_SECTION_1_TITLE",
-                //         "rows": [
-                //             {
-                //                 "id": "LIST_SECTION_1_ROW_1_ID",
-                //                 "title": "SECTION_1_ROW_1_TITLE",
-                //                 "description": "SECTION_1_ROW_1_DESC"
-                //             },
-                //             {
-                //                 "id": "LIST_SECTION_1_ROW_2_ID",
-                //                 "title": "SECTION_1_ROW_2_TITLE",
-                //                 "description": "SECTION_1_ROW_2_DESC"
-                //             }
-                //         ]
+                        // "rows": [
+                        //     {
+                        //         "id": "LIST_SECTION_1_ROW_1_ID",
+                        //         "title": "SECTION_1_ROW_1_TITLE",
+                        //         "description": "SECTION_1_ROW_1_DESC"
+                        //     },
+                        //     {
+                        //         "id": "LIST_SECTION_1_ROW_2_ID",
+                        //         "title": "SECTION_1_ROW_2_TITLE",
+                        //         "description": "SECTION_1_ROW_2_DESC"
+                        //     }
+                        // ]
                 //     }
                 // ]
                 */
+
+                // faq.list.buttonslist.map(button => {
+                //     return ({
+                //         id: button._id,
+                //         title: button.title,
+                //         description: button.description || " "
+                //     })
+                // })
             }
         }
     });
     return data;
 }
 
-function messageLocation(faq,number) {
+function messageLocation(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
         "type": "location",
         "location": {
             "latitude": faq.location.latitude,
-            "longitude":faq.location.longitude,
+            "longitude": faq.location.longitude,
             "name": faq.location.name,
-            "address":faq.location.address
+            "address": faq.location.address
         }
     });
     return data;
