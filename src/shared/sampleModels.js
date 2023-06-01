@@ -169,7 +169,6 @@ async function messageList(faq, number){
         }
     });
     console.log("data--------",data);
-    console.log("data- section-------",data.action.sections);
     return data;
 }
 
