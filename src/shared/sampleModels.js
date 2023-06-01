@@ -117,9 +117,9 @@ const rows = data.map((row,index)=>{
    return rows
   }
   
-async function messageList(faq, number){
-    const rows = await generateListTemplateRow(faq.list.buttonslist);
-    console.log("row.......................",rows)
+// async function messageList(faq, number){
+//     const rows = await generateListTemplateRow(faq.list.buttonslist);
+    // console.log("row.......................",rows)
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -134,7 +134,14 @@ async function messageList(faq, number){
                 "sections": [
                     {
                         "title": "LIST_SECTION",
-                        "rows":rows
+                        "rows":faq.list.buttonslist.map((row,index)=>{
+                            return ({
+                                "id": index+1,
+                                "title": row.title,
+                                "description": row.description
+                            }
+                            )
+                           })
                     
                     }
                 ]
