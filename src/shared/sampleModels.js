@@ -119,13 +119,14 @@ function messageList(faq,number) {
                 "sections":  [
                     {
                         "title": "LIST_SECTION",
-                        "rows":  faq.list.buttonslist.map(button => {
-                            return ([{
+                        "rows": [ faq.list.buttonslist.map(button => {
+                            return ({
                                 id: button._id,
                                 title: button.title,
                                 description: button.description || " "
-                            }])
+                            })
                         })
+                    ]
                     }
                 ]
                 
