@@ -136,14 +136,12 @@ async function messageList(faq, number){
                 "sections": [
                     {
                         "title": "LIST_SECTION",
-                        "rows":faq.list.buttonslist.map((row,index)=>{
-                            return ({
+                        "rows":faq.list.buttonslist.map((row,index)=>({
                                 "id": index+1,
                                 "title": row.title,
                                 "description": row.description
-                            }
-                            )
-                           })
+                            })
+                           )
                     
                     }
                 ]
