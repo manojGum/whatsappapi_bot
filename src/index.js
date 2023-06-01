@@ -4,6 +4,7 @@ const addInfoRoute = require("./routers/addInfoRoutes");
 const infotypeRoutes = require("./routers/infoTypeRoutes");
 const usersRoutes = require("./routers/userRoutes");
 const morgan = require("morgan");
+require('dotenv').config()
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
@@ -29,7 +30,7 @@ app.get("/lost", (req, res) => {
 
 mongoose
   .connect(
-    "mongodb+srv://ManojKumar:ManojKumar@cluster0.jir7wgl.mongodb.net/whatsappqueryInfo?retryWrites=true&w=majority"
+    process.env.MONGODBCONNECTION
   )
   .then(() => {
     console.log("Database connection is ready .....");

@@ -20,7 +20,7 @@ const verifyToken = (req, res) => {
     let mode = req.query["hub.mode"];
     let challange = req.query["hub.challenge"];
     let token = req.query["hub.verify_token"];
-    const mytoken = "manojtoken";
+    const mytoken = process.env.MYSERVER_VERIFICATION_TOKEN;
     if (mode && token) {
       if (mode === "subscribe" && token === mytoken) {
         res.status(200).send(challange);
