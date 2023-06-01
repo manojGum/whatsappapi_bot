@@ -122,21 +122,25 @@ const messageList=async (faq, number)=> {
         "interactive": {
             "type": "list",
             "body": {
-                "text": faq.list.responsetext
+                "text": faq.list.responsetext || "text"
             },
             "action": {
-                "button": "Select Option",
+                "button": "text 1",
                 "sections": [
                     {
-                        "title": "LIST_SECTION",
-                        "rows":faq.list.buttonslist.map(button => {
-                            return ({
-                                id: button._id,
-                                title: button.title ||"",
-                                description: button.description || " "
-                            })
-                        })
-                    
+                        "title": "<LIST_SECTION_1_TITLE>",
+                        "rows": [
+                            {
+                                "id": "<LIST_SECTION_1_ROW_1_ID>",
+                                "title": "<SECTION_1_ROW_1_TITLE>",
+                                "description": "<SECTION_1_ROW_1_DESC>"
+                            },
+                            {
+                                "id": "<LIST_SECTION_1_ROW_2_ID>",
+                                "title": "<SECTION_1_ROW_2_TITLE>",
+                                "description": "<SECTION_1_ROW_2_DESC>"
+                            }
+                        ]
                     }
                 ]
             }
