@@ -50,6 +50,9 @@ const queryInfoSchema = mongoose.Schema(
       responsetext: {
         type: String,
       },
+      listheading:{
+        type:String,
+      },
       buttonslist: [
         {
           title: {

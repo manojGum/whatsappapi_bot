@@ -127,10 +127,10 @@ const messageList= (faq, number)=> {
                 "text":faq.list.responsetext
             },
             "action": {
-                "button": "Select given list",
+                "button": "SELECT-OPTIONS",
                   "sections": [
                     {
-                        "title": "LIST_SECTION_1_TITLE",
+                        "title": faq.list.listtitle || "LIST_SECTION_1_TITLE",
                         "rows": [
                             {
                                 "id": "LIST_SECTION_1_ROW_1_ID",
