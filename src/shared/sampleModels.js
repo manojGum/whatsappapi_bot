@@ -103,18 +103,19 @@ function messageButtons(faq, number) {
     });
     return data;
 }
-function generateListTemplateRow(rows) {
-    const template = {
-      rows: rows.map(row => ({
-        id: row._id,
-        title: row.title,
-        description: row.description
-      }))
-    };
+
+async function generateListTemplateRow(data) {
+    const rows = data.map(row => ({
+      title: row.title,
+      description: row.description,
+      _id: row._id
+    }));
   
-    return template;
+    return rows;
   }
-const messageList=async (faq, number)=> {
+  
+async function messageList(faq, number){
+    const rows = await generateListTemplateRow(faq.list.buttonslist);
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -129,7 +130,7 @@ const messageList=async (faq, number)=> {
                 "sections": [
                     {
                         "title": "LIST_SECTION",
-                        "rows":await generateListTemplateRow(faq.list.buttonslist)
+                        "rows":rows
                     
                     }
                 ]
