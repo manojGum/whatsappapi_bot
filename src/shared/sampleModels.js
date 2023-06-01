@@ -124,7 +124,7 @@ const messageList= (faq, number)=> {
         "interactive": {
             "type": "list",
             "body": {
-                "text": "response body text"
+                "text":faq.list.responsetext
             },
             "action": {
                 "button": "Select given list",
