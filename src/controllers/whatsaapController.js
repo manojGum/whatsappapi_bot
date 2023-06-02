@@ -147,6 +147,7 @@ const receivedMessage = async (req, res) => {
                 console.error("An error occurred:", error);
               });
           } else if (infoType === "list") {
+            console.log("faq.............",faq)
             let data = samples.messageList(faq, number);
             whatsappService.sendMessageWhatsApp(data).then(response => {
               console.log("Request successful:", response);
