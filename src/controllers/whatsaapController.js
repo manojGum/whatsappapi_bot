@@ -58,13 +58,15 @@ const receivedMessage = async (req, res) => {
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
         /* // console.log("..................", faq) */
-        const infoType = faq.infoType.infoType.toLowerCase()
-        console.log("type Info", infoType);
+        // const infoType = faq.infoType.infoType.toLowerCase()
+        // console.log("type Info", infoType);
         const similarity = await getJaccardSimilarity(
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
         if (similarity >= 0.6 && similarity > maxSimilarity) {
+          const infoType = faq.infoType.infoType.toLowerCase()
+          console.log("type Info", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
               console.log("ljjjjjjjjjjj",faq.question.text)
