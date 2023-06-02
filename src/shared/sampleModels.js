@@ -131,18 +131,13 @@ const messageList= (faq, number)=> {
                   "sections": [
                     {
                         "title": faq.list.listheading || "LIST _ SECTION",
-                        "rows": [
-                            {
-                                "id":faq.list.buttonslist._id,
-                                "title": faq.list.buttonslist.title,
-                                "description":faq.list.buttonslist.description
-                            },
-                            {
-                                "id":faq.list.buttonslist._id,
-                                "title": faq.list.buttonslist.title,
-                                "description":faq.list.buttonslist.description
-                            }
-                        ]
+                        "rows": faq.list.buttonslist.map(button => {
+                            return ({
+                                id: button._id,
+                                title: button.title,
+                                description: button.description || " "
+                            })
+                        })
                     }
                 ]
             }
