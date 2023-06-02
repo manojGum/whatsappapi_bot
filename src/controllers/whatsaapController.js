@@ -66,25 +66,25 @@ const receivedMessage = async (req, res) => {
         if (similarity >= 0.6 && similarity > maxSimilarity) {
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
-              // let botR = await axios.get(`${faqanswer.text}${phone}`);
+              let botR = await axios.get(`${faqanswer.text}${phone}`);
 
-              console.log("bot leave balance..................................................")
-              // if (botR) {
-              //   botResponse = await JSON.stringify(botR.data);
-              //   let data = samples.messageText(botResponse, number);
-              //   whatsappService.sendMessageWhatsApp(data)
-              //     .then(response => {
-              //       console.log("Request successful:", response)
-              //       return
-              //     })
-              // } else {
-              //   let data = samples.messageText("no user register", number);
-              //   whatsappService.sendMessageWhatsApp(data)
-              //     .then(response => {
-              //       console.log("Request successful:", response)
-              //       return
-              //     })
-              // }
+              console.log("bot leave balance..................................................",botR)
+              if (botR) {
+                botResponse = await JSON.stringify(botR.data);
+                let data = samples.messageText(botResponse, number);
+                whatsappService.sendMessageWhatsApp(data)
+                  .then(response => {
+                    console.log("Request successful:", response)
+                    return
+                  })
+              } else {
+                let data = samples.messageText("no user register", number);
+                whatsappService.sendMessageWhatsApp(data)
+                  .then(response => {
+                    console.log("Request successful:", response)
+                    return
+                  })
+              }
             }
              else {
 
