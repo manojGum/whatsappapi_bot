@@ -56,7 +56,7 @@ const receivedMessage = async (req, res) => {
       let maxSimilarity = 0;
       const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
-        const faq = data[i];
+        var faq = data[i];
         /* // console.log("..................", faq) */
         // const infoType = faq.infoType.infoType.toLowerCase()
         // console.log("type Info", infoType);
