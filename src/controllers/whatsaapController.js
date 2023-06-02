@@ -80,7 +80,7 @@ const receivedMessage = async (req, res) => {
                 // whatsappService.sendMessageWhatsApp(data)
                 //   .then(response => {
                 //     console.log("Request successful:", response)
-                    return
+                   return res.send("hello")
                   // })
               } else {
                 let data = samples.messageText("no user register", number);
