@@ -69,18 +69,16 @@ const receivedMessage = async (req, res) => {
           console.log("type Info.......", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
-              console.log("ljjjjjjjjjjj",faq.question)
               let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/91${phone}`);
-
-              console.log("bot leave balance..................................................",botR)
               if (botR) {
-                botResponse = await JSON.stringify(botR.data);
-                let data = samples.messageText(botResponse, number);
-                whatsappService.sendMessageWhatsApp(data)
-                  .then(response => {
-                    console.log("Request successful:", response)
+                console.log("bot leave balance..................................................",botR)
+                // botResponse = await JSON.stringify(botR.data);
+                // let data = samples.messageText(botResponse, number);
+                // whatsappService.sendMessageWhatsApp(data)
+                //   .then(response => {
+                //     console.log("Request successful:", response)
                     return
-                  })
+                  // })
               } else {
                 let data = samples.messageText("no user register", number);
                 whatsappService.sendMessageWhatsApp(data)
