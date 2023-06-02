@@ -14,11 +14,11 @@ const app = express();
 // middleware
 app.use(cors());
 app.use(morgan("tiny"));
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 5656;
 app.use(express.json());
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }))
 // route
 app.use("/whatsapp", apiRoute);
 app.use(`/infotype`, infotypeRoutes);
