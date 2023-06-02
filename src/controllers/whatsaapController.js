@@ -47,16 +47,16 @@ const receivedMessage = async (req, res) => {
       let messages = messageObject[0];
       let number = await messages["from"];
       let phone = parseInt(number.toString().slice(2));
-      console.log("phone---------------",phone);
+      console.log("phone---------------", phone);
 
       let text = GetTextUser(messages);
-      console.log("user text.......",text)
+      console.log("user text.......", text)
 
       let maxSimilarity = 0;
       const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
-       /* // console.log("..................", faq) */
+        /* // console.log("..................", faq) */
         const infoType = faq.infoType.infoType.toLowerCase()
         console.log("type Info", infoType);
         const similarity = await getJaccardSimilarity(
@@ -65,26 +65,27 @@ const receivedMessage = async (req, res) => {
         );
         if (similarity >= 0.6 && similarity > maxSimilarity) {
           if (infoType === "text") {
-            // if (isMatch(faq.question.toLocaleLowerCase(), "i want my leave balance", similarityThreshold)) {
-            //   let botR = await axios.get(`${faq.response.text}/${phone}`);
-            //   console.log("bot leave balance..................................................",botR)
-            //   if (botR) {
-            //     botResponse = await JSON.stringify(botR.data);
-            //     let data = samples.messageText(botResponse, number);
-            //   whatsappService.sendMessageWhatsApp(data)
-            //     .then(response => {
-            //       console.log("Request successful:", response)
-            //       return
-            //     })
-            //   } else {
-            //     let data = samples.messageText("no user register", number);
-            //     whatsappService.sendMessageWhatsApp(data)
-            //       .then(response => {
-            //         console.log("Request successful:", response)
-            //         return
-            //       })
-            //   }
-            // }else{
+            if (isMatch(faq.question.toLocaleLowerCase(), "i want my leave balance", similarityThreshold)) {
+              let botR = await axios.get(`${faqanswer.text}${phone}`);
+
+              console.log("bot leave balance..................................................", botR)
+              if (botR) {
+                botResponse = await JSON.stringify(botR.data);
+                let data = samples.messageText(botResponse, number);
+                whatsappService.sendMessageWhatsApp(data)
+                  .then(response => {
+                    console.log("Request successful:", response)
+                    return
+                  })
+              } else {
+                let data = samples.messageText("no user register", number);
+                whatsappService.sendMessageWhatsApp(data)
+                  .then(response => {
+                    console.log("Request successful:", response)
+                    return
+                  })
+              }
+            } else {
 
               let data = samples.messageText(faq.answer.text, number);
               whatsappService.sendMessageWhatsApp(data)
@@ -92,7 +93,7 @@ const receivedMessage = async (req, res) => {
                   console.log("Request successful:", response)
                   return
                 })
-            // }
+            }
           } else if (infoType === "image") {
             let data = samples.messageImage(faq, number);
             whatsappService.sendMessageWhatsApp(data).then(response => {
