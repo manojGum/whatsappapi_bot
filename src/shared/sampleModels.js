@@ -130,32 +130,17 @@ const messageList= (faq, number)=> {
                 "button": "SELECT-OPTIONS",
                   "sections": [
                     {
-                        "title": faq.list.listheading || "LIST_SECTION_1_TITLE",
+                        "title": faq.list.listheading || "LIST _ SECTION",
                         "rows": [
                             {
-                                "id": "LIST_SECTION_1_ROW_1_ID",
-                                "title": "SECTION_1_ROW_1_TITLE",
-                                "description": "SECTION_1_ROW_1_DESC"
+                                "id":faq.list.buttonslist[0]._id,
+                                "title": faq.list.buttonslist[0].title,
+                                "description":faq.list.buttonslist[0].description
                             },
                             {
-                                "id": "LIST_SECTION_1_ROW_2_ID",
-                                "title": "SECTION_1_ROW_2_TITLE",
-                                "description": "SECTION_1_ROW_2_DESC"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "LIST_SECTION_2_TITLE",
-                        "rows": [
-                            {
-                                "id": "LIST_SECTION_2_ROW_1_ID",
-                                "title": "SECTION_2_ROW_1_TITLE",
-                                "description": "SECTION_2_ROW_1_DESC"
-                            },
-                            {
-                                "id": "LIST_SECTION_2_ROW_2_ID",
-                                "title": "SECTION_2_ROW_2_TITLE",
-                                "description": "SECTION_2_ROW_2_DESC"
+                                "id":faq.list.buttonslist[1]._id,
+                                "title": faq.list.buttonslist[1].title,
+                                "description":faq.list.buttonslist[1].description
                             }
                         ]
                     }
