@@ -70,7 +70,7 @@ const receivedMessage = async (req, res) => {
           console.log("type Info.......", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
-            const botR= await BotUserDemo.findOne({ phone })
+            const botR= await BotUserDemo.findOne({ phone},{ '_id': 0})
               // let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
               // console.log(botR)
               if (botR) {
