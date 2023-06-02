@@ -4,6 +4,7 @@ const whatsappService = require("../services/whatsappService");
 const samples = require("../shared/sampleModels");
 const QueryInfo = require("../models/queryInfo/addQueryInfomodels");
 const getJaccardSimilarity = require("../helper/botBehavior");
+const axios = require('axios');
 const isMatch = require('../helper/isMatch')
 const verifyToken = (req, res) => {
   try {
