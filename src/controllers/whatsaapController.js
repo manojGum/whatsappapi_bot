@@ -51,7 +51,7 @@ const receivedMessage = async (req, res) => {
       // console.log("phone---------------", phone);
 
       let text = GetTextUser(messages);
-      // console.log("user text.......", text)
+      console.log("user request text.......", text)
 
       let maxSimilarity = 0;
       const similarityThreshold = 0.5;
@@ -70,6 +70,7 @@ const receivedMessage = async (req, res) => {
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
               let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
+              console.log(botR)
               if (botR) {
                 console.log("bot leave balance..................................................",botR)
                 // botResponse = await JSON.stringify(botR.data);
