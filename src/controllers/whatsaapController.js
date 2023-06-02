@@ -69,7 +69,7 @@ const receivedMessage = async (req, res) => {
           console.log("type Info.......", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
-              let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/91${phone}`);
+              let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
               if (botR) {
                 console.log("bot leave balance..................................................",botR)
                 // botResponse = await JSON.stringify(botR.data);
