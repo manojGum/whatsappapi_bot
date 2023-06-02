@@ -4,6 +4,7 @@ const addInfoRoute = require("./routers/addInfoRoutes");
 const infotypeRoutes = require("./routers/infoTypeRoutes");
 const usersRoutes = require("./routers/userRoutes");
 const adduserdemoDetails= require('./routers/adduserdemodetails');
+const bodyParser = require('body-parser')
 const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose");
@@ -13,6 +14,8 @@ const app = express();
 // middleware
 app.use(cors());
 app.use(morgan("tiny"));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 const PORT = process.env.PORT || 5656;
 app.use(express.json());
 app.use(express.urlencoded())
