@@ -133,14 +133,14 @@ const messageList= (faq, number)=> {
                         "title": faq.list.listheading || "LIST _ SECTION",
                         "rows": [
                             {
-                                "id":faq.list.buttonslist[0]._id,
-                                "title": faq.list.buttonslist[0].title,
-                                "description":faq.list.buttonslist[0].description
+                                "id":faq.list.buttonslist._id,
+                                "title": faq.list.buttonslist.title,
+                                "description":faq.list.buttonslist.description
                             },
                             {
-                                "id":faq.list.buttonslist[1]._id,
-                                "title": faq.list.buttonslist[1].title,
-                                "description":faq.list.buttonslist[1].description
+                                "id":faq.list.buttonslist._id,
+                                "title": faq.list.buttonslist.title,
+                                "description":faq.list.buttonslist.description
                             }
                         ]
                     }
