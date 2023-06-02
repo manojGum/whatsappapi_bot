@@ -65,7 +65,7 @@ const receivedMessage = async (req, res) => {
         );
         if (similarity >= 0.6 && similarity > maxSimilarity) {
           if (infoType === "text") {
-            if (isMatch(faq.question.toLocaleLowerCase(), "i want my leave balance", similarityThreshold)) {
+            if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
               // let botR = await axios.get(`${faqanswer.text}${phone}`);
 
               console.log("bot leave balance..................................................")
