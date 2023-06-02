@@ -45,6 +45,8 @@ const receivedMessage = async (req, res) => {
     if (typeof messageObject != "undefined") {
       let messages = messageObject[0];
       let number = await messages["from"];
+      let phone = parseInt(number.toString().slice(2));
+      console.log("phone---------------",phone);
 
       let text = GetTextUser(messages);
       console.log("user text.......",text)

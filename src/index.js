@@ -3,6 +3,7 @@ const apiRoute = require("./routers/routes");
 const addInfoRoute = require("./routers/addInfoRoutes");
 const infotypeRoutes = require("./routers/infoTypeRoutes");
 const usersRoutes = require("./routers/userRoutes");
+const adduserdemoDetails= require('./routers/adduserdemodetails');
 const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose");
@@ -19,6 +20,7 @@ app.use(express.urlencoded())
 app.use("/whatsapp", apiRoute);
 app.use(`/infotype`, infotypeRoutes);
 app.use("/addinfo", addInfoRoute);
+app.use("/userdemodetails",adduserdemoDetails);
 app.use(`/users`, usersRoutes);
 app.get("/lost", (req, res) => {
   res.send({
