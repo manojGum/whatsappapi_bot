@@ -5,7 +5,8 @@ const samples = require("../shared/sampleModels");
 const QueryInfo = require("../models/queryInfo/addQueryInfomodels");
 const getJaccardSimilarity = require("../helper/botBehavior");
 const axios = require('axios');
-const isMatch = require('../helper/isMatch')
+const isMatch = require('../helper/isMatch');
+const BotUserDemo = require("../models/adddemodetails/userDemoDetailsModels");
 const verifyToken = (req, res) => {
   try {
     /*
@@ -69,7 +70,8 @@ const receivedMessage = async (req, res) => {
           console.log("type Info.......", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
-              let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
+            const botR= await BotUserDemo.findOne({ phone })
+              // let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
               console.log(botR)
               if (botR) {
                 console.log("bot leave balance..................................................",botR)
