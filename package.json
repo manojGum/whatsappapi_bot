@@ -22,6 +22,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
     "morgan": "^1.10.0",
-    "npm": "^9.6.7"
+    "npm": "^9.6.7",
+    "string-similarity": "^4.0.4"
   }
 }
