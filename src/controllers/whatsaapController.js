@@ -4,6 +4,7 @@ const whatsappService = require("../services/whatsappService");
 const samples = require("../shared/sampleModels");
 const QueryInfo = require("../models/queryInfo/addQueryInfomodels");
 const getJaccardSimilarity = require("../helper/botBehavior");
+// const isMatch = require('../helper/isMatch')
 const verifyToken = (req, res) => {
   try {
     /*
@@ -52,6 +53,7 @@ const receivedMessage = async (req, res) => {
       console.log("user text.......",text)
 
       let maxSimilarity = 0;
+      const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
         const faq = data[i];
        /* // console.log("..................", faq) */
@@ -63,12 +65,34 @@ const receivedMessage = async (req, res) => {
         );
         if (similarity >= 0.6 && similarity > maxSimilarity) {
           if (infoType === "text") {
-            let data = samples.messageText(faq.answer.text, number);
-            whatsappService.sendMessageWhatsApp(data)
-              .then(response => {
-                console.log("Request successful:", response)
-                return
-              })
+            if (isMatch(faq.question.toLocaleLowerCase(), "i want my leave balance", similarityThreshold)) {
+              let botR = await axios.get(`${faq.response.text}/${phone}`);
+              console.log("bot leave balance..................................................",botR)
+              if (botR) {
+                botResponse = await JSON.stringify(botR.data);
+                let data = samples.messageText(botResponse, number);
+              whatsappService.sendMessageWhatsApp(data)
+                .then(response => {
+                  console.log("Request successful:", response)
+                  return
+                })
+              } else {
+                let data = samples.messageText("no user register", number);
+                whatsappService.sendMessageWhatsApp(data)
+                  .then(response => {
+                    console.log("Request successful:", response)
+                    return
+                  })
+              }
+            }else{
+
+              let data = samples.messageText(faq.answer.text, number);
+              whatsappService.sendMessageWhatsApp(data)
+                .then(response => {
+                  console.log("Request successful:", response)
+                  return
+                })
+            }
           } else if (infoType === "image") {
             let data = samples.messageImage(faq, number);
             whatsappService.sendMessageWhatsApp(data).then(response => {
