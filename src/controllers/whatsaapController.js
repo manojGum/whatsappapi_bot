@@ -55,17 +55,15 @@ const receivedMessage = async (req, res) => {
       console.log("user request text.......", text)
 
       let maxSimilarity = 0;
-      const similarityThreshold = 0.5;
+      const similarityThreshold = 0.3;
       for (let i = 0; i < data.length; i++) {
         var faq = data[i];
-        /* // console.log("..................", faq) */
-        // const infoType = faq.infoType.infoType.toLowerCase()
-        // console.log("type Info", infoType);
+      
         const similarity = await getJaccardSimilarity(
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
-        if (similarity >= 0.6 && similarity > maxSimilarity) {
+        if (similarity >= 0.3 && similarity > maxSimilarity) {
           const infoType = faq.infoType.infoType.toLowerCase()
           console.log("type Info.......", infoType);
           if (infoType === "text") {
@@ -147,7 +145,6 @@ const receivedMessage = async (req, res) => {
                 console.error("An error occurred:", error);
               });
           } else if (infoType === "list") {
-            console.log("faq.............",faq.list.buttonslist[0].title)
             let data = samples.messageList(faq, number);
             whatsappService.sendMessageWhatsApp(data).then(response => {
               console.log("Request successful:", response);
