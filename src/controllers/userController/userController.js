@@ -67,7 +67,7 @@ console.log(user.passwordHash)
     );
     res.status(200).send({ msg:"Login success...!",user: user.email, token });
   } else {
-    return res.status(400).send({msg:"Email and password is wrong"});
+    return res.status(200).send({msg:"Email and password is wrong"});
   }
 }
 module.exports = { registerUser, userLogin };

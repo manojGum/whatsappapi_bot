@@ -1,0 +1,153 @@
+
+   
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Apply specific styles to the "Info Type" input field */
+  #infoType {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "Question" input field */
+  #question {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "Text" input field */
+  #text {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "Link" input field */
+  #link {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "Filename" input field */
+  #filename {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "Response Text" input field */
+  #responseText {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "Button 1 Title" input field */
+  #title1 {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "Button 2 Title" input field */
+  #title2 {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "List Response Text" input field */
+  #listResponseText {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "List Item 1 Title" input field */
+  #listTitle1 {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "List Item 1 Description" input field */
+  #listDesc1 {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "List Item 2 Title" input field */
+  #listTitle2 {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the "List Item 2 Description" input field */
+  #listDesc2 {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+
+
+  
+
+  /* Assuming the class name of the input fields is 'input-field' */
+
+.input-field {
+  margin-bottom: 10px;
+}
+
+.input-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-field input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-field input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Additional styling for the form and button */
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+  /* Apply styles to the submit button */
+
+button[type="submit"] {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
