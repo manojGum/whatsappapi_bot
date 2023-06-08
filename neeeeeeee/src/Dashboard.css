@@ -1,0 +1,36 @@
+.a1
+{
+    width: 40%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100";
+}
+.a2
+{
+    width: 10%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100";
+}
+.a3
+{
+    width: 30%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100";
+}
+.a4
+{
+    width: 70%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100";
+}
+.a5
+{
+    width: 90%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100";
+}
+.a6
+{
+    width: 20rem;
+}
+.a7
+{
+    width: 50%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100";
+}
+.toggled {
+    overflow: visible;
+    width: 6.5rem!important;
+}
+.toggled1 {
+    width: 0!important;
+    overflow: hidden;
+}

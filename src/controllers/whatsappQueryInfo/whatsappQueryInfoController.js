@@ -50,4 +50,21 @@ const getQueryInfo = async (req, res) => {
   }
 }
 
-module.exports = { addQueryInfo, getQueryInfo }
+const getQueryInfoBYId = async (req, res) => {
+    try {
+      const dataList = await QueryInfo.findById(req.params.id).populate('infoType');
+      return res.send(dataList);
+    } catch (err) {
+      res.status(500).send(err.message)
+    }
+}
+const deleteQueryInfoBYId=async (req,res)=>{
+  try {
+    const dataList = await QueryInfo.findByIdAndDelete(req.params.id)
+    return res.send(dataList);
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
+}
+
+module.exports = { addQueryInfo, getQueryInfo , getQueryInfoBYId,deleteQueryInfoBYId}
