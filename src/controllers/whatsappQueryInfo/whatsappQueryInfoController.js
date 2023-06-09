@@ -73,10 +73,8 @@ const updateQueryInfoData =async (req, res) => {
 
   req.body.user_id = req.user_id;
   req.body.infoType = req.body.infoTypeId._id
-  // const queryInfoId = req.params._id;
+  const queryInfoId = req.params.id;
   const updatedData = req.body;
-
-  console.log(updatedData)
   try {
     
 
@@ -95,7 +93,7 @@ const updateQueryInfoData =async (req, res) => {
       return res.status(404).send('QueryInfo not found');
     }
 
-    return res.send(queryInfo);
+    return res.status(200).send({message:"updated your data"});
   } catch (error) {
     return res.status(500).send(error.message);
   }

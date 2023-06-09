@@ -117,7 +117,7 @@ const Update = ({ user,setLoginUser }) => {
     }
     const requestData = {
       ...formData,
-      infoTypeId: infoTypeOptions,
+      infoTypeId:infoTypeOptions,
     };
   
     const handleSubmit = async (e) => {
