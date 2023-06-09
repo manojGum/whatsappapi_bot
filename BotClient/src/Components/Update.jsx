@@ -73,7 +73,7 @@ const Update = ({ user,setLoginUser }) => {
       axios.get(`http://localhost:5656/addinfo/info/${id}`).then(res =>{
         setInfoTypeOptions(res.data.infoType)
         setFormData({...formData,
-          infoType: res.data.infoType.infoType,
+          infoType:res.data.infoType.infoType,
           question: res.data.question,
           answer:{
             text: res.data.answer.text,
@@ -117,7 +117,7 @@ const Update = ({ user,setLoginUser }) => {
     }
     const requestData = {
       ...formData,
-      infoTypeId:infoTypeOptions,
+      infoTypeId: infoTypeOptions,
     };
   
     const handleSubmit = async (e) => {
@@ -180,11 +180,19 @@ const Update = ({ user,setLoginUser }) => {
           />
          
           <label htmlFor="text">Text :- </label>
-          <input
+          {/* <input
             type="text"
             id="text"
             name="answer.text"
             value={formData?.answer?.text}
+            onChange={handleChange}
+            required
+          /> */}
+          <input
+            type="text"
+            id="question"
+            name="question"
+            value={formData.question}
             onChange={handleChange}
             required
           />
@@ -482,8 +490,11 @@ const Update = ({ user,setLoginUser }) => {
           <h3>Update Details</h3>
         </div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="infoType">Select Response Type :</label>
-          <select
+          <label htmlFor="infoType">Select Response Type :   </label>
+          <select style={{
+            width:"200px",
+            height: "32px"
+          }}
             id="infoType"
             name="infoType"
             value={formData.infoType}

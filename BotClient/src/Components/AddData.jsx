@@ -458,10 +458,15 @@ const AddData = ({ user,setLoginUser }) => {
         </div>
         {/* <Navbar /> */}
           {/* <div className='logoutButton' onClick={() => setLoginUser({})}>Logout</div> */}
-          <div>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="infoType">Select Response Type :</label>
-            <select
+          <div style={{
+            marginTop:"20px"
+          }}>
+          <form onSubmit={handleSubmit} >
+            <label htmlFor="infoType">Select Response Type :  </label>
+            <select style={{
+            width:"200px",
+            height: "32px"
+          }}
               id="infoType"
               name="infoType"
               value={formData.infoType}
