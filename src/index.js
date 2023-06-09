@@ -25,11 +25,6 @@ app.use(`/infotype`, infotypeRoutes);
 app.use("/addinfo", addInfoRoute);
 app.use("/userdemodetails",adduserdemoDetails);
 app.use(`/users`, usersRoutes);
-app.get("/lost", (req, res) => {
-  res.send({
-    message: "Hi Welcome to HR Assistance bot",
-  });
-});
 
 //Databse connection
 

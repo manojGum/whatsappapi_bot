@@ -67,4 +67,39 @@ const deleteQueryInfoBYId=async (req,res)=>{
   }
 }
 
-module.exports = { addQueryInfo, getQueryInfo , getQueryInfoBYId,deleteQueryInfoBYId}
+
+
+const updateQueryInfoData =async (req, res) => {
+
+  req.body.user_id = req.user_id;
+  req.body.infoType = req.body.infoTypeId._id
+  // const queryInfoId = req.params._id;
+  const updatedData = req.body;
+  
+  console.log(updatedData)
+  try {
+    
+
+    // Check if the provided ID is valid
+    if (!queryInfoId || queryInfoId.length < 24) {
+      return res.status(400).send('Invalid QueryInfo ID');
+    }
+
+    // Find the QueryInfo by ID and update it
+    const queryInfo = await QueryInfo.findByIdAndUpdate(queryInfoId, updatedData, {
+      new: true, // Return the updated QueryInfo object
+    });
+
+    // Check if the QueryInfo exists
+    if (!queryInfo) {
+      return res.status(404).send('QueryInfo not found');
+    }
+
+    return res.send(queryInfo);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+
+
+module.exports = { addQueryInfo, getQueryInfo , getQueryInfoBYId,deleteQueryInfoBYId ,updateQueryInfoData}
