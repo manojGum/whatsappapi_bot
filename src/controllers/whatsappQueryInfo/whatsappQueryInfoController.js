@@ -75,7 +75,7 @@ const updateQueryInfoData =async (req, res) => {
   req.body.infoType = req.body.infoTypeId._id
   // const queryInfoId = req.params._id;
   const updatedData = req.body;
-  
+
   console.log(updatedData)
   try {
     
