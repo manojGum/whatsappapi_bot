@@ -233,14 +233,7 @@ const Read = ({ user, setLoginUser }) => {
 				},
 				buttons: {
 					responsetext: res.data.buttons.responsetext,
-					buttonslist: [
-						{
-							title: res.data.buttons.buttonslist[0].title
-						},
-						{
-							title: res.data.buttons.buttonslist[1].title
-						}
-					]
+					buttonslist: res.data.buttons.buttonslist,
 				},
 				list: {
 					responsetext: res.data.list.responsetext,

@@ -28,7 +28,7 @@ const AddData = ({ user,setLoginUser }) => {
         list: {
           responsetext: '',
           listheading:" ",
-          buttonslist: [{ title: '', description: '' },{ title: '', description: '' }],
+          buttonslist: [{ title: '', description: '' },{ title: '', description: '' },{ title: '', description: '' },{ title: '', description: '' }],
         },
         location: {
           latitude: "",
@@ -40,7 +40,6 @@ const AddData = ({ user,setLoginUser }) => {
     
       const handleButtonChange = (e, index) => {
         const { value } = e.target;
-        // console.log('name--',name)
         const updatedFormData = {
           ...formData,
           buttons: {
@@ -54,7 +53,6 @@ const AddData = ({ user,setLoginUser }) => {
       };
       const handleListChange = (e, index) => {
         const { name, value } = e.target;
-        // console.log('name--',name)
         const updatedFormData = {
           ...formData,
           list: {
@@ -99,44 +97,17 @@ const AddData = ({ user,setLoginUser }) => {
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("formData", requestData)
         axios.post(`http://localhost:5656/addinfo`, requestData, {
           headers: headers
         })
           .then((response) => {
-            console.log(response)
             alert(response.data)
             navigate("/home")
-            // setFormData({
-            //   infoType: '',
-            //   question: '',
-            //   answer: {
-            //     text: '',
-            //     link: '',
-            //     filename: '',
-            //     caption:'',
-            //   },
-            //   buttons: {
-            //     responsetext: "",
-            //     buttonslist: [
-            //       {
-            //         title: ""
-            //       },
-            //       {
-            //         title: ""
-            //       }
-            //     ]
-            //   },
-            //   list: {
-            //     responsetext: '',
-            //     buttonslist: [{ title: '', description: '' },{ title: '', description: '' }],
-            //   },
-            // })
           }
          
           )
           .catch((error) => {
-            alert("ERRot", error)
+            alert("Error", error)
           })
     
       };
@@ -179,7 +150,6 @@ const AddData = ({ user,setLoginUser }) => {
               onChange={handleChange}
               required
             />
-            {/* {console.log('formData---', formData)} */}
             <label htmlFor="buttonsResponseText">Buttons Response Text:</label>
             <input
               type="text"

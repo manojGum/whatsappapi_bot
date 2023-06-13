@@ -83,20 +83,13 @@ const Update = ({ user, setLoginUser }) => {
           question: res.data.question,
           answer: {
             text: res.data.answer.text,
-            link: res.data.answer.text,
+            link: res.data.answer.link,
             filename: res.data.answer.filename,
             caption: res.data.answer.caption,
           },
           buttons: {
             responsetext: res.data.buttons.responsetext,
-            buttonslist: [
-              {
-                title: res.data.buttons.buttonslist[0].title,
-              },
-              {
-                title: res.data.buttons.buttonslist[1].title,
-              },
-            ],
+            buttonslist:  res.data.buttons.buttonslist,
           },
           list: {
             responsetext: res.data.list.responsetext,
@@ -119,13 +112,12 @@ const Update = ({ user, setLoginUser }) => {
   const nestedHandleChange = (e) => {
   
     const { name, value } = e.target;
-   
     const {
       list: { responsetext, ...listData },
       ...otherFormData
     } = formData;
 
-    if (name == "list.responsetext") {
+    if (name === "list.responsetext") {
       const updatedListData = {
         ...listData,
         responsetext: value,
@@ -136,7 +128,7 @@ const Update = ({ user, setLoginUser }) => {
       };
 
       setFormData(updatedFormData);
-    } else if (name == "list.listheading") {
+    } else if (name === "list.listheading") {
       const updatedListData = {
         ...listData,
         listheading: value,
@@ -147,7 +139,7 @@ const Update = ({ user, setLoginUser }) => {
       };
 
       setFormData(updatedFormData);
-    } else if (name == "buttons.responsetext") {
+    } else if (name === "buttons.responsetext") {
       const {
         buttons: { responsetext, ...buttonsData },
         ...otherFormData
@@ -162,7 +154,7 @@ const Update = ({ user, setLoginUser }) => {
       };
 
       setFormData(updatedFormData);
-    } else if ((name == "answer.text")) {
+    } else if ((name === "answer.text")) {
       const {
         answer: { text, ...answerData },
         ...otherFormData
@@ -171,6 +163,21 @@ const Update = ({ user, setLoginUser }) => {
         ...answerData,
         text: value,
       };
+      const updatedFormData = {
+        ...otherFormData,
+        answer: updatedListData,
+      };
+      setFormData(updatedFormData);
+    }else if ((name === "answer.link")) {
+      const {
+        answer: { link, ...answerData },
+        ...otherFormData
+      } = formData;
+      const updatedListData = {
+        ...answerData,
+        link: value,
+      };
+    
       const updatedFormData = {
         ...otherFormData,
         answer: updatedListData,
@@ -199,31 +206,6 @@ const Update = ({ user, setLoginUser }) => {
         console.log(response);
         alert(response.data);
         navigate("/home");
-        // setFormData({
-        //   infoType: '',
-        //   question: '',
-        //   answer: {
-        //     text: '',
-        //     link: '',
-        //     filename: '',
-        //     caption:'',
-        //   },
-        //   buttons: {
-        //     responsetext: "",
-        //     buttonslist: [
-        //       {
-        //         title: ""
-        //       },
-        //       {
-        //         title: ""
-        //       }
-        //     ]
-        //   },
-        //   list: {
-        //     responsetext: '',
-        //     buttonslist: [{ title: '', description: '' },{ title: '', description: '' }],
-        //   },
-        // })
       })
       .catch((error) => {
         alert("ERRot", error);
@@ -381,7 +363,7 @@ const Update = ({ user, setLoginUser }) => {
           id="link"
           name="answer.link"
           value={formData?.answer?.link}
-          onChange={handleChange}
+          onChange={nestedHandleChange}
           required
         />
 
@@ -424,7 +406,7 @@ const Update = ({ user, setLoginUser }) => {
           id="link"
           name="answer.link"
           value={formData?.answer?.link}
-          onChange={handleChange}
+          onChange={nestedHandleChange}
           required
         />
       </>
@@ -447,9 +429,9 @@ const Update = ({ user, setLoginUser }) => {
           type="url"
           id="link"
           name="answer.link"
-          value={formData?.answer[0]?.link}
+          value={formData?.answer?.link}
           placeholder="Enter Sending LInk"
-          onChange={handleChange}
+          onChange={nestedHandleChange}
           required
         />
       </>
@@ -474,7 +456,7 @@ const Update = ({ user, setLoginUser }) => {
           name="answer.link"
           value={formData?.answer?.link}
           placeholder="Enter video link"
-          onChange={handleChange}
+          onChange={nestedHandleChange}
           required
         />
       </>
@@ -499,7 +481,7 @@ const Update = ({ user, setLoginUser }) => {
           name="answer.link"
           value={formData?.answer?.link}
           placeholder="Enter audio link"
-          onChange={handleChange}
+          onChange={nestedHandleChange}
           required
         />
       </>
