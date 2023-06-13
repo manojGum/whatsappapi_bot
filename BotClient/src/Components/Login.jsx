@@ -26,8 +26,8 @@ const Login = ({ setLoginUser }) => {
           passwordHash: user.password,
         })
         .then((res) => {
-          console.log(res.data)
-          alert(res.data.msg);
+          // console.log(res.data)
+          // alert(res.data.msg);
           setLoginUser(res.data);
           navigate("/home");
         });

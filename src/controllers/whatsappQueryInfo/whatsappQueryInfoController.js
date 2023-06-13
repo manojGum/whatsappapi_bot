@@ -93,7 +93,7 @@ const updateQueryInfoData =async (req, res) => {
       return res.status(404).send('QueryInfo not found');
     }
 
-    return res.status(200).send({message:"updated your data"});
+    return res.status(200).send("updated your data");
   } catch (error) {
     return res.status(500).send(error.message);
   }
