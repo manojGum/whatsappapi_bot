@@ -3,7 +3,7 @@ import "../Dashboard.css";
 
 import { Link,} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
-const Navbar = ( {changeStyle1}) => {
+const Navbar = ( {changeStyle1,setLoginUser}) => {
   return (
     <>
      <nav className="navbar navbar-expand navbar-light bg-gray-900  text-white topbar  static-top shadow">
@@ -131,15 +131,15 @@ const Navbar = ( {changeStyle1}) => {
                         Activity Log
                       </Link>
                       <div className="dropdown-divider"></div>
-                      <Link
+                      <div onClick={() => setLoginUser({})}
                         className="dropdown-item"
-                        to="/"
                         data-toggle="modal"
                         data-target="#logoutModal"
                       >
                         <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
-                      </Link>
+                        {/* <div className='logoutButton' onClick={() => setLoginUser({})}>Logout</div> */}
+                      </div>
                     </div>
                   </li>
                 </ul>

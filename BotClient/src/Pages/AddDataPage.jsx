@@ -49,7 +49,7 @@ function AddDataPages({ user, setLoginUser }) {
 						{/*  <!-- Main Content --> */}
 						<div id="content">
 							{/*  <!-- Topbar --> */}
-							<Navbar setStyle={setStyle} style={style} changeStyle1={changeStyle1} />
+							<Navbar setStyle={setStyle} style={style} changeStyle1={changeStyle1}  setLoginUser={setLoginUser} user={user} />
 							{/*  <!-- End of Topbar --> */}
 
 							{/* <!-- Begin Page Content --> */}
