@@ -1,7 +1,6 @@
 const QueryInfo = require("../../models/queryInfo/addQueryInfomodels");
 const Infotype = require("../../models/queryInfo/infTypeModel");
 const User = require('../../models/usermodels/usersModel')
-const mongoose = require('mongoose')
 
 const addQueryInfo = async (req, res) => {
   req.body.user_id = req.user_id;

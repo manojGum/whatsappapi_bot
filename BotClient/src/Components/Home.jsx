@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Home = ({ user, setLoginUser }) => {
-	console.log("user............user", user)
+	// console.log("user............user", user)
 	const [data, setData] = useState([])
 	const [counter, setCounter] = useState(0)
 	useEffect(() => {

@@ -143,6 +143,7 @@ const messageList= (faq, number)=> {
             }
         }
     });
+    console.log("data....................backend",data)
     return data;
 }
 

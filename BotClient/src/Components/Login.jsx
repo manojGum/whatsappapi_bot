@@ -28,8 +28,13 @@ const Login = ({ setLoginUser }) => {
         .then((res) => {
           // console.log(res.data)
           // alert(res.data.msg);
-          setLoginUser(res.data);
-          navigate("/home");
+          if(res.data.msg==="Email and password is wrong"){
+            alert(res.data.msg)
+          }else{
+
+            setLoginUser(res.data);
+            navigate("/home");
+          }
         });
     } else {
       alert("invlid input");
