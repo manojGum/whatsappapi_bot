@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Home = ({ user, setLoginUser }) => {
-	// console.log("user............user", user)
 	const [data, setData] = useState([])
 	const [counter, setCounter] = useState(0)
 	useEffect(() => {
 		axios.get("http://localhost:5656/addinfo").then(res => {
-			console.log("..........",res.data)
 			let arr = [...res.data]
 			let arr1 = [];
 			for (let i = arr.length - 1; i >= 0; i--) {

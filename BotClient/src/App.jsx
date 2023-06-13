@@ -8,7 +8,12 @@ import ReadPages from './Pages/ReadPages'
 import UpdatePages from './Pages/UpdatePages'
 
 const App = () => {
-  const [user, setLoginUser] = useState({})
+  const storedData = localStorage.getItem('userData');
+  const parsedData = JSON.parse(storedData);
+  // console.log("...................",parsedData)
+
+  const [user, setLoginUser] = useState(parsedData)
+  console.log(user)
   return (
     <>
         <Routes>

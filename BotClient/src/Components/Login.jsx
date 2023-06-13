@@ -31,7 +31,7 @@ const Login = ({ setLoginUser }) => {
           if(res.data.msg==="Email and password is wrong"){
             alert(res.data.msg)
           }else{
-
+            localStorage.setItem('userData', JSON.stringify(res.data));
             setLoginUser(res.data);
             navigate("/home");
           }
