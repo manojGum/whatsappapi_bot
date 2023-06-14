@@ -117,8 +117,6 @@
 
 // export default Home;
 
-
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -173,31 +171,34 @@ const Home = ({ user, setLoginUser }) => {
                 + Create
               </Link>
             </div>
-          
+
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th style={{ width: "30rem", }}>Question</th>
-				  <th>
-				  <select
-              value={filterValue}
-              onChange={(e) => setFilterValue(e.target.value)} style={{
-				paddingRight:"5rem",
-				width:"20rem",
-				height:"100%",
-				border:"0.001px solid green"
-			  }}
-            >
-              {/* <option value="">Select Answer Type</option> */}
-              {Array.from(
-                new Set(data.map((student) => student.infoType.infoType))
-              ).map((infoType) => (
-                <option key={infoType} value={infoType}>
-                  {infoType}
-                </option>
-              ))}
-            </select>
-			</th>
+                  <th style={{ width: "30rem" }}>Question</th>
+                  <th>
+                    <select
+                      value={filterValue}
+                      onChange={(e) => setFilterValue(e.target.value)}
+                      style={{
+                        paddingRight: "5rem",
+                        width: "20rem",
+                        height: "100%",
+                        border: "0.001px solid green",
+                      }}
+                    >
+                      {/* <option value="">Select Answer Type</option> */}
+                      {Array.from(
+                        new Set(
+                          data.map((student) => student.infoType.infoType)
+                        )
+                      ).map((infoType) => (
+                        <option key={infoType} value={infoType}>
+                          {infoType}
+                        </option>
+                      ))}
+                    </select>
+                  </th>
                   <th>InfoType</th>
                   <th></th>
                 </tr>
@@ -211,43 +212,39 @@ const Home = ({ user, setLoginUser }) => {
                       break;
                     case "list":
                       answerContent = student.list.buttonslist.map((button) => (
-                        <div key={button._id} style={{
-							marginRight:"2rem"
-						}}>
+                        <div key={button._id}>
+                          <ul>
+                            <li>{button.title}
+							<ul>
+							<li>{button.description}</li>
+							</ul>
+							</li>
 							
-						{
-							button.title
-						 }
+                          </ul>
                         </div>
                       ));
                       break;
                     case "button":
-						answerContent = student.buttons.buttonslist.map((button) => (
-							<div key={button._id} style={{
-								marginRight:"2rem"
-							}}>
-								
-							{
-								button.title
-							 }
-							</div>
-						  ));
+                      answerContent = student.buttons.buttonslist.map(
+                        (button) => (
+                          <div  key={button._id}>
+                            <ul >
+                              <li>{button.title}</li>
+                            </ul>
+                          </div>
+                        )
+                      );
                       break;
-					  case "link":
-						answerContent = student.answer.link;
-						break;
-						case "document":
-						answerContent =
-						 <div >
-							{student.answer.link}
-						</div>
+                    case "link":
+                      answerContent = student.answer.link;
                       break;
-						case "image":
-						answerContent = <div >
-							{student.answer.link}
-						</div>
+                    case "document":
+                      answerContent = <div>{student.answer.link}</div>;
                       break;
-					  
+                    case "image":
+                      answerContent = <div>{student.answer.link}</div>;
+                      break;
+
                     default:
                       answerContent = "";
                       break;
@@ -256,10 +253,12 @@ const Home = ({ user, setLoginUser }) => {
                   return (
                     <tr key={student._id}>
                       <td>{student.question}</td>
-                      <td style={{
-						width:"80rem"
-					  }}>
-                        <span >{answerContent}</span>
+                      <td
+                        style={{
+                          width: "80rem",
+                        }}
+                      >
+                        <span>{answerContent}</span>
                       </td>
                       <td>{student.infoType.infoType}</td>
                       <td>
@@ -306,4 +305,3 @@ const Home = ({ user, setLoginUser }) => {
 };
 
 export default Home;
-

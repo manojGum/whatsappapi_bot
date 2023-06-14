@@ -63,6 +63,7 @@ const receivedMessage = async (req, res) => {
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
+        console.log("sssssssssssssssssssssssssssssssssssss",similarity)
         if (similarity >= 0.8 && similarity > maxSimilarity) {
           const infoType = faq.infoType.infoType.toLowerCase()
           if (infoType === "text") {
