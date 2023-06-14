@@ -66,13 +66,13 @@ const Read = ({ user, setLoginUser }) => {
 	// };
 	*/
 
-	// const [infoTypeOptions, setInfoTypeOptions] = useState([]);
+	const [infoTypeOptions, setInfoTypeOptions] = useState([]);
 
 	const { id } = useParams();
 	// const [data, setStudent] = useState([])
 	useEffect(() => {
 		axios.get(`http://localhost:5656/addinfo/info/${id}`).then(res => {
-			// setInfoTypeOptions(res.data._id)
+			setInfoTypeOptions(res.data._id)
 			setFormData({
 				...formData,
 				infoType: res.data.infoType.infoType,
@@ -571,6 +571,9 @@ const Read = ({ user, setLoginUser }) => {
 				<Link to="/home" className="btn btn-info me-2">
 					Back
 				</Link>
+       <Link to={`/edit/${infoTypeOptions}`} className="btn btn-info">
+         Edit
+       </Link>
 			</div>
 		</>
 	);

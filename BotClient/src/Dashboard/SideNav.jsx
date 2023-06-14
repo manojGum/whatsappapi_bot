@@ -81,9 +81,9 @@ const SideNav = ( {setStyle ,style, changeStyle}) => {
 
             {/*  <!-- Nav Item - Tables --> */}
             <li className="nav-item">
-              <Link className="nav-link" to="/home">
+              <Link className="nav-link" to="/addinfo">
                 <i className="fas fa-fw fa-table"></i>
-                <span>Tables</span>
+                <span>Create</span>
               </Link >
             </li>
           </ul>

@@ -65,12 +65,10 @@ const receivedMessage = async (req, res) => {
         );
         if (similarity >= 0.8 && similarity > maxSimilarity) {
           const infoType = faq.infoType.infoType.toLowerCase()
-          // console.log("type Info.......", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
             const object= await BotUserDemo.findOne({ phone},{ '_id': 0, "__v":0})
-              // let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
-              // console.log(botR)
+            
               if (object) {
                 const botResponse = `Name: ${object.name}\nPhone: ${object.phone}\nEmail: ${object.email}\nPlan Leave: ${object.planLeave}\nSick Leave: ${object.sickLeave}\nPlan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\nTotal Leave Balance: ${object.totalLeaveBalance}`;
                 // console.log("bot leave balance..................................................",botR)
