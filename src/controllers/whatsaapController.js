@@ -64,7 +64,7 @@ const receivedMessage = async (req, res) => {
           faq.question.toLowerCase()
         );
         if (similarity >= 0.7 ) {
-          console.log("sssssssssssssssssssssssssssssssssssss",similarity)
+         
           const infoType = faq.infoType.infoType.toLowerCase()
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
@@ -200,6 +200,7 @@ const receivedMessage = async (req, res) => {
       // );
       // whatsappService.sendMessageWhatsApp(data);
       //   }
+      console.log("sssssssssssssssssssssssssssssssssssss",similarity)
       let dataa = samples.messageText(
         "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
         number
