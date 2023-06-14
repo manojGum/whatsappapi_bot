@@ -183,6 +183,36 @@ const Update = ({ user, setLoginUser }) => {
         answer: updatedListData,
       };
       setFormData(updatedFormData);
+    }else if ((name === "answer.caption")) {
+      const {
+        answer: { caption, ...answerData },
+        ...otherFormData
+      } = formData;
+      const updatedListData = {
+        ...answerData,
+        caption: value,
+      };
+    
+      const updatedFormData = {
+        ...otherFormData,
+        answer: updatedListData,
+      };
+      setFormData(updatedFormData);
+    }else if ((name === "answer.filename")) {
+      const {
+        answer: { filename, ...answerData },
+        ...otherFormData
+      } = formData;
+      const updatedListData = {
+        ...answerData,
+        filename: value,
+      };
+    
+      const updatedFormData = {
+        ...otherFormData,
+        answer: updatedListData,
+      };
+      setFormData(updatedFormData);
     }
   };
 
@@ -258,7 +288,6 @@ const Update = ({ user, setLoginUser }) => {
           onChange={handleChange}
           required
         />
-        {/* {console.log('formData---', formData)} */}
         <label htmlFor="buttonsResponseText">Buttons Response Text:</label>
         <input
           type="text"
@@ -373,7 +402,7 @@ const Update = ({ user, setLoginUser }) => {
           id="filename"
           name="answer.filename"
           value={formData?.answer?.filename}
-          onChange={handleChange}
+          onChange={nestedHandleChange}
           required
         />
         <label htmlFor="caption">Caption:</label>
@@ -382,7 +411,7 @@ const Update = ({ user, setLoginUser }) => {
           id="caption"
           name="answer.caption"
           value={formData?.answer?.caption}
-          onChange={handleChange}
+          onChange={nestedHandleChange}
           required
         />
       </>
@@ -538,7 +567,6 @@ const Update = ({ user, setLoginUser }) => {
       </>
     );
   }
-  // console.log("formdata.........................",formData)
   return (
     <>
       <div>
@@ -558,7 +586,6 @@ const Update = ({ user, setLoginUser }) => {
             onChange={handleChange}
             required
           >
-            <option value="">Select Info Type</option>
             <option value={formData.infoType}>{formData.infoType}</option>
           </select>
           <br></br>

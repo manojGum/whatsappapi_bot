@@ -50,13 +50,12 @@ const receivedMessage = async (req, res) => {
       let messages = messageObject[0];
       var number = await messages["from"];
       let phone = parseInt(number.toString().slice(2));
-      // console.log("phone---------------", phone);
 
       let text = GetTextUser(messages);
       console.log("user request text.......", text)
 
       let maxSimilarity = 0;
-      const similarityThreshold = 0.5;
+      const similarityThreshold = 0.8;
       for (let i = 0; i < data.length; i++) {
         var faq = data[i];
       
@@ -64,9 +63,9 @@ const receivedMessage = async (req, res) => {
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
-        if (similarity >= 0.5 && similarity > maxSimilarity) {
+        if (similarity >= 0.8 && similarity > maxSimilarity) {
           const infoType = faq.infoType.infoType.toLowerCase()
-          console.log("type Info.......", infoType);
+          // console.log("type Info.......", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
             const object= await BotUserDemo.findOne({ phone},{ '_id': 0, "__v":0})
