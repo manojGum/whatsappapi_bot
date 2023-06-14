@@ -56,7 +56,7 @@ const receivedMessage = async (req, res) => {
       console.log("user request text.......", text)
 
       let maxSimilarity = 0;
-      const similarityThreshold = 0.5;
+      const similarityThreshold = 0.6;
       for (let i = 0; i < data.length; i++) {
         var faq = data[i];
       
@@ -64,7 +64,7 @@ const receivedMessage = async (req, res) => {
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
-        if (similarity >= 0.5 && similarity > maxSimilarity) {
+        if (similarity >= 0.6 && similarity > maxSimilarity) {
           const infoType = faq.infoType.infoType.toLowerCase()
           console.log("type Info.......", infoType);
           if (infoType === "text") {
