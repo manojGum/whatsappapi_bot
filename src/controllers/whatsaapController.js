@@ -63,8 +63,8 @@ const receivedMessage = async (req, res) => {
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
-        console.log("sssssssssssssssssssssssssssssssssssss",similarity)
         if (similarity >= 0.7 ) {
+          console.log("sssssssssssssssssssssssssssssssssssss",similarity)
           const infoType = faq.infoType.infoType.toLowerCase()
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
