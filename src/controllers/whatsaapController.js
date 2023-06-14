@@ -55,7 +55,7 @@ const receivedMessage = async (req, res) => {
       console.log("user request text.......", text)
 
       let maxSimilarity = 0;
-      const similarityThreshold = 0.8;
+      const similarityThreshold = 0.7;
       for (let i = 0; i < data.length; i++) {
         var faq = data[i];
       
