@@ -77,14 +77,14 @@ const receivedMessage = async (req, res) => {
                 let data = samples.messageText(botResponse, number);
                 whatsappService.sendMessageWhatsApp(data)
                   .then(response => {
-                    console.log("Request successful:", response)
+                    // console.log("Request successful:", response)
                    return res.send(response)
                   })
               } else {
                 let data = samples.messageText("no user register", number);
                 whatsappService.sendMessageWhatsApp(data)
                   .then(response => {
-                    console.log("Request successful:", response)
+                    // console.log("Request successful:", response)
                     return
                   })
               }
