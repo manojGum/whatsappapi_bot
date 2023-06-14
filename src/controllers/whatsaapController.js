@@ -39,7 +39,7 @@ const verifyToken = (req, res) => {
 const receivedMessage = async (req, res) => {
   try {
     const data = await QueryInfo.find().populate("infoType");
-    // console.log("ddddddddddddata    ..........",data)
+    console.log("ddddddddddddata    ..........",data)
     let entry = req.body["entry"][0];
     let changes = entry["changes"][0];
 
@@ -50,12 +50,13 @@ const receivedMessage = async (req, res) => {
       let messages = messageObject[0];
       var number = await messages["from"];
       let phone = parseInt(number.toString().slice(2));
+      // console.log("phone---------------", phone);
 
       let text = GetTextUser(messages);
       console.log("user request text.......", text)
 
       let maxSimilarity = 0;
-      const similarityThreshold = 0.7;
+      const similarityThreshold = 0.5;
       for (let i = 0; i < data.length; i++) {
         var faq = data[i];
       
@@ -63,13 +64,14 @@ const receivedMessage = async (req, res) => {
           text.toLowerCase(),
           faq.question.toLowerCase()
         );
-        if (similarity >= 0.7 ) {
-         
+        if (similarity >= 0.5 && similarity > maxSimilarity) {
           const infoType = faq.infoType.infoType.toLowerCase()
+          console.log("type Info.......", infoType);
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
             const object= await BotUserDemo.findOne({ phone},{ '_id': 0, "__v":0})
-            
+              // let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
+              // console.log(botR)
               if (object) {
                 const botResponse = `Name: ${object.name}\nPhone: ${object.phone}\nEmail: ${object.email}\nPlan Leave: ${object.planLeave}\nSick Leave: ${object.sickLeave}\nPlan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\nTotal Leave Balance: ${object.totalLeaveBalance}`;
                 // console.log("bot leave balance..................................................",botR)
@@ -77,14 +79,14 @@ const receivedMessage = async (req, res) => {
                 let data = samples.messageText(botResponse, number);
                 whatsappService.sendMessageWhatsApp(data)
                   .then(response => {
-                    // console.log("Request successful:", response)
+                    console.log("Request successful:", response)
                    return res.send(response)
                   })
               } else {
                 let data = samples.messageText("no user register", number);
                 whatsappService.sendMessageWhatsApp(data)
                   .then(response => {
-                    // console.log("Request successful:", response)
+                    console.log("Request successful:", response)
                     return
                   })
               }
@@ -200,7 +202,6 @@ const receivedMessage = async (req, res) => {
       // );
       // whatsappService.sendMessageWhatsApp(data);
       //   }
-      console.log("sssssssssssssssssssssssssssssssssssss",similarity)
       let dataa = samples.messageText(
         "I am sorry, I did not understand your request. Please try again or contact our HR department for assistance",
         number
