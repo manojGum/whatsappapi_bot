@@ -39,7 +39,7 @@ const verifyToken = (req, res) => {
 const receivedMessage = async (req, res) => {
   try {
     const data = await QueryInfo.find().populate("infoType");
-    console.log("ddddddddddddata    ..........",data)
+    // console.log("ddddddddddddata    ..........",data)
     let entry = req.body["entry"][0];
     let changes = entry["changes"][0];
 
@@ -64,7 +64,7 @@ const receivedMessage = async (req, res) => {
           faq.question.toLowerCase()
         );
         console.log("sssssssssssssssssssssssssssssssssssss",similarity)
-        if (similarity >= 0.8 && similarity > maxSimilarity) {
+        if (similarity >= 0.7 ) {
           const infoType = faq.infoType.infoType.toLowerCase()
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
