@@ -39,7 +39,8 @@ const verifyToken = (req, res) => {
 const receivedMessage = async (req, res) => {
   try {
     const data = await QueryInfo.find().populate("infoType");
-    console.log("ddddddddddddata    ..........",data)
+    // console.log("ddddddddddddata    ..........",data)
+    console.log('eeeeeeeeeeeeeeeeentry',req.body)
     let entry = req.body["entry"][0];
     let changes = entry["changes"][0];
 
