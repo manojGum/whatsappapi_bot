@@ -106,7 +106,7 @@ const receivedMessage = async (req, res) => {
                 });
               }
             } else if (infoType === "image") {
-              let data = samples.messageImage(faq, number);
+              let data = samples.messageImage(faq, number)
               whatsappService
                 .sendMessageWhatsApp(data)
                 .then((response) => {
