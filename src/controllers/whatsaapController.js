@@ -57,6 +57,7 @@ const receivedMessage = async (req, res) => {
 
       // let maxSimilarity = 0;
       let similarityThreshold = 0.6;
+      console.log(similarityThreshold)
       // for (let i = 0; i < data.length; i++) {
       //   var faq = data[i];
       for (let faq of data) {
