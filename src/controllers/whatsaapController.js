@@ -39,7 +39,8 @@ const verifyToken = (req, res) => {
 const receivedMessage = async (req, res) => {
   try {
     const data = await QueryInfo.find().populate("infoType");
-    console.log("ddddddddddddata    ..........", data);
+    // console.log("ddddddddddddata    ..........", data);
+    console.log("eeeeeeeeeeeeeeentry".req.body)
     let entry = req.body["entry"][0];
     let changes = entry["changes"][0];
 
@@ -55,141 +56,138 @@ const receivedMessage = async (req, res) => {
       let text = GetTextUser(messages);
       console.log("user request text.......", text);
 
-      /*  
-      //let maxSimilarity = 0;
-        // const similarityThreshold = 0.6;
-        // for (let i = 0; i < data.length; i++) {
-        //   var faq = data[i];
-        //   const similarity = await getJaccardSimilarity(
-        //     text.toLowerCase(),
-        //     faq.question.toLowerCase()
-        //   );
-        //   if (similarity >= 0.6 && similarity > maxSimilarity) {
-        //     const infoType = faq.infoType.infoType.toLowerCase();
-        //     console.log("type Info.......", infoType);
-        //     if (infoType === "text") {
-        //       if (
-        //         isMatch(
-        //           faq.question.toLowerCase(),
-        //           "i want my leave balance",
-        //           similarityThreshold
-        //         )
-        //       ) {
-        //         const object = await BotUserDemo.findOne(
-        //           { phone },
-        //           { _id: 0, __v: 0 }
-        //         );
-        //         // let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
-        //         // console.log(botR)
-        //         if (object) {
-        //           const botResponse = `Name: ${object.name}\nPhone: ${object.phone}\nEmail: ${object.email}\nPlan Leave: ${object.planLeave}\nSick Leave: ${object.sickLeave}\nPlan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\nTotal Leave Balance: ${object.totalLeaveBalance}`;
-        //           // console.log("bot leave balance..................................................",botR)
-        //           // botResponse = await JSON.stringify(botR.data);
-        //           let data = samples.messageText(botResponse, number);
-        //           whatsappService.sendMessageWhatsApp(data).then((response) => {
-        //             console.log("Request successful:", response);
-        //             return res.send(response);
-        //           });
-        //         } else {
-        //           let data = samples.messageText("no user register", number);
-        //           whatsappService.sendMessageWhatsApp(data).then((response) => {
-        //             console.log("Request successful:", response);
-        //             return;
-        //           });
-        //         }
-        //       } else {
-        //         let data = samples.messageText(faq.answer.text, number);
-        //         whatsappService.sendMessageWhatsApp(data).then((response) => {
-        //           console.log("Request successful:", response);
-        //           return;
-        //         });
-        //       }
-        //     } else if (infoType === "image") {
-        //       let data = samples.messageImage(faq, number);
-        //       whatsappService
-        //         .sendMessageWhatsApp(data)
-        //         .then((response) => {
-        //           console.log("Request successful:", response);
-        //           return;
-        //         })
-        //         .catch((error) => {
-        //           console.error("An error occurred:", error);
-        //         });
-        //     } else if (infoType === "video") {
-        //       let data = samples.messageVideo(faq, number);
-        //       whatsappService
-        //         .sendMessageWhatsApp(data)
-        //         .then((response) => {
-        //           console.log("Request successful:", response);
-        //           return;
-        //         })
-        //         .catch((error) => {
-        //           console.error("An error occurred:", error);
-        //         });
-        //     } else if (infoType === "audio") {
-        //       let data = samples.messageAudio(faq, number);
-        //       whatsappService
-        //         .sendMessageWhatsApp(data)
-        //         .then((response) => {
-        //           console.log("Request successful:", response);
-        //           return;
-        //         })
-        //         .catch((error) => {
-        //           console.error("An error occurred:", error);
-        //         });
-        //     } else if (infoType === "document") {
-        //       let data = samples.messageDocument(faq, number);
-        //       whatsappService
-        //         .sendMessageWhatsApp(data)
-        //         .then((response) => {
-        //           console.log("Request successful:", response);
-        //           return;
-        //         })
-        //         .catch((error) => {
-        //           console.error("An error occurred:", error);
-        //         });
-        //     } else if (infoType === "button") {
-        //       let data = samples.messageButtons(faq, number);
-        //       whatsappService
-        //         .sendMessageWhatsApp(data)
-        //         .then((response) => {
-        //           console.log("Request successful:", response);
-        //           return;
-        //         })
-        //         .catch((error) => {
-        //           console.error("An error occurred:", error);
-        //         });
-        //     } else if (infoType === "list") {
-        //       let data = samples.messageList(faq, number);
-        //       whatsappService
-        //         .sendMessageWhatsApp(data)
-        //         .then((response) => {
-        //           console.log("Request successful:", response);
-        //           return;
-        //         })
-        //         .catch((error) => {
-        //           console.error("An error occurred:", error);
-        //         });
-        //     } else if (infoType === "location") {
-        //       let data = samples.messageLocation(faq, number);
-        //       whatsappService.sendMessageWhatsApp(data).then((response) => {
-        //         console.log("Request successful:", response);
-        //         return;
-        //       });
-        //     } else if (infoType === "link") {
-        //       let data = samples.messageLink(faq, number);
-        //       whatsappService.sendMessageWhatsApp(data).then((response) => {
-        //         console.log("Request successful:", response);
-        //         return;
-        //       });
-        //     }
-        //   }
-        // } 
-
-
-        */
-
+        
       let maxSimilarity = 0;
+        const similarityThreshold = 0.6;
+        for (let i = 0; i < data.length; i++) {
+          var faq = data[i];
+          const similarity = await getJaccardSimilarity(
+            text.toLowerCase(),
+            faq.question.toLowerCase()
+          );
+          if (similarity >= 0.6 && similarity > maxSimilarity) {
+            const infoType = faq.infoType.infoType.toLowerCase();
+            console.log("type Info.......", infoType);
+            if (infoType === "text") {
+              if (
+                isMatch(
+                  faq.question.toLowerCase(),
+                  "i want my leave balance",
+                  similarityThreshold
+                )
+              ) {
+                const object = await BotUserDemo.findOne(
+                  { phone },
+                  { _id: 0, __v: 0 }
+                );
+                // let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
+                // console.log(botR)
+                if (object) {
+                  const botResponse = `Name: ${object.name}\nPhone: ${object.phone}\nEmail: ${object.email}\nPlan Leave: ${object.planLeave}\nSick Leave: ${object.sickLeave}\nPlan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\nTotal Leave Balance: ${object.totalLeaveBalance}`;
+                  // console.log("bot leave balance..................................................",botR)
+                  // botResponse = await JSON.stringify(botR.data);
+                  let data = samples.messageText(botResponse, number);
+                  whatsappService.sendMessageWhatsApp(data).then((response) => {
+                    console.log("Request successful:", response);
+                    return res.send(response);
+                  });
+                } else {
+                  let data = samples.messageText("no user register", number);
+                  whatsappService.sendMessageWhatsApp(data).then((response) => {
+                    console.log("Request successful:", response);
+                    return;
+                  });
+                }
+              } else {
+                let data = samples.messageText(faq.answer.text, number);
+                whatsappService.sendMessageWhatsApp(data).then((response) => {
+                  console.log("Request successful:", response);
+                  return;
+                });
+              }
+            } else if (infoType === "image") {
+              let data = samples.messageImage(faq, number);
+              whatsappService
+                .sendMessageWhatsApp(data)
+                .then((response) => {
+                  console.log("Request successful:", response);
+                  return;
+                })
+                .catch((error) => {
+                  console.error("An error occurred:", error);
+                });
+            } else if (infoType === "video") {
+              let data = samples.messageVideo(faq, number);
+              whatsappService
+                .sendMessageWhatsApp(data)
+                .then((response) => {
+                  console.log("Request successful:", response);
+                  return;
+                })
+                .catch((error) => {
+                  console.error("An error occurred:", error);
+                });
+            } else if (infoType === "audio") {
+              let data = samples.messageAudio(faq, number);
+              whatsappService
+                .sendMessageWhatsApp(data)
+                .then((response) => {
+                  console.log("Request successful:", response);
+                  return;
+                })
+                .catch((error) => {
+                  console.error("An error occurred:", error);
+                });
+            } else if (infoType === "document") {
+              let data = samples.messageDocument(faq, number);
+              whatsappService
+                .sendMessageWhatsApp(data)
+                .then((response) => {
+                  console.log("Request successful:", response);
+                  return;
+                })
+                .catch((error) => {
+                  console.error("An error occurred:", error);
+                });
+            } else if (infoType === "button") {
+              let data = samples.messageButtons(faq, number);
+              whatsappService
+                .sendMessageWhatsApp(data)
+                .then((response) => {
+                  console.log("Request successful:", response);
+                  return;
+                })
+                .catch((error) => {
+                  console.error("An error occurred:", error);
+                });
+            } else if (infoType === "list") {
+              let data = samples.messageList(faq, number);
+              whatsappService
+                .sendMessageWhatsApp(data)
+                .then((response) => {
+                  console.log("Request successful:", response);
+                  return;
+                })
+                .catch((error) => {
+                  console.error("An error occurred:", error);
+                });
+            } else if (infoType === "location") {
+              let data = samples.messageLocation(faq, number);
+              whatsappService.sendMessageWhatsApp(data).then((response) => {
+                console.log("Request successful:", response);
+                return;
+              });
+            } else if (infoType === "link") {
+              let data = samples.messageLink(faq, number);
+              whatsappService.sendMessageWhatsApp(data).then((response) => {
+                console.log("Request successful:", response);
+                return;
+              });
+            }
+          }
+        } 
+
+     /* let maxSimilarity = 0;
       const similarityThreshold = 0.6;
 
       for (const faq of data) {
@@ -277,6 +275,7 @@ const receivedMessage = async (req, res) => {
           }
         }
       }
+      */
 
       // end new for me
       //   if (text == "text") {
