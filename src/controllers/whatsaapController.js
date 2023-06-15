@@ -66,7 +66,7 @@ const receivedMessage = async (req, res) => {
       //     faq.question.toLowerCase()
       //   );
       //   if (isMatch(faq.question.toLowerCase(), text.toLowerCase(), similarityThreshold)) */
-        if (isMatch(faq.question.toLowerCase(), text.toLowerCase(),, similarityThreshold)){
+        if (isMatch(faq.question.toLowerCase(), text.toLowerCase(),similarityThreshold)){
           const infoType = faq.infoType.infoType.toLowerCase()
           console.log("type Info.......", infoType);
           if (infoType === "text") {
