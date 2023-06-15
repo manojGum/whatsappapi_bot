@@ -55,19 +55,15 @@ const receivedMessage = async (req, res) => {
       let text = GetTextUser(messages);
       console.log("user request text.......", text)
 
-      // let maxSimilarity = 0;
+      let maxSimilarity = 0;
       let similarityThreshold = 0.6;
-      console.log(similarityThreshold)
-      // for (let i = 0; i < data.length; i++) {
-      //   var faq = data[i];
-      for (let faq of data) {
-      /* //    var faq = data[i];
-      //   const similarity = await getJaccardSimilarity(
-      //     text.toLowerCase(),
-      //     faq.question.toLowerCase()
-      //   );
-      //   if (isMatch(faq.question.toLowerCase(), text.toLowerCase(), similarityThreshold)) */
-        if (isMatch( text.toLowerCase(),faq.question.toLowerCase(),similarityThreshold)){
+      for (let i = 0; i < data.length; i++) {
+        var faq = data[i];
+        const similarity = await getJaccardSimilarity(
+          text.toLowerCase(),
+          faq.question.toLowerCase()
+        );
+        if (similarity >= similarityThreshold && similarity > maxSimilarity) {
           const infoType = faq.infoType.infoType.toLowerCase()
           console.log("type Info.......", infoType);
           if (infoType === "text") {
