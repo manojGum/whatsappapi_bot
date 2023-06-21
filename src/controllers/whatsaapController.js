@@ -203,7 +203,7 @@ const receivedMessage = async (req, res) => {
       // );
       // whatsappService.sendMessageWhatsApp(data);
       //   }
-      console.log("type Info.......", infoType);
+     
       let dataa = samples.messageText(
         "I\'m sorry, I didn\'t understand. Can you please rephrase your question?",
         number
