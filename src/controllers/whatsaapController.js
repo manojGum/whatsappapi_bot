@@ -58,6 +58,7 @@ const receivedMessage = async (req, res) => {
 
       let maxSimilarity = 0;
       let similarityThreshold = 0.6;
+      // check all the data user questions and or data is match or not if data not match then return defalut result other wise send result
       for (let i = 0; i < data.length; i++) {
         var faq = data[i];
         const similarity = await getJaccardSimilarity(
@@ -202,6 +203,7 @@ const receivedMessage = async (req, res) => {
       // );
       // whatsappService.sendMessageWhatsApp(data);
       //   }
+      console.log("type Info.......", infoType);
       let dataa = samples.messageText(
         "I\'m sorry, I didn\'t understand. Can you please rephrase your question?",
         number

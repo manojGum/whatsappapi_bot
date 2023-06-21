@@ -17,7 +17,7 @@ const SideNav = ( {setStyle ,style, changeStyle}) => {
               <div className="sidebar-brand-icon rotate-n-15">
              <HiBuildingOffice2 />
               </div>
-              <div className="sidebar-brand-text mx-3">INT </div>
+              <div className="sidebar-brand-text mx-3">INT HUB </div>
               <div className="text-center d-none d-md-inline">
                 <button
                   className="rounded-circle border-0"

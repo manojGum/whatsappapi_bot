@@ -1,8 +1,7 @@
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Login = ({ setLoginUser }) => {
   const navigate = useNavigate();
@@ -26,8 +25,6 @@ const Login = ({ setLoginUser }) => {
           passwordHash: user.password,
         })
         .then((res) => {
-          // console.log(res.data)
-          // alert(res.data.msg);
           if(res.data.msg==="Email and password is wrong"){
             alert(res.data.msg)
           }else{
@@ -78,7 +75,7 @@ const Login = ({ setLoginUser }) => {
           </button>
         </div>
         <p className='text-end mt-9'>
-        <Link to="forgot-password"> Forgot Password?</Link>    <Link to="/register">Sign up</Link>
+        <Link to="forgot-password" className="p-4 m-3"> Forgot Password?</Link> {" "}   <Link to="/register">Sign up</Link>
         </p>
       </div>
     </div>

@@ -160,6 +160,10 @@ const Home = ({ user, setLoginUser }) => {
   );
 
   return (
+    <>
+    <div className="progress" style={{height:"1.2rem"}}>
+        <div className="progress-bar" style={{width:`${filteredData.length}%`,height:"1.2rem"}}>{filteredData.length}%</div>
+      </div>
     <div className="d-flex vh-100 bg-white justify-content-center align-item-center">
       <div className="bg-white">
         {loading && (
@@ -172,7 +176,7 @@ const Home = ({ user, setLoginUser }) => {
               </Link>
             </div>
 
-            <table className="table table-striped">
+            <table className="table table-striped table-hover">
               <thead>
                 <tr>
                   <th style={{ width: "30rem" }}>Question</th>
@@ -200,7 +204,7 @@ const Home = ({ user, setLoginUser }) => {
                     </select>
                   </th>
                   <th>InfoType</th>
-                  <th></th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -211,15 +215,15 @@ const Home = ({ user, setLoginUser }) => {
                       answerContent = student.answer.text;
                       break;
                     case "list":
-                      answerContent = student.list.buttonslist.map((button) => (
-                        <div key={button._id}>
+                      answerContent = student.list.buttonslist.map((list) => (
+                        <div key={list._id}>
                           <ul>
-                            <li>{button.title}
-							<ul>
-							<li>{button.description}</li>
-							</ul>
-							</li>
-							
+                            <li>
+                              {list.title}
+                              {/* <ul>
+                                <li>{button.description}</li>
+                              </ul> */}
+                            </li>
                           </ul>
                         </div>
                       ));
@@ -227,8 +231,8 @@ const Home = ({ user, setLoginUser }) => {
                     case "button":
                       answerContent = student.buttons.buttonslist.map(
                         (button) => (
-                          <div  key={button._id}>
-                            <ul >
+                          <div key={button._id}>
+                            <ul>
                               <li>{button.title}</li>
                             </ul>
                           </div>
@@ -301,6 +305,7 @@ const Home = ({ user, setLoginUser }) => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
