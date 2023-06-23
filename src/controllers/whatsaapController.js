@@ -225,6 +225,7 @@ const verifyToken = (req, res) => {
 //     res.send("event_RECIVED");
 //   }
 // };
+//
 
 const receivedMessage = async (req, res) => {
   try {
@@ -294,6 +295,7 @@ const receivedMessage = async (req, res) => {
     res.send("event_RECIVED");
   }
 };
+
 module.exports = {
   verifyToken,
   receivedMessage,

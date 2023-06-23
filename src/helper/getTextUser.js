@@ -1,4 +1,4 @@
-function GetTextUser(messages) {
+const GetTextUser=(messages)=>{
     let text = "";
     let typeMessage = messages["type"];
     if (typeMessage == "text") {
