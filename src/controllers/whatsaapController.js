@@ -285,8 +285,8 @@ const receivedMessage = async (req, res) => {
         }
       }
 
-      const dataa = samples.messageText("I'm sorry, I didn't understand. Can you please rephrase your question?", number);
-      await whatsappService.sendMessageWhatsApp(dataa);
+      const defaultmessage = samples.messageText("I'm sorry, I didn't understand. Can you please rephrase your question?", number);
+      await whatsappService.sendMessageWhatsApp(defaultmessage);
       return res.send("EVENT_RECEIVED");
     }
 
