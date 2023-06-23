@@ -38,9 +38,9 @@ const verifyToken = (req, res) => {
 
 const receivedMessage = async (req, res) => {
   try {
+    /* Fetch All data into data base */
     const data = await QueryInfo.find().populate("infoType");
-    // console.log("ddddddddddddata    ..........",data)
-    console.log('eeeeeeeeeeeeeeeeentry',req.body)
+    console.log('eeeeeeeeeeeeeeeeentry',req)
     let entry = req.body["entry"][0];
     let changes = entry["changes"][0];
 
@@ -49,18 +49,18 @@ const receivedMessage = async (req, res) => {
     let messageObject = value["messages"];
     if (typeof messageObject != "undefined") {
       let messages = messageObject[0];
-      var number = await messages["from"];
+      let number = await messages["from"];
       let phone = parseInt(number.toString().slice(2));
-      // console.log("phone---------------", phone);
-
       let text = GetTextUser(messages);
       console.log("user request text.......", text)
 
       let maxSimilarity = 0;
       let similarityThreshold = 0.6;
       // check all the data user questions and or data is match or not if data not match then return defalut result other wise send result
-      for (let i = 0; i < data.length; i++) {
-        var faq = data[i];
+      // for (let i = 0; i < data.length; i++)
+      for (const obj of data) {
+        let faq = obj
+        console.log("faq.....................................",faq)
         const similarity = await getJaccardSimilarity(
           text.toLowerCase(),
           faq.question.toLowerCase()
@@ -71,12 +71,14 @@ const receivedMessage = async (req, res) => {
           if (infoType === "text") {
             if (isMatch(faq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
             const object= await BotUserDemo.findOne({ phone},{ '_id': 0, "__v":0})
-              // let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
+              /*// let botR = await axios.get(`http://localhost:5658/api/v1/user/userdetails/917909012986`);
               // console.log(botR)
+              */
               if (object) {
                 const botResponse = `Name: ${object.name}\nPhone: ${object.phone}\nEmail: ${object.email}\nPlan Leave: ${object.planLeave}\nSick Leave: ${object.sickLeave}\nPlan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\nTotal Leave Balance: ${object.totalLeaveBalance}`;
-                // console.log("bot leave balance..................................................",botR)
+               /* // console.log("bot leave balance..................................................",botR)
                 // botResponse = await JSON.stringify(botR.data);
+                */
                 let data = samples.messageText(botResponse, number);
                 whatsappService.sendMessageWhatsApp(data)
                   .then(response => {
@@ -205,7 +207,7 @@ const receivedMessage = async (req, res) => {
       //   }
      
       let dataa = samples.messageText(
-        "I\'m sorry, I didn\'t understand. Can you please rephrase your question?",
+        "I'm sorry, I didn't understand. Can you please rephrase your question?",
         number
       );
       whatsappService.sendMessageWhatsApp(dataa).then(response => {
