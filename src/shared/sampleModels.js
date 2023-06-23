@@ -60,7 +60,7 @@ function messageDocument(faq, number) {
     return data;
 }
 
-function messageButtons(faq, number) {
+function messageButton(faq, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -211,7 +211,7 @@ module.exports = {
     messageAudio,
     messageVideo,
     messageDocument,
-    messageButtons,
+    messageButton,
     messageList,
     messageLocation,
     messageLink
