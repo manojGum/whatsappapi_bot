@@ -264,7 +264,7 @@ const receivedMessage = async (req, res) => {
             const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
 
             if (object) {
-              const botResponse = `Name: ${object.name}\nPhone: ${object.phone}\nEmail: ${object.email}\nPlan Leave: ${object.planLeave}\nSick Leave: ${object.sickLeave}\nPlan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\nTotal Leave Balance: ${object.totalLeaveBalance}`;
+              const botResponse = `Name: ${object.name}\n Phone: ${object.phone}\n Email: ${object.email}\n Plan Leave: ${object.planLeave}\n Sick Leave: ${object.sickLeave}\n Plan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\n Total Leave Balance: ${object.totalLeaveBalance}`;
               const data = samples.messageText(botResponse, number);
               await whatsappService.sendMessageWhatsApp(data);
               return res.send("EVENT_RECEIVED");
