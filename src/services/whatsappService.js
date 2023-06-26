@@ -54,7 +54,7 @@ function sendMessageWhatsApp(data) {
 
   axios(options)
     .then((response) => {
-      console.log(response.data);
+      console.log("boat response data",response.data);
     })
     .catch((error) => {
       console.error(error);

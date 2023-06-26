@@ -211,7 +211,7 @@ const verifyToken = (req, res) => {
 //       // whatsappService.sendMessageWhatsApp(data);
 //       //   }
 //       */
-     
+
 //       let dataa = samples.messageText(
 //         "I'm sorry, I didn't understand. Can you please rephrase your question?",
 //         number
@@ -233,12 +233,13 @@ const receivedMessage = async (req, res) => {
     const entry = req.body.entry[0];
     const changes = entry.changes[0];
     const value = changes.value;
+    console.log("user Input data",value)
     const messageObject = value.messages;
 
     if (typeof messageObject !== "undefined") {
       const messages = messageObject[0];
       const number = await messages.from;
-      const phone =parseInt(messages.from.toString().slice(2));
+      const phone = parseInt(messages.from.toString().slice(2));
       const text = GetTextUser(messages);
 
       const similarityThreshold = 0.6;
@@ -284,7 +285,6 @@ const receivedMessage = async (req, res) => {
           return res.send("EVENT_RECEIVED");
         }
       }
-
       const defaultmessage = samples.messageText("I'm sorry, I didn't understand. Can you please rephrase your question?", number);
       await whatsappService.sendMessageWhatsApp(defaultmessage);
       return res.send("EVENT_RECEIVED");
