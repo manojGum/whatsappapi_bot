@@ -92,7 +92,8 @@ const Read = ({ user, setLoginUser }) => {
 					listheading: res.data.list.listheading,
 					buttonslist: res.data.list.buttonslist,
 				},
-				location: res.data.location
+				location: res.data.location,
+				followUp:res.data.followUp
 			})
 		}
 		).catch(err => console.log(err))

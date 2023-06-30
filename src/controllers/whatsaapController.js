@@ -4,11 +4,11 @@ const whatsappService = require("../services/whatsappService");
 const samples = require("../shared/sampleModels");
 const QueryInfo = require("../models/queryInfo/addQueryInfomodels");
 const getJaccardSimilarity = require("../helper/botBehavior");
-const axios = require('axios');
-const isMatch = require('../helper/isMatch');
+const axios = require("axios");
+const isMatch = require("../helper/isMatch");
 const BotUserDemo = require("../models/adddemodetails/userDemoDetailsModels");
 const GetTextUser = require("../helper/getTextUser");
-
+const conversations = {};
 const verifyToken = (req, res) => {
   try {
     /*
@@ -227,70 +227,231 @@ const verifyToken = (req, res) => {
 // };
 //
 
+// it is ok
+// const receivedMessage = async (req, res) => {
+//   try {
+// const data = await QueryInfo.find().populate("infoType");
+// const entry = req.body.entry[0];
+// const changes = entry.changes[0];
+// const value = changes.value;
+// console.log("user Input data",value)
+// const messageObject = value.messages;
+
+// if (typeof messageObject !== "undefined") {
+//   const messages = messageObject[0];
+//   const number = await messages.from;
+//   const phone = parseInt(messages.from.toString().slice(2));
+//   const text = GetTextUser(messages);
+
+//       const similarityThreshold = 0.6;
+//       let maxSimilarity = 0;
+//       let selectedFaq = null;
+
+//       for (const obj of data) {
+//         const faq = obj;
+//         const similarity = await getJaccardSimilarity(
+//           text.toLowerCase(),
+//           faq.question.toLowerCase()
+//         );
+//         if (similarity >= similarityThreshold && similarity > maxSimilarity) {
+//           maxSimilarity = similarity;
+//           selectedFaq = faq;
+//         }
+//       }
+
+//       if (selectedFaq !== null) {
+//         const infoType = selectedFaq.infoType.infoType.toLowerCase();
+//         if (infoType === "text") {
+//           if (isMatch(selectedFaq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
+//             const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
+
+//             if (object) {
+//               const botResponse = `Name: ${object.name}\n Phone: ${object.phone}\n Email: ${object.email}\n Plan Leave: ${object.planLeave}\n Sick Leave: ${object.sickLeave}\n Plan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\n Total Leave Balance: ${object.totalLeaveBalance}`;
+//               const data = samples.messageText(botResponse, number);
+//               await whatsappService.sendMessageWhatsApp(data);
+//               return res.send("EVENT_RECEIVED");
+//             } else {
+//               const data = samples.messageText("no user register", number);
+//               await whatsappService.sendMessageWhatsApp(data);
+//               return res.send("EVENT_RECEIVED");
+//             }
+//           } else {
+//             const data = samples.messageText(selectedFaq.answer.text, number);
+//             await whatsappService.sendMessageWhatsApp(data);
+//             return res.send("EVENT_RECEIVED");
+//           }
+//         } else if (infoType === "image" || infoType === "video" || infoType === "audio" || infoType === "document" || infoType === "button" || infoType === "list" || infoType === "location" || infoType === "link") {
+//           const data = samples[`message${infoType.charAt(0).toUpperCase()}${infoType.slice(1)}`](selectedFaq, number);
+//           await whatsappService.sendMessageWhatsApp(data);
+//           return res.send("EVENT_RECEIVED");
+//         }
+//       }
+//       const defaultmessage = samples.messageText("I'm sorry, I didn't understand. Can you please rephrase your question?", number);
+//       await whatsappService.sendMessageWhatsApp(defaultmessage);
+//       return res.send("EVENT_RECEIVED");
+//     }
+
+//     return res.send("EVENT_RECEIVED");
+//   } catch (error) {
+//     res.send("event_RECIVED");
+//   }
+// };
+
+// without whatsapp some chages
 const receivedMessage = async (req, res) => {
   try {
-    const data = await QueryInfo.find().populate("infoType");
-    const entry = req.body.entry[0];
-    const changes = entry.changes[0];
-    const value = changes.value;
-    console.log("user Input data",value)
-    const messageObject = value.messages;
+    const { userId, text } = req.body;
 
-    if (typeof messageObject !== "undefined") {
-      const messages = messageObject[0];
-      const number = await messages.from;
-      const phone = parseInt(messages.from.toString().slice(2));
-      const text = GetTextUser(messages);
-
-      const similarityThreshold = 0.6;
-      let maxSimilarity = 0;
-      let selectedFaq = null;
-
-      for (const obj of data) {
-        const faq = obj;
-        const similarity = await getJaccardSimilarity(
-          text.toLowerCase(),
-          faq.question.toLowerCase()
-        );
-        if (similarity >= similarityThreshold && similarity > maxSimilarity) {
-          maxSimilarity = similarity;
-          selectedFaq = faq;
-        }
-      }
-
-      if (selectedFaq !== null) {
-        const infoType = selectedFaq.infoType.infoType.toLowerCase();
-        if (infoType === "text") {
-          if (isMatch(selectedFaq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
-            const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
-
-            if (object) {
-              const botResponse = `Name: ${object.name}\n Phone: ${object.phone}\n Email: ${object.email}\n Plan Leave: ${object.planLeave}\n Sick Leave: ${object.sickLeave}\n Plan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\n Total Leave Balance: ${object.totalLeaveBalance}`;
-              const data = samples.messageText(botResponse, number);
-              await whatsappService.sendMessageWhatsApp(data);
-              return res.send("EVENT_RECEIVED");
-            } else {
-              const data = samples.messageText("no user register", number);
-              await whatsappService.sendMessageWhatsApp(data);
-              return res.send("EVENT_RECEIVED");
-            }
-          } else {
-            const data = samples.messageText(selectedFaq.answer.text, number);
-            await whatsappService.sendMessageWhatsApp(data);
-            return res.send("EVENT_RECEIVED");
-          }
-        } else if (infoType === "image" || infoType === "video" || infoType === "audio" || infoType === "document" || infoType === "button" || infoType === "list" || infoType === "location" || infoType === "link") {
-          const data = samples[`message${infoType.charAt(0).toUpperCase()}${infoType.slice(1)}`](selectedFaq, number);
-          await whatsappService.sendMessageWhatsApp(data);
-          return res.send("EVENT_RECEIVED");
-        }
-      }
-      const defaultmessage = samples.messageText("I'm sorry, I didn't understand. Can you please rephrase your question?", number);
-      await whatsappService.sendMessageWhatsApp(defaultmessage);
-      return res.send("EVENT_RECEIVED");
+    // Validate input
+    if (!userId || !text) {
+      return res.status(400).json({ error: "userId and text are required." });
     }
+    const data = await QueryInfo.find().populate("infoType");
+    // const entry = req.body.entry[0];
+    // const changes = entry.changes[0];
+    // const value = changes.value;
+    // console.log("user Input data",value)
+    // const messageObject = value.messages;
 
-    return res.send("EVENT_RECEIVED");
+    if (req.body !== "undefined") {
+      // const messages = messageObject[0];
+      // const number = await messages.from;
+      // const phone = parseInt(messages.from.toString().slice(2));
+      // const text = GetTextUser(messages);
+      // const text = req.body.text;
+      console.log("text..................", text);
+
+      let conversationState = conversations[userId];
+      if (
+        conversationState &&
+        conversationState.timestamp + 180000 >= Date.now()
+      ) {
+        // Restart the conversation if no state exists or if the last response was more than 5 minutes ago
+        if (!text) {
+          const indext = conversationState.currentQuestionIndex - 1;
+          return res.send(conversationState.data.followUp[indext].question);
+        } else {
+          //check if the cournet index is less then index then send response data
+          if (
+            conversationState.currentQuestionIndex ===
+            conversationState.data.followUp.length 
+          ) {
+            let lindex= conversationState.currentQuestionIndex -1
+            let response =
+              conversationState.data.followUp[lindex].response;
+              // if (
+              //   infoType === "image" ||
+              //   infoType === "video" ||
+              //   infoType === "audio" ||
+              //   infoType === "document" ||
+              //   infoType === "button" ||
+              //   infoType === "list" ||
+              //   infoType === "location" ||
+              //   infoType === "link" ||
+              //   infoType === "text"
+              // ) {
+              //   // const data = samples[`message${infoType.charAt(0).toUpperCase()}${infoType.slice(1)}`](selectedFaq, number);
+              //   // await whatsappService.sendMessageWhatsApp(data);
+              // }
+            conversationState = {};
+            conversations[userId] = conversationState;
+            return res.send(response);
+          } else {
+            let response =
+              conversationState.data.followUp[
+                conversationState.currentQuestionIndex
+              ].question;
+            conversationState.currentQuestionIndex =
+              conversationState.currentQuestionIndex + 1;
+            conversationState.timestamp = Date.now(); // Update the timestamp for the next response
+            // conversationState.data=conversations.data
+            conversations[userId] = conversationState;
+            return res.send(response);
+          }
+        }
+      } else {
+        const similarityThreshold = 0.6;
+        let maxSimilarity = 0;
+        let selectedFaq = null;
+
+        for (const obj of data) {
+          const faq = obj;
+          const similarity = await getJaccardSimilarity(
+            text.toLowerCase(),
+            faq.question.toLowerCase()
+          );
+          if (similarity >= similarityThreshold && similarity > maxSimilarity) {
+            maxSimilarity = similarity;
+            selectedFaq = faq;
+          }
+        }
+
+        if (selectedFaq !== null) {
+          const infoType = selectedFaq.infoType.infoType.toLowerCase();
+          if (infoType === "followup") {
+            console.log("responseType", selectedFaq.followUp.length);
+            if (selectedFaq.followUp && selectedFaq.followUp.length > 0) {
+              const followUpQuestion = selectedFaq.followUp[0];
+              conversationState = {
+                currentQuestionIndex: 1,
+                data: selectedFaq,
+                timestamp: Date.now(),
+              };
+              conversations[userId] = conversationState;
+              /* // const data = samples.messageText(selectedFaq.answer.text, number);
+               // await whatsappService.sendMessageWhatsApp(data);
+              // return res.send("EVENT_RECEIVED");
+              */
+              return res.send(followUpQuestion.question);
+            }
+            //else {
+            //   reply = { message: "Conversation ended." };
+            //   delete conversations[userId];
+            // }
+          } else if (infoType === "text") {
+            // if (isMatch(selectedFaq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
+            //   const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
+
+            //   if (object) {
+            //     const botResponse = `Name: ${object.name}\n Phone: ${object.phone}\n Email: ${object.email}\n Plan Leave: ${object.planLeave}\n Sick Leave: ${object.sickLeave}\n Plan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\n Total Leave Balance: ${object.totalLeaveBalance}`;
+            //     const data = samples.messageText(botResponse, number);
+            //     await whatsappService.sendMessageWhatsApp(data);
+            //     return res.send("EVENT_RECEIVED");
+            //   } else {
+            //     const data = samples.messageText("no user register", number);
+            //     await whatsappService.sendMessageWhatsApp(data);
+            //     return res.send("EVENT_RECEIVED");
+            //   }
+            // } else {
+            // const data = samples.messageText(selectedFaq.answer.text, number);
+            // await whatsappService.sendMessageWhatsApp(data);
+            // return res.send("EVENT_RECEIVED");
+            // }
+            return res.send(selectedFaq.answer.text);
+          } else if (
+            infoType === "image" ||
+            infoType === "video" ||
+            infoType === "audio" ||
+            infoType === "document" ||
+            infoType === "button" ||
+            infoType === "list" ||
+            infoType === "location" ||
+            infoType === "link"
+          ) {
+            // const data = samples[`message${infoType.charAt(0).toUpperCase()}${infoType.slice(1)}`](selectedFaq, number);
+            // await whatsappService.sendMessageWhatsApp(data);
+            return res.send(selectedFaq);
+          }
+        }
+        // const defaultmessage = samples.messageText("I'm sorry, I didn't understand. Can you please rephrase your question?", number);
+        // await whatsappService.sendMessageWhatsApp(defaultmessage);
+        return res.send(
+          "I'm sorry, I didn't understand. Can you please rephrase your question?"
+        );
+        return res.send("EVENT_RECEIVED");
+      }
+
+    }
   } catch (error) {
     res.send("event_RECIVED");
   }

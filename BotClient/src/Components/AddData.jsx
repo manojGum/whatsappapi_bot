@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import AddTextForm from "./FormComponents/AddTextForm";
 import AddButtonsForm from "./FormComponents/AddButtonsForm";
 import AddListForm from "./FormComponents/AddListForm";
-import AddDocumentForm from "./AddDocumentForm";
+import AddDocumentForm from "./FormComponents/AddDocumentForm";
 import AddImageForm from "./FormComponents/AddImageForm";
 import AddLinkForm from "./FormComponents/AddLinkForm";
 import AddVideoForm from "./FormComponents/AddVideoForm";
 import AddAudioForm from "./FormComponents/AddAudioForm";
 import AddLocationForm from "./FormComponents/AddLocationForm";
+import AddFollowUpForm from "./FormComponents/AddFollowUpForm";
 
 const AddData = ({ user, setLoginUser }) => {
   const navigate = useNavigate();
@@ -46,7 +47,12 @@ const AddData = ({ user, setLoginUser }) => {
       longitude: "",
       name: "",
       address: "",
+    },  followUp: [
+    {
+      question: "",
+      response: "",
     },
+  ],
   });
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -72,6 +78,20 @@ const AddData = ({ user, setLoginUser }) => {
    
   };
 
+
+  const followUpCountHandleChange = (event) => {
+    setSelectedValue(event.target.value);
+    let arr = [];
+    for(let i=0; i<event.target.value; i++){
+      arr.push( {
+        question: "",
+        response:""
+      })
+    }
+    formData.followUp = arr;
+    
+  };
+
   const handleButtonChange = (e, index) => {
     const { value } = e.target;
     const updatedFormData = {
@@ -95,6 +115,18 @@ const AddData = ({ user, setLoginUser }) => {
           idx === index ? { ...button, [name]: value } : button
         ),
       },
+    };
+    setFormData(updatedFormData);
+  };
+
+  const handleFlowupChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedFormData = {
+      ...formData,
+     ...formData.followUp,
+        followUp: formData?.followUp.map((followup, idx) =>
+          idx === index ? { ...followup, [name]: value } : followup
+        ),
     };
     setFormData(updatedFormData);
   };
@@ -184,7 +216,12 @@ const AddData = ({ user, setLoginUser }) => {
     formContent = (
       <AddLocationForm  handleChange={handleChange} formData={formData} />
     );
+  }else if (formData.infoType === "followUp") {
+    formContent = (
+      <AddFollowUpForm  handleFlowupChange={handleFlowupChange} formData={formData} handleChange={handleChange} followUpCountHandleChange={followUpCountHandleChange} selectedValue={selectedValue}/>
+    );
   }
+  console.log(formData)
   return (
     <>
       <div></div>

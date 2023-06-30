@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const queryInfoSchema = mongoose.Schema(
+const queryInfoSchema = mongoose.Schema( 
   {
     infoType: {
       type: mongoose.Schema.Types.ObjectId,
@@ -70,6 +70,23 @@ const queryInfoSchema = mongoose.Schema(
       name: String,
       address: String,
     },
+    followUp: [
+      {
+        question: {
+          type: String,
+          required: true,
+          unique:true
+        },
+        response: {
+          type: String,
+        },
+        responseType: {
+          type: String,
+          enum: ["text", "image","document","link","location","audio","video"],
+          default:"text",
+        },
+      },
+    ],
   },
   {
     versionKey: false,

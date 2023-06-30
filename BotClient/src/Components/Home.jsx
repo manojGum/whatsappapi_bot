@@ -120,6 +120,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 const Home = ({ user, setLoginUser }) => {
   const [data, setData] = useState([]);
@@ -162,11 +163,11 @@ const Home = ({ user, setLoginUser }) => {
   return (
     <>
     <div className="progress" style={{height:"1.2rem"}}>
-        <div className="progress-bar" style={{width:`${filteredData.length}%`,height:"1.2rem"}}>{filteredData.length}%</div>
+        <div className="progress-bar" style={{width:`${filteredData.length}%`,height:"1.2rem"}}>{filteredData.length}</div>
       </div>
-    <div className="d-flex vh-100 bg-white justify-content-center align-item-center">
+    <div className="d-flex vh-80 bg-white justify-content-center align-item-center">
       <div className="bg-white">
-        {loading && (
+        { !loading ? <Loader /> : (
           <>
             <div className="d-flex justify-content-between mb-3">
               <h2 className="m-0">Data List</h2>
@@ -247,6 +248,17 @@ const Home = ({ user, setLoginUser }) => {
                       break;
                     case "image":
                       answerContent = <div>{student.answer.link}</div>;
+                      break;
+                      case "followUp":
+                      answerContent = student.followUp.map(
+                        (fllowup) => (
+                          <div key={fllowup._id}>
+                            <ul>
+                              <li>{fllowup.question}</li>
+                            </ul>
+                          </div>
+                        )
+                      );
                       break;
 
                     default:
