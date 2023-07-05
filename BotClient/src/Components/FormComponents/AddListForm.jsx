@@ -1,9 +1,10 @@
 import React from 'react'
+import { GrFormAdd,GrFormClose } from 'react-icons/gr';
 
-const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChange,selectedValue}) => {
+const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChange,handleremove}) => {
   return (
     <>
-        <div>
+        {/* <div>
           <label htmlFor="selectBox">Select an option:</label>
           <select id="selectBox" value={selectedValue} onChange={listCountHandleChange} style={{
             width:"200px",
@@ -13,7 +14,7 @@ const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChan
             <option value="4">4</option>
             <option value="6">6</option>
           </select>
-        </div>
+        </div> */}
         <label htmlFor="question">Question:</label>
         <input
           type="text"
@@ -21,6 +22,7 @@ const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChan
           name="question"
           value={formData.question}
           onChange={handleChange}
+          style={{width:"95%"}}
           required
         />
 
@@ -30,6 +32,7 @@ const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChan
           id="listResponseText"
           name="list.responsetext"
           value={formData?.list[0]?.responsetext}
+          style={{width:"95%"}}
           onChange={handleChange}
         />
         <label htmlFor="text">List Heading :- </label>
@@ -38,12 +41,14 @@ const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChan
           id="listheading"
           name="list.listheading"
           value={formData?.list[0]?.listheading}
+          style={{width:"95%"}}
           onChange={handleChange}
           required
         />
 
         {formData.list.buttonslist.map((list, index) => (
-          <div key={index}>
+          <div key={index} style={{display:"flex"}}>
+            <div>
             <label htmlFor={`buttonTitle${index + 1}`}>
               List Title {index + 1}:
             </label>
@@ -65,6 +70,16 @@ const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChan
               value={formData.list.buttonslist[`${index}`].description}
               onChange={(e) => handleListChange(e, index)}
             />
+            </div>
+            <div class="form-group col-md-2 mt-4" style={{paddingTop: "3%", display:"flex", width:"1px"}}>
+               {
+                  formData.list.buttonslist.length!==1 &&
+                  <div><button  className="btn btn-danger mx-1 btn-sm" onClick={()=>handleremove(index)}><GrFormClose /></button> </div>
+               }
+               { formData.list.buttonslist.length-1===index &&
+               <div><button  className="btn btn-success btn-sm" onClick={()=>listCountHandleChange()}> <GrFormAdd /></button> </div>
+               }
+               </div>
           </div>
         ))}
       </>

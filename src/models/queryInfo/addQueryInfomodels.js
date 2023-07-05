@@ -20,6 +20,10 @@ const queryInfoSchema = mongoose.Schema(
       unique:true,
       lowercase: true,
     },
+    inthub:{
+      type:Boolean,
+          default:false,
+    },
     answer: {
       text: {
         type: String,
@@ -57,9 +61,11 @@ const queryInfoSchema = mongoose.Schema(
         {
           title: {
             type: String,
+            lowercase: true,
           },
           description: {
             type: String,
+            lowercase: true, 
           },
         },
       ],
@@ -74,7 +80,7 @@ const queryInfoSchema = mongoose.Schema(
       {
         question: {
           type: String,
-          required: true,
+          lowercase: true,
           unique:true
         },
         response: {
@@ -82,6 +88,7 @@ const queryInfoSchema = mongoose.Schema(
         },
         responseType: {
           type: String,
+             lowercase: true,
           enum: ["text", "image","document","link","location","audio","video"],
           default:"text",
         },

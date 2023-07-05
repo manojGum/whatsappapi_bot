@@ -530,6 +530,26 @@ const Read = ({ user, setLoginUser }) => {
 			</>
 
 		);
+	} else if (formData.infoType === 'followUp') {
+		formContent = (
+			<>
+			<ul class="list-group mb-3">
+					<li class="list-group-item p-4">
+						<div className="p-2 mb-2 bg-primary text-white">{formData.question}</div>
+						
+						{formData.followUp.map((follow, index) => (
+					<div key={index}>
+						<p htmlFor={`followUp${index + 1}`}>Question {index + 1} : - 
+						<label  style={{ marginLeft: '.5rem' }}>  {formData.followUp[`${index}`].question}</label>
+						</p>
+						{formData.followUp[`${index}`].response ?<p><label htmlFor={`followUp${index+1}`}> Response Data :-  </label> {formData.followUp[`${index}`].response} </p>:''}
+						
+					</div>
+				))}
+					</li>
+				</ul>
+			</>
+		);
 	}
 
 	return (

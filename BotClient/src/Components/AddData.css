@@ -151,3 +151,17 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
+.dropdown-row{
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
+.dropdown{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+.dropdown:empty{
+  border: none;
+}

@@ -337,8 +337,7 @@ const receivedMessage = async (req, res) => {
             conversationState.data.followUp.length 
           ) {
             let lindex= conversationState.currentQuestionIndex -1
-            let response =
-              conversationState.data.followUp[lindex].response;
+            let response =conversationState.data.followUp[lindex].response;
               // if (
               //   infoType === "image" ||
               //   infoType === "video" ||

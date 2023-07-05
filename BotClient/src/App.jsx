@@ -13,7 +13,6 @@ const App = () => {
   // console.log("...................",parsedData)
 
   const [user, setLoginUser] = useState(parsedData)
-  console.log(user)
   return (
     <>
         <Routes>

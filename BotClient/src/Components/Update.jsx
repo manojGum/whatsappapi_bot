@@ -68,6 +68,18 @@ const Update = ({ user, setLoginUser }) => {
     };
     setFormData(updatedFormData);
   };
+  const handleFlowupChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedFormData = {
+      ...formData,
+     ...formData.followUp,
+        followUp: formData?.followUp.map((followup, idx) =>
+          idx === index ? { ...followup, [name]: value } : followup
+        ),
+    };
+    setFormData(updatedFormData);
+  };
+
 
   const [infoTypeOptions, setInfoTypeOptions] = useState([]);
 
@@ -97,6 +109,7 @@ const Update = ({ user, setLoginUser }) => {
             buttonslist: res.data.list.buttonslist,
           },
           location: res.data.location,
+          followUp:res.data.followUp
         });
       })
       .catch((err) => console.log(err));
@@ -373,6 +386,54 @@ const Update = ({ user, setLoginUser }) => {
         ))}
       </>
     );
+  } else if (formData.infoType === "followUp") {
+    formContent = (
+      <>
+        <label htmlFor="question">Question:</label>
+        <input
+          type="text"
+          id="question"
+          name="question"
+          value={formData.question}
+          onChange={handleChange}
+          required
+        />
+
+        <label htmlFor="listResponseText">List Response Text:</label>
+
+
+        <label htmlFor="text">List Heading :- </label>
+
+        {formData.followUp.map((data, index) => (
+          <div key={index}>
+            <label htmlFor={`followUp${index + 1}`}>
+              Question {index + 1}:
+            </label>
+            <input
+              type="text"
+              id={`question${index + 1}`}
+              name={`question`} //list.followUp[${index}].
+              value={formData.followUp[`${index}`].question}
+              onChange={(e) => handleFlowupChange(e, index)}
+              required
+            />
+
+           {index+1 == formData.followUp.length ? <> <label htmlFor={`followUp${index + 2}`}>
+              Response :
+            </label>
+            <input
+              type="text"
+              id={`response${index + 1}`}
+              name={`response`} //list.followUp[${index}].
+              value={formData.followUp[`${index}`].response}
+              onChange={(e) => handleFlowupChange(e, index)}
+              required
+            /> </> : null}
+           
+          </div>
+        ))}
+      </>
+    );
   } else if (formData.infoType === "document") {
     formContent = (
       <>
@@ -567,6 +628,7 @@ const Update = ({ user, setLoginUser }) => {
       </>
     );
   }
+  console.log("update....................",formData.followUp)
   return (
     <>
       <div>

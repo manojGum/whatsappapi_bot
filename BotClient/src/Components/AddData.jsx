@@ -15,9 +15,12 @@ import AddFollowUpForm from "./FormComponents/AddFollowUpForm";
 
 const AddData = ({ user, setLoginUser }) => {
   const navigate = useNavigate();
+  const [suggestions, setSuggestions] = useState([]);
+  const [suggestionId, setsuggestionId] = useState();
   const [formData, setFormData] = useState({
     infoType: "",
     question: "",
+    inthub:"false",
     answer: {
       text: "",
       link: "",
@@ -29,69 +32,108 @@ const AddData = ({ user, setLoginUser }) => {
       buttonslist: [
         {
           title: "",
-        }
+        },
       ],
     },
     list: {
       responsetext: "",
       listheading: " ",
-      buttonslist: [
-        { title: "", description: "" },
-        { title: "", description: "" },
-        { title: "", description: "" },
-        { title: "", description: "" },
-      ],
+      buttonslist: [{ title: "", description: "" }],
     },
     location: {
       latitude: "",
       longitude: "",
       name: "",
       address: "",
-    },  followUp: [
-    {
-      question: "",
-      response: "",
     },
-  ],
+    followUp: [
+      {
+        question: "",
+        response: "",
+      },
+    ],
   });
   const [selectedValue, setSelectedValue] = useState("");
 
   const listCountHandleChange = (event) => {
-    setSelectedValue(event.target.value);
-    let arr = [];
-    for(let i=0; i<event.target.value; i++){
-      arr.push( { title: "", description: "" })
-    }
-    formData.list.buttonslist = arr;
-    
+    // setSelectedValue(event.target.value);
+    // let arr = [];
+    // for(let i=0; i<event.target.value; i++){
+    //   arr.push( { title: "", description: "" })
+    // }
+    // formData.list.buttonslist = arr;
+    formData.list.buttonslist.push({ title: "", description: "" });
+    setSelectedValue({ title: "", description: "" });
   };
 
-  const buttonCountHandleChange  = (event) => {
-    setSelectedValue(event.target.value);
-    let arr = [];
-    for(let i=0; i<event.target.value; i++){
-      arr.push( {
-        title: "",
-      })
-    }
-    formData.buttons.buttonslist = arr;
-   
+  const handleremoveListCount = (index) => {
+    formData.list.buttonslist.pop(index);
+    setSelectedValue({ title: "", description: "" });
   };
 
-
-  const followUpCountHandleChange = (event) => {
-    setSelectedValue(event.target.value);
-    let arr = [];
-    for(let i=0; i<event.target.value; i++){
-      arr.push( {
-        question: "",
-        response:""
-      })
-    }
-    formData.followUp = arr;
-    
+  const buttonCountHandleChange = (event) => {
+    // setSelectedValue(event.target.value);
+    // let arr = [];
+    // for(let i=0; i<event.target.value; i++){
+    // arr.push( {
+    //   title: "",
+    // })
+    // }
+    // formData.buttons.buttonslist = arr;
+    formData.buttons.buttonslist.push({
+      title: "",
+    });
+    setSelectedValue({
+      title: "",
+    });
+  };
+  const handleremoveButtonCount = (index) => {
+    formData.buttons.buttonslist.pop(index);
+    setSelectedValue({
+      title: "",
+    });
+    setSelectedValue({
+      title: "",
+    });
   };
 
+  const followUpCountHandleChange = () => {
+    // setSelectedValue(event.target.value);
+    // let arr = [];
+    // for(let i=0; i<event.target.value; i++){
+    //   arr.push( {
+    //     question: "",
+    //     response:""
+    //   })
+    // }
+    // formData.followUp = arr;
+    formData.followUp.push({
+      question: "",
+      response: "",
+    });
+    setSelectedValue({
+      question: "",
+      response: "",
+    });
+  };
+  // const buttonClickpageAdd =()=>{
+  //   formData.followUp.push({
+  //     question: "",
+  //     response:""
+  //   })
+  //   setSelectedValue({
+  //     question: "",
+  //     response:""
+  //   })
+
+  // }
+  const handleremove = (index) => {
+    formData.followUp.pop(index);
+    setSelectedValue({
+      question: "",
+      response: "",
+    });
+  };
   const handleButtonChange = (e, index) => {
     const { value } = e.target;
     const updatedFormData = {
@@ -119,15 +161,24 @@ const AddData = ({ user, setLoginUser }) => {
     setFormData(updatedFormData);
   };
 
-  const handleFlowupChange = (e, index) => {
+  const handleFlowupChange = async (e, index) => {
     const { name, value } = e.target;
+    setsuggestionId(index);
     const updatedFormData = {
       ...formData,
-     ...formData.followUp,
-        followUp: formData?.followUp.map((followup, idx) =>
-          idx === index ? { ...followup, [name]: value } : followup
-        ),
+      ...formData.followUp,
+      followUp: formData?.followUp.map((followup, idx) =>
+        idx === index ? { ...followup, [name]: value } : followup
+      ),
     };
+    // console.log("value",formData.followUp[index].question)
+    //setSuggestions(res.data[0].followUp)
+    getData(formData.followUp[index].question)
+      .then((res) => setSuggestions(res.data))
+      .catch((err) => {
+        console.log(err);
+      });
+
     setFormData(updatedFormData);
   };
 
@@ -144,12 +195,44 @@ const AddData = ({ user, setLoginUser }) => {
       });
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  function getData(keyw) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5656/addinfo/autocomplete/${keyw}`
+        );
+        resolve(response);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  const handleChange = async (e) => {
+    console.log("dsffff",e)
+    let { name, value } = e.target;
+    if(e.target.name==="inthub"){
+      name="inthub"
+      value=e.target.checked
+    }
+   
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+  };
+  const handleChangee = (e, index) => {
+    const value = e;
+    const updatedFormData = {
+      ...formData,
+      ...formData.followUp,
+      followUp: formData?.followUp.map((followup, idx) =>
+        idx === index ? { ...followup, question: value } : followup
+      ),
+    };
+    // console.log("value",formData.followUp[index].question)
+    setFormData(updatedFormData);
+    setSuggestions([]);
   };
 
   const headers = {
@@ -182,27 +265,39 @@ const AddData = ({ user, setLoginUser }) => {
 
   if (formData.infoType === "text") {
     formContent = (
-    <AddTextForm handleChange={handleChange} formData={formData} />
+      <AddTextForm handleChange={handleChange} formData={formData} />
     );
   } else if (formData.infoType === "button") {
     formContent = (
-    <AddButtonsForm  formData={formData} handleButtonChange={handleButtonChange} handleChange={handleChange} selectedValue={selectedValue} buttonCountHandleChange ={buttonCountHandleChange}/>
+      <AddButtonsForm
+        formData={formData}
+        handleButtonChange={handleButtonChange}
+        handleChange={handleChange}
+        buttonCountHandleChange={buttonCountHandleChange}
+        handleremove={handleremoveButtonCount}
+      />
     );
   } else if (formData.infoType === "list") {
     formContent = (
-     <AddListForm handleListChange={handleListChange} formData={formData} handleChange={handleChange} listCountHandleChange={listCountHandleChange} selectedValue={selectedValue}/>
+      <AddListForm
+        handleListChange={handleListChange}
+        formData={formData}
+        handleChange={handleChange}
+        listCountHandleChange={listCountHandleChange}
+        handleremove={handleremoveListCount}
+      />
     );
   } else if (formData.infoType === "document") {
     formContent = (
-     <AddDocumentForm handleChange={handleChange} formData={formData}  />
+      <AddDocumentForm handleChange={handleChange} formData={formData} />
     );
   } else if (formData.infoType === "image") {
     formContent = (
-     <AddImageForm handleChange={handleChange} formData={formData} />
+      <AddImageForm handleChange={handleChange} formData={formData} />
     );
   } else if (formData.infoType === "link") {
     formContent = (
-    <AddLinkForm handleChange={handleChange} formData={formData} />
+      <AddLinkForm handleChange={handleChange} formData={formData} />
     );
   } else if (formData.infoType === "video") {
     formContent = (
@@ -210,15 +305,24 @@ const AddData = ({ user, setLoginUser }) => {
     );
   } else if (formData.infoType === "audio") {
     formContent = (
-     <AddAudioForm handleChange={handleChange} formData={formData} />
+      <AddAudioForm handleChange={handleChange} formData={formData} />
     );
   } else if (formData.infoType === "location") {
     formContent = (
-      <AddLocationForm  handleChange={handleChange} formData={formData} />
+      <AddLocationForm handleChange={handleChange} formData={formData} />
     );
-  }else if (formData.infoType === "followUp") {
+  } else if (formData.infoType === "followUp") {
     formContent = (
-      <AddFollowUpForm  handleFlowupChange={handleFlowupChange} formData={formData} handleChange={handleChange} followUpCountHandleChange={followUpCountHandleChange} selectedValue={selectedValue}/>
+      <AddFollowUpForm
+        suggestionId={suggestionId}
+        suggestions={suggestions}
+        handleFlowupChange={handleFlowupChange}
+        formData={formData}
+        handleChange={handleChange}
+        followUpCountHandleChange={followUpCountHandleChange}
+        handleChangee={handleChangee}
+        handleremove={handleremove}
+      />
     );
   }
   console.log(formData)
@@ -229,6 +333,7 @@ const AddData = ({ user, setLoginUser }) => {
       <div
         style={{
           marginTop: "20px",
+          width: "102%",
         }}
       >
         <form onSubmit={handleSubmit}>
@@ -237,7 +342,7 @@ const AddData = ({ user, setLoginUser }) => {
             style={{
               width: "200px",
               height: "32px",
-              marginLeft:"2rem"
+              marginLeft: "2rem",
             }}
             id="infoType"
             name="infoType"
