@@ -70,7 +70,7 @@ const AddFollowUpForm = ({
             onChange={(e) => handleFlowupChange(e, index)}
             required
           />
-          {suggestionId === index ? (
+          {/* {suggestionId === index ? (
             <ul className="dropdown-row">
               {suggestions.map((suggestion, i) => (
                 <div
@@ -82,7 +82,7 @@ const AddFollowUpForm = ({
                 </div>
               ))}
             </ul>
-          ) : null}
+          ) : null} */}
 
          
           {/* {index + 1 === formData.followUp.length ? (

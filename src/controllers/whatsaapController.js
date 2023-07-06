@@ -320,6 +320,7 @@ const receivedMessage = async (req, res) => {
       // const text = GetTextUser(messages);
       // const text = req.body.text;
       console.log("text..................", text);
+    let phone=userId
 
       let conversationState = conversations[userId];
       if (
@@ -409,7 +410,7 @@ const receivedMessage = async (req, res) => {
             // }
           } else if (infoType === "text") {
             // if (isMatch(selectedFaq.question.toLowerCase(), "i want my leave balance", similarityThreshold)) {
-            //   const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
+              // const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
 
             //   if (object) {
             //     const botResponse = `Name: ${object.name}\n Phone: ${object.phone}\n Email: ${object.email}\n Plan Leave: ${object.planLeave}\n Sick Leave: ${object.sickLeave}\n Plan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\n Total Leave Balance: ${object.totalLeaveBalance}`;
@@ -426,6 +427,10 @@ const receivedMessage = async (req, res) => {
             // await whatsappService.sendMessageWhatsApp(data);
             // return res.send("EVENT_RECEIVED");
             // }
+            if(selectedFaq.inthub===true){
+              const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
+              return res.send(object);
+            }
             return res.send(selectedFaq.answer.text);
           } else if (
             infoType === "image" ||

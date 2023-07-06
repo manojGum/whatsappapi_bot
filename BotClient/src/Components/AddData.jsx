@@ -20,7 +20,7 @@ const AddData = ({ user, setLoginUser }) => {
   const [formData, setFormData] = useState({
     infoType: "",
     question: "",
-    inthub:"false",
+    inthub: false,
     answer: {
       text: "",
       link: "",
@@ -173,11 +173,10 @@ const AddData = ({ user, setLoginUser }) => {
     };
     // console.log("value",formData.followUp[index].question)
     //setSuggestions(res.data[0].followUp)
-    getData(formData.followUp[index].question)
-      .then((res) => setSuggestions(res.data))
-      .catch((err) => {
-        console.log(err);
-      });
+    // search response
+    getData(formData.followUp[index].question).then((res) =>
+      setSuggestions(res.data)
+    );
 
     setFormData(updatedFormData);
   };
@@ -209,13 +208,12 @@ const AddData = ({ user, setLoginUser }) => {
   }
 
   const handleChange = async (e) => {
-    console.log("dsffff",e)
     let { name, value } = e.target;
-    if(e.target.name==="inthub"){
-      name="inthub"
-      value=e.target.checked
+    if (e.target.name === "inthub") {
+      name = "inthub";
+      value = e.target.checked;
     }
-   
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -325,7 +323,6 @@ const AddData = ({ user, setLoginUser }) => {
       />
     );
   }
-  console.log(formData)
   return (
     <>
       <div></div>

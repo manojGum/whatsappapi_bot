@@ -22,7 +22,8 @@ const queryInfoSchema = mongoose.Schema(
     },
     inthub:{
       type:Boolean,
-          default:false,
+      enum: [true, false],
+      default:false,
     },
     answer: {
       text: {

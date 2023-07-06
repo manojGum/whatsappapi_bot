@@ -28,17 +28,17 @@ const App = () => {
                     }
                   />
                   <Route
-                    // exact
+                    exact
                     path="/register"
                     element={<Register setLoginUser={setLoginUser} />}
                   />
                    <Route
-                    // exact
+                    exact
                     path="/"
                     element={<Login setLoginUser={setLoginUser} />}
                   />
                    <Route
-                    // exact
+                    exact
                     path="/home"
                    
                     element={
@@ -50,7 +50,7 @@ const App = () => {
                     }
                   />
                    <Route
-                    // exact
+                    exact
                     path="/read/:id"
                     element={<ReadPages  setLoginUser={setLoginUser} user={user}  />}
                   />

@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 
 const AddTextForm = ({ handleChange, formData }) => {
  
@@ -29,8 +27,7 @@ const AddTextForm = ({ handleChange, formData }) => {
           onChange={(e)=>handleChange(e)}
         />
       </div>
-
-      <label htmlFor="text">Text :- </label>
+{formData.inthub===false ? <> <label htmlFor="text">Text :- </label>
       <input
         type="text"
         id="text"
@@ -38,7 +35,8 @@ const AddTextForm = ({ handleChange, formData }) => {
         value={formData?.answer[0]?.text}
         onChange={handleChange}
         required
-      />
+      /> </>:null}
+     
       
     </>
   );

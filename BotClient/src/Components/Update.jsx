@@ -418,7 +418,7 @@ const Update = ({ user, setLoginUser }) => {
               required
             />
 
-           {index+1 == formData.followUp.length ? <> <label htmlFor={`followUp${index + 2}`}>
+           {index+1 === formData.followUp.length ? <> <label htmlFor={`followUp${index + 2}`}>
               Response :
             </label>
             <input
@@ -628,7 +628,6 @@ const Update = ({ user, setLoginUser }) => {
       </>
     );
   }
-  console.log("update....................",formData.followUp)
   return (
     <>
       <div>
