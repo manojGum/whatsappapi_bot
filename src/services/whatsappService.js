@@ -1,8 +1,7 @@
-
+/*
 // const https = require("https")
 
 // function sendMessageWhatsApp(data){
-//     // /*
 //     // const data = JSON.stringify({
 //     //     "messaging_product": "whatsapp",    
 //     //     "to": number,
@@ -11,7 +10,7 @@
 //     //         "body": textResponse
 //     //     }
 //     // });
-//     // */
+//     // 
 //     const options = {
 //         host:"graph.facebook.com",
 //         path:"/v16.0/122432790850913/messages",
@@ -38,6 +37,7 @@
 // module.exports ={
 //     sendMessageWhatsApp
 // }
+*/
 
 const axios = require("axios");
 

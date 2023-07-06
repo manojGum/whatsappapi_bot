@@ -20,7 +20,7 @@ const Login = ({ setLoginUser }) => {
   const login = () => {
     if (user.email && user.password) {
       axios
-        .post("http://localhost:5656/users/login", {
+        .post(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
           email: user.email,
           passwordHash: user.password,
         })
@@ -75,7 +75,7 @@ const Login = ({ setLoginUser }) => {
           </button>
         </div>
         <p className='text-end mt-9'>
-        <Link to="forgot-password" className="p-4 m-3"> Forgot Password?</Link> {" "}   <Link to="/register">Sign up</Link>
+        <Link to="/" className="p-4 m-3"> Forgot Password?</Link> {" "}   <Link to="/register">Sign up</Link>
         </p>
       </div>
     </div>

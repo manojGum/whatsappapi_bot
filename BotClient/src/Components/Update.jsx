@@ -86,7 +86,7 @@ const Update = ({ user, setLoginUser }) => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:5656/addinfo/info/${id}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/addinfo/info/${id}`)
       .then((res) => {
         setInfoTypeOptions(res.data.infoType);
         setFormData({
@@ -242,7 +242,7 @@ const Update = ({ user, setLoginUser }) => {
     e.preventDefault();
     console.log("formData love", requestData);
     axios
-      .put(`http://localhost:5656/addinfo/` + id, requestData, {
+      .put(`http://localhost:5656/api/v1/addinfo/` + id, requestData, {
         headers: headers,
       })
       .then((response) => {

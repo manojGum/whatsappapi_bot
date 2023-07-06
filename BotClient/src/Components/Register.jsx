@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Axios from "axios"
-import {useNavigate} from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom';
 import "./Register.css"
 
 const Register = ({setLoginUser}) => {
@@ -26,7 +25,7 @@ const Register = ({setLoginUser}) => {
     const register = async () =>{
         const {name,email,password,reEnterPassword,phone} = user
         if(name && email && password && (password===reEnterPassword) && phone){
-           Axios.post("http://localhost:5656/users/register",{
+           Axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/register`,{
             name:user.name,
             email:user.email,
             passwordHash:user.password,

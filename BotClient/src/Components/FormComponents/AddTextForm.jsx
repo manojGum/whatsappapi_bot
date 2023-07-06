@@ -15,7 +15,8 @@ const AddTextForm = ({ handleChange, formData }) => {
         <div className="sm" style={{
             display: "flex",
             marginBottom: "-3px",
-            width:"32%"
+            width:"32%",
+            marginLeft:"60%"
       }}>
         <label htmlFor="inthub" style={{width:"92%"}}>INTHUB :-</label>
         <input

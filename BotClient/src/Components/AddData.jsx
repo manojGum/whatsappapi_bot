@@ -56,12 +56,14 @@ const AddData = ({ user, setLoginUser }) => {
   const [selectedValue, setSelectedValue] = useState("");
 
   const listCountHandleChange = (event) => {
+    /*
     // setSelectedValue(event.target.value);
     // let arr = [];
     // for(let i=0; i<event.target.value; i++){
     //   arr.push( { title: "", description: "" })
     // }
     // formData.list.buttonslist = arr;
+    */
     formData.list.buttonslist.push({ title: "", description: "" });
     setSelectedValue({ title: "", description: "" });
   };
@@ -72,6 +74,7 @@ const AddData = ({ user, setLoginUser }) => {
   };
 
   const buttonCountHandleChange = (event) => {
+    /*
     // setSelectedValue(event.target.value);
     // let arr = [];
     // for(let i=0; i<event.target.value; i++){
@@ -80,6 +83,7 @@ const AddData = ({ user, setLoginUser }) => {
     // })
     // }
     // formData.buttons.buttonslist = arr;
+    */
     formData.buttons.buttonslist.push({
       title: "",
     });
@@ -98,6 +102,7 @@ const AddData = ({ user, setLoginUser }) => {
   };
 
   const followUpCountHandleChange = () => {
+    /*
     // setSelectedValue(event.target.value);
     // let arr = [];
     // for(let i=0; i<event.target.value; i++){
@@ -107,6 +112,7 @@ const AddData = ({ user, setLoginUser }) => {
     //   })
     // }
     // formData.followUp = arr;
+    */
     formData.followUp.push({
       question: "",
       response: "",
@@ -116,17 +122,7 @@ const AddData = ({ user, setLoginUser }) => {
       response: "",
     });
   };
-  // const buttonClickpageAdd =()=>{
-  //   formData.followUp.push({
-  //     question: "",
-  //     response:""
-  //   })
-  //   setSelectedValue({
-  //     question: "",
-  //     response:""
-  //   })
 
-  // }
   const handleremove = (index) => {
     formData.followUp.pop(index);
     setSelectedValue({
@@ -171,9 +167,7 @@ const AddData = ({ user, setLoginUser }) => {
         idx === index ? { ...followup, [name]: value } : followup
       ),
     };
-    // console.log("value",formData.followUp[index].question)
-    //setSuggestions(res.data[0].followUp)
-    // search response
+
     getData(formData.followUp[index].question).then((res) =>
       setSuggestions(res.data)
     );
@@ -184,7 +178,7 @@ const AddData = ({ user, setLoginUser }) => {
   const [infoTypeOptions, setInfoTypeOptions] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5656/infotype")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/infotype`)
       .then((response) => response.json())
       .then((data) => {
         setInfoTypeOptions(data);
@@ -198,7 +192,7 @@ const AddData = ({ user, setLoginUser }) => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await axios.get(
-          `http://localhost:5656/addinfo/autocomplete/${keyw}`
+          `${process.env.REACT_APP_BACKEND_URL}/addinfo/autocomplete/${keyw}`
         );
         resolve(response);
       } catch (error) {
@@ -228,7 +222,6 @@ const AddData = ({ user, setLoginUser }) => {
         idx === index ? { ...followup, question: value } : followup
       ),
     };
-    // console.log("value",formData.followUp[index].question)
     setFormData(updatedFormData);
     setSuggestions([]);
   };
@@ -247,7 +240,7 @@ const AddData = ({ user, setLoginUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:5656/addinfo`, requestData, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/addinfo`, requestData, {
         headers: headers,
       })
       .then((response) => {

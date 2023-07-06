@@ -103,6 +103,7 @@ function messageButton(faq, number) {
     });
     return data;
 }
+/*
 // function generateListTemplateRow(rows) {
 //     const template = {
 //       rows: rows.map(row => ({
@@ -110,10 +111,10 @@ function messageButton(faq, number) {
 //         title: row.title,
 //         description: row.description
 //       }))
-//     };
-  
+//     };  
 //     return template;
 //   }
+*/
 const messageList= (faq, number)=> {
 
     const data = JSON.stringify({

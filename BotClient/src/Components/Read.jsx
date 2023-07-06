@@ -71,7 +71,7 @@ const Read = ({ user, setLoginUser }) => {
 	const { id } = useParams();
 	// const [data, setStudent] = useState([])
 	useEffect(() => {
-		axios.get(`http://localhost:5656/addinfo/info/${id}`).then(res => {
+		axios.get(`${process.env.REACT_APP_BACKEND_URL}/addinfo/info/${id}`).then(res => {
 			setInfoTypeOptions(res.data._id)
 			setFormData({
 				...formData,
