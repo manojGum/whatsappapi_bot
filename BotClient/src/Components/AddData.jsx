@@ -12,6 +12,7 @@ import AddVideoForm from "./FormComponents/AddVideoForm";
 import AddAudioForm from "./FormComponents/AddAudioForm";
 import AddLocationForm from "./FormComponents/AddLocationForm";
 import AddFollowUpForm from "./FormComponents/AddFollowUpForm";
+import { invalidInputSwal, successInputSwal } from "../swal";
 
 const AddData = ({ user, setLoginUser }) => {
   const navigate = useNavigate();
@@ -244,10 +245,18 @@ const AddData = ({ user, setLoginUser }) => {
         headers: headers,
       })
       .then((response) => {
-        alert(response.data);
-        navigate("/home");
+        if(response.data==="DATA created successfully ...!")
+        {
+          successInputSwal(response.data);
+          navigate("/home");
+          console.log(response.data)
+        }
+        else{
+          invalidInputSwal(response.data);
+        }
       })
       .catch((error) => {
+        invalidInputSwal("Create successfully");
         alert("Error", error);
       });
   };

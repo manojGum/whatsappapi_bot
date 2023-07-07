@@ -15,9 +15,7 @@ const queryInfoSchema = mongoose.Schema(
       lowercase: true,
     },
     question: {
-      type: String,
-      required: true,
-      unique:true,
+      type: String, required: true, unique: true,
       lowercase: true,
     },
     inthub:{

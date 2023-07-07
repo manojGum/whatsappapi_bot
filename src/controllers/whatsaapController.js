@@ -323,10 +323,7 @@ const receivedMessage = async (req, res) => {
     let phone=userId
 
       let conversationState = conversations[userId];
-      if (
-        conversationState &&
-        conversationState.timestamp + 180000 >= Date.now()
-      ) {
+      if (conversationState && conversationState.timestamp + 90000 >= Date.now()) {
         // Restart the conversation if no state exists or if the last response was more than 5 minutes ago
         if (!text) {
           const indext = conversationState.currentQuestionIndex - 1;
@@ -428,18 +425,23 @@ const receivedMessage = async (req, res) => {
             // return res.send("EVENT_RECEIVED");
             // }
             if(selectedFaq.inthub===true){
-              const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
-              if (object) {
-                const botResponse = `Name: ${object.name}\n Phone: ${object.phone}\n Email: ${object.email}\n Plan Leave: ${object.planLeave}\n Sick Leave: ${object.sickLeave}\n Plan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\n Total Leave Balance: ${object.totalLeaveBalance}`;
-                // const data = samples.messageText(botResponse, number);
-                // await whatsappService.sendMessageWhatsApp(data);
-                return res.send(botResponse);
-                // return res.send("EVENT_RECEIVED");
-              } else {
-                // const data = samples.messageText("no user register", number);
-                // await whatsappService.sendMessageWhatsApp(data);
-                // return res.send("EVENT_RECEIVED");
-                return res.send("no user register");
+              try {
+                // let object = await axios.get(`${faq.response}${userPhoneNumber}`);
+                const object = await BotUserDemo.findOne({ phone }, { _id: 0, __v: 0 });
+                if (object) {
+                  const botResponse = `Name: ${object.name} \n Phone: ${object.phone}\n Email: ${object.email}\n Plan Leave: ${object.planLeave}\n Sick Leave: ${object.sickLeave}\n Plan Leave Balance: ${object.planLeaveBalance}\nSick Leave Balance: ${object.sickLeaveBalance}\n Total Leave Balance: ${object.totalLeaveBalance}`;
+                  // const data = samples.messageText(botResponse, number);
+                  // await whatsappService.sendMessageWhatsApp(data);
+                  return res.send(botResponse);
+                  // return res.send("EVENT_RECEIVED");
+                } else {
+                  // const data = samples.messageText("no user register", number);
+                  // await whatsappService.sendMessageWhatsApp(data);
+                  // return res.send("EVENT_RECEIVED");
+                  return res.send("No details avilable ");
+                }
+              } catch (error) {
+                console.log(error.meesage)
               }
             }
             return res.send(selectedFaq.answer.text);
@@ -463,7 +465,7 @@ const receivedMessage = async (req, res) => {
         return res.send(
           "I'm sorry, I didn't understand. Can you please rephrase your question?"
         );
-        return res.send("EVENT_RECEIVED");
+        // return res.send("EVENT_RECEIVED");
       }
 
     }
