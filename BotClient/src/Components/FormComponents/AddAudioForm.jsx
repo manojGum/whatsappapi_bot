@@ -1,6 +1,7 @@
-import React from 'react'
-
-const AddAudioForm = ({handleChange,formData}) => {
+import React, { useContext } from 'react'
+import { AddDataContext } from '../../contexts/AddDataContext'
+const AddAudioForm = () => {
+  const {handleChange,formData}=useContext(AddDataContext)
   return (
     <>
     <label htmlFor="question">Question:</label>

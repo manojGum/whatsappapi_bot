@@ -29,7 +29,6 @@ const Update = ({ user, setLoginUser }) => {
       listheading: " ",
       buttonslist: [
         { title: "", description: "" },
-        { title: "", description: "" },
       ],
     },
     location: {
@@ -56,7 +55,6 @@ const Update = ({ user, setLoginUser }) => {
   };
   const handleListChange = (e, index) => {
     const { name, value } = e.target;
-    // console.log('name--',name)
     const updatedFormData = {
       ...formData,
       list: {
@@ -240,7 +238,6 @@ const Update = ({ user, setLoginUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("formData love", requestData);
     axios
       .put(`http://localhost:5656/api/v1/addinfo/` + id, requestData, {
         headers: headers,
@@ -279,14 +276,6 @@ const Update = ({ user, setLoginUser }) => {
           onChange={nestedHandleChange}
           required
         />
-        {/* <input
-          type="text"
-          id="question"
-          name="question"
-          value={formData.question}
-          onChange={handleChange}
-          required
-        /> */}
       </>
     );
   } else if (formData.infoType === "button") {

@@ -1,24 +1,11 @@
-import React from 'react'
+import { AddDataContext } from "../../contexts/AddDataContext";
+import React ,{ useContext } from "react";
 import { GrFormAdd,GrFormClose } from 'react-icons/gr';
 
-const AddButtonsForm = ({handleButtonChange,formData,handleChange, buttonCountHandleChange,handleremove}) => {
+const AddButtonsForm = () => {
+  const {handleButtonChange,formData,handleChange, buttonCountHandleChange,handleremoveButtonCount}= useContext(AddDataContext)
   return (
     <>
-    {/* <div>
-        <label htmlFor="selectBox">Select an option:</label>
-        <select id="selectBox" value={selectedValue} onChange={buttonCountHandleChange} style={{
-          width:"200px",
-          height: "32px",
-          marginLeft:"2rem"
-        }}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div> */}
       <label htmlFor="question">Question:</label>
       <input
         type="text"
@@ -57,7 +44,7 @@ const AddButtonsForm = ({handleButtonChange,formData,handleChange, buttonCountHa
           <div class="form-group col-md-2 mt-4" style={{paddingTop: "3%", display:"flex", width:"1px"}}>
                {
                   formData.buttons.buttonslist.length!==1 &&
-                  <div><button  className="btn btn-danger mx-1 btn-sm" onClick={()=>handleremove(index)}><GrFormClose /></button> </div>
+                  <div><button  className="btn btn-danger mx-1 btn-sm" onClick={()=>handleremoveButtonCount(index)}><GrFormClose /></button> </div>
                }
                { formData.buttons.buttonslist.length-1===index &&
                <div><button  className="btn btn-success btn-sm" onClick={()=>buttonCountHandleChange()}> <GrFormAdd /></button> </div>

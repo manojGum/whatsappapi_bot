@@ -1,5 +1,7 @@
-
-const AddTextForm = ({ handleChange, formData }) => {
+import { useContext } from "react";
+import { AddDataContext } from "../../contexts/AddDataContext";
+const AddTextForm = () => {
+  const {formData,handleChange}= useContext(AddDataContext)
  
   return (
     <>

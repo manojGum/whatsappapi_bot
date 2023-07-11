@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../AddData.css";
+import { AddDataContext } from "../../contexts/AddDataContext";
 import { GrFormAdd,GrFormClose } from 'react-icons/gr';
 
 
-const AddFollowUpForm = ({
+const AddFollowUpForm = () => {
+const {
   suggestions,
   handleFlowupChange,
   formData,
@@ -12,31 +14,9 @@ const AddFollowUpForm = ({
   handleChangee,
   suggestionId,
   handleremove
-}) => {
-
+}=useContext(AddDataContext)
   return (
     <>
-      {/* <div>
-        <label htmlFor="selectBox">Select an option:</label>
-        <select
-          id="selectBox"
-          value={selectedValue}
-          onChange={followUpCountHandleChange}
-          style={{
-            width: "200px",
-            height: "32px",
-            marginLeft: "2rem",
-          }}
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-        </select>
-      </div> */}
       <label htmlFor="question">Question:</label>
       <div>
         <input

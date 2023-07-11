@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { GrFormAdd,GrFormClose } from 'react-icons/gr';
-
-const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChange,handleremove}) => {
+import { AddDataContext } from '../../contexts/AddDataContext';
+const AddListForm = () => {
+  const {handleListChange,formData,handleChange,listCountHandleChange,handleremoveListCount}=useContext(AddDataContext)
   return (
     <>
         {/* <div>
@@ -74,7 +75,7 @@ const AddListForm = ({handleListChange,formData,handleChange,listCountHandleChan
             <div class="form-group col-md-2 mt-4" style={{paddingTop: "3%", display:"flex", width:"1px"}}>
                {
                   formData.list.buttonslist.length!==1 &&
-                  <div><button  className="btn btn-danger mx-1 btn-sm" onClick={()=>handleremove(index)}><GrFormClose /></button> </div>
+                  <div><button  className="btn btn-danger mx-1 btn-sm" onClick={()=>handleremoveListCount(index)}><GrFormClose /></button> </div>
                }
                { formData.list.buttonslist.length-1===index &&
                <div><button  className="btn btn-success btn-sm" onClick={()=>listCountHandleChange()}> <GrFormAdd /></button> </div>

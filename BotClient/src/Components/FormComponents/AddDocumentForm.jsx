@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AddDataContext } from '../../contexts/AddDataContext' 
 
-const AddDocumentForm = ({handleChange,formData}) => {
+const AddDocumentForm = () => {
+  const {handleChange,formData}= useContext(AddDataContext)
   return (
     <>
         <label htmlFor="question">Question:</label>
