@@ -1,13 +1,18 @@
 import React from "react";
 import "../Dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 const Navbar = ({ changeStyle1, setLoginUser }) => {
+  const navigate =useNavigate()
   const logoutfun = ()=>{
       localStorage.removeItem("userData")
       setLoginUser({})
+      navigate("/");
+
   }
+
   return (
     <>
       <nav className="navbar navbar-expand navbar-light bg-gray-900  text-white topbar  static-top shadow">
